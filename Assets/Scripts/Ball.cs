@@ -9,7 +9,6 @@ public class Ball : MonoBehaviour
 {
     Volume postprocessing;
     Volume ZeroGravityVolume13;
-    private Vignette v13;
     Vector2 position;
     Rigidbody2D rb;
     LineRenderer launchLine;
@@ -33,7 +32,6 @@ public class Ball : MonoBehaviour
             launchLine.enabled = false;
             if(SceneManager.GetActiveScene().buildIndex == 14){
                 ZeroGravityVolume13 = GameObject.Find("ZeroGravityVolume").GetComponent<Volume>();
-                ZeroGravityVolume13.profile.TryGet(out v13);
             }
         }
 
@@ -85,9 +83,6 @@ public class Ball : MonoBehaviour
 
         Time.timeScale = Mathf.Lerp(1, slowMotionSpeed, currentSlowDown);
         postprocessing.weight = currentSlowDown;
-
-        if(rb.gravityScale == 0){//TODO v13.center = 
-        return;}
     }
     Vector2 GetLaunchPoint()
     {

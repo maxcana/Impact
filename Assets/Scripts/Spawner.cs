@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject objectToSpawn;
-    public int counter = 0;
+    int counter = 0;
     public int timeToSpawn;
     // Start is called before the first frame update
     void Start()

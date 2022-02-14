@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 public class Ball : MonoBehaviour
 {
     Volume postprocessing;
+    Volume ZeroGravityVolume13;
+    private Vignette v13;
+    Vector2 position;
     Rigidbody2D rb;
     LineRenderer launchLine;
     public float slowMotionSpeed = 0.2f;
@@ -28,12 +31,17 @@ public class Ball : MonoBehaviour
             launchLine = GetComponent<LineRenderer>();
             rb = GetComponent<Rigidbody2D>();
             launchLine.enabled = false;
+            if(SceneManager.GetActiveScene().buildIndex == 14){
+                ZeroGravityVolume13 = GameObject.Find("ZeroGravityVolume").GetComponent<Volume>();
+                ZeroGravityVolume13.profile.TryGet(out v13);
+            }
         }
 
     void Update()
     {
-        if(0.001f > Mathf.Abs(rb.velocity.x) + Mathf.Abs(rb.velocity.y)) {launches = 1;}
-        if(0.0012f > Mathf.Abs(rb.velocity.x) && SceneManager.GetActiveScene().buildIndex != 6) {launches = 1;}
+        
+        if(0.001f > Mathf.Abs(rb.velocity.x) + Mathf.Abs(rb.velocity.y)) {if(rb.gravityScale != 0){launches = 1;} else {Destroy(gameObject);}}
+        if(rb.gravityScale != 0){if(0.0012f > Mathf.Abs(rb.velocity.x) && SceneManager.GetActiveScene().buildIndex != 6) {launches = 1;}}
 
         if(!inBossFight){
             if(launches == 1)
@@ -77,6 +85,9 @@ public class Ball : MonoBehaviour
 
         Time.timeScale = Mathf.Lerp(1, slowMotionSpeed, currentSlowDown);
         postprocessing.weight = currentSlowDown;
+
+        if(rb.gravityScale == 0){//TODO v13.center = 
+        return;}
     }
     Vector2 GetLaunchPoint()
     {

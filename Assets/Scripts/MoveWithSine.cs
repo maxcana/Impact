@@ -12,6 +12,7 @@ public class MoveWithSine : MonoBehaviour
     public float startingSineX;
     public float startingSineY;
     private float timeCount = 0;
+    [SerializeField] bool Right;
 
     private void Start() 
     {
@@ -22,12 +23,13 @@ public class MoveWithSine : MonoBehaviour
         timeCount += Time.deltaTime;
         if(moveX)
         {
-            transform.position = new Vector2(startPosition.x + Mathf.Cos(startingSineX + timeCount * moveSpeed) * moveAmount, transform.position.y);
+            transform.position = new Vector2(startPosition.x + (Right?Mathf.Sin(startingSineX + timeCount * moveSpeed) * moveAmount:Mathf.Cos(startingSineX + timeCount * moveSpeed) * moveAmount), transform.position.y);
+
         }
 
         if(moveY)
         {
-            transform.position = new Vector2(transform.position.x, startPosition.y + Mathf.Sin(startingSineY + timeCount * moveSpeed) * moveAmount);
+            transform.position = new Vector2(transform.position.x, startPosition.y + (Right?Mathf.Cos(startingSineY + timeCount * moveSpeed) * moveAmount:Mathf.Sin(startingSineY + timeCount * moveSpeed) * moveAmount));
         }
     }
 }

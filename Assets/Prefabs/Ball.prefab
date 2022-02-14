@@ -415,5 +415,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9b07fd3d0c89c4d86cf588541974ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shake: {fileID: 0}
   hitParticle: {fileID: 4546371836054053699, guid: 156752be8f512394e9fc18f2de70b76e, type: 3}
   VelocityLimit: 1

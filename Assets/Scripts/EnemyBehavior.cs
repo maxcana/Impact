@@ -59,7 +59,6 @@ public class EnemyBehavior : MonoBehaviour
     }
 
     IEnumerator Flip(){
-        Debug.Log("flip");
         isFlipping = true;
         rb.AddForce(Vector3.up * 5, ForceMode2D.Impulse);
         float startAngle = rb.rotation;

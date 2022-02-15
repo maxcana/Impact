@@ -37,18 +37,19 @@ public class Ball : MonoBehaviour
             if(SceneManager.GetActiveScene().buildIndex == 14){
                 ZeroGravityVolume13 = GameObject.Find("ZeroGravityVolume").GetComponent<Volume>();
             }
-            ballPrivaterb.bounciness = 0.7f;
+            ballPrivaterb.bounciness = 0.8f;
             ballPrivaterb.friction =   0.1f;
-            rb.drag = 0.7f;
+            rb.drag = 0.1f;
         }
 
     void Update()
     {
-        Vector2 addspeed = new Vector2(Mathf.Clamp(rb.velocity.x, -0.001f, 0.001f), Mathf.Clamp(rb.velocity.y, -0.001f, 0.001f));
+        Vector2 addspeed = new Vector2(Mathf.Clamp(rb.velocity.x, -0.01f, 0.01f), Mathf.Clamp(rb.velocity.y, -0.001f, 0.001f));
         
         if(0.001f > Mathf.Abs(rb.velocity.x) + Mathf.Abs(rb.velocity.y)) {if(rb.gravityScale != 0){launches = 1;}}
         if(rb.gravityScale != 0){if(0.0012f > Mathf.Abs(rb.velocity.x) && SceneManager.GetActiveScene().buildIndex != 6) {{launches = 1;}}
-        if((0.005f > Mathf.Abs(rb.velocity.x) || 0.005f > Mathf.Abs(rb.velocity.y)) && rb.gravityScale == 0){rb.AddForce(addspeed);}
+        if((0.001f >= Mathf.Abs(rb.velocity.x) + Mathf.Abs(rb.velocity.y)) && rb.gravityScale == 0){Destroy(gameObject); Debug.Log("WHYYYYYY BIHLFEKUYVFUKYEVBFK");} else if((0.05f > Mathf.Abs(rb.velocity.x) || 0.05f > Mathf.Abs(rb.velocity.y)) && rb.gravityScale == 0){rb.AddForce(addspeed);}
+
 
         if(!inBossFight){
             if(launches == 1)

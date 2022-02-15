@@ -9,6 +9,7 @@ public class ZeroGravity : MonoBehaviour
     [SerializeField] PhysicsMaterial2D mat;
     float originFriction;
     float originBounciness;
+    float originLinearDrag;
     Rigidbody2D orb;
     CircleCollider2D occ;
     private void OnTriggerEnter2D(Collider2D other) {
@@ -16,12 +17,14 @@ public class ZeroGravity : MonoBehaviour
         {
             orb = other.GetComponent<Rigidbody2D>();
             occ = other.GetComponent<CircleCollider2D>();
+            originLinearDrag = orb.drag;
             originFriction = mat.friction;
             originBounciness = mat.bounciness;
             mat.friction = 0;
             mat.bounciness = 1;
             originGravity = orb.gravityScale;
             orb.gravityScale = 0;
+            orb.drag = 0;
         }
         
     }
@@ -30,5 +33,6 @@ public class ZeroGravity : MonoBehaviour
         orb.gravityScale = originGravity;
         mat.friction = originFriction;
         mat.bounciness = originBounciness;
+        orb.drag = originLinearDrag;
     }
 }

@@ -279,6 +279,7 @@ MonoBehaviour:
   slowMotionSpeed: 0.2
   slowDownTime: 0.33
   inBossFight: 0
+  ballPrivaterb: {fileID: 6200000, guid: 9cf599b6b00e9aa46b6dec42b29e31ff, type: 2}
 --- !u!120 &8389257000942953447
 LineRenderer:
   m_ObjectHideFlags: 0

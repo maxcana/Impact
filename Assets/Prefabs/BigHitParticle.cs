@@ -25,7 +25,7 @@ public class BigHitParticle : MonoBehaviour
         //! BUG: It says the velocity on collision is very low, which means that once it collides, it gets the new velocity, but I want the velocity before it collides...
         //! The only way I got this was by checking every frame which is kinda bad...
 
-        Debug.Log(velocityBeforePhysicsUpdate);
+        Debug.Log("Box says: my velocity before is " + velocityBeforePhysicsUpdate);
         if(Mathf.Abs(velocityBeforePhysicsUpdate) > VelocityLimit && (other.rigidbody == false || other.rigidbody.mass > rbMassLimit))
         {
             var contact = other.GetContact(0);

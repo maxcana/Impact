@@ -17,6 +17,6 @@ public class HealthBarScript : MonoBehaviour
     {
         MaxHealth = BossScript.MaxHealth;
         CurrentHealth = BossScript.Health; 
-        HealthBarImage.fillAmount = CurrentHealth / MaxHealth;
+        HealthBarImage.fillAmount += Time.deltaTime * 10 *((CurrentHealth / MaxHealth) - HealthBarImage.fillAmount);
     }
 }

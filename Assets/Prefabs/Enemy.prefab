@@ -349,7 +349,7 @@ MonoBehaviour:
   groundCollider: {fileID: 8947999509610366711}
   wallDetectionRange: 1
   eyeTransform: {fileID: 6422018665153770396}
-  damagePopupPosition: {fileID: 0}
+  damagePopupPosition: {fileID: 1493401494899561186}
 --- !u!70 &8947999509610366711
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

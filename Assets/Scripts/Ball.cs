@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class Ball : MonoBehaviour
 {
     Volume postprocessing;
-    Volume ZeroGravityVolume13;
     Vector2 position;
     Rigidbody2D rb;
     CircleCollider2D cc2d;
@@ -33,14 +32,11 @@ public class Ball : MonoBehaviour
             launchLine = GetComponent<LineRenderer>();
             rb = GetComponent<Rigidbody2D>();
             launchLine.enabled = false;
-            if(SceneManager.GetActiveScene().buildIndex == 14){
-                ZeroGravityVolume13 = GameObject.Find("ZeroGravityVolume").GetComponent<Volume>();
-            }
         }
         private void Start() {
-            rb.sharedMaterial = ballPrivaterb;
+            cc2d.sharedMaterial = ballPrivaterb;
             rb.gravityScale = 1;
-            rb.drag = 0.01f;
+            rb.drag = 0f;
         }
 
     void Update()

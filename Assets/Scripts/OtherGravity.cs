@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZeroGravity : MonoBehaviour
+public class OtherGravity : MonoBehaviour
 {
     CircleCollider2D occ;
     Rigidbody2D orb;
     Vector2 originRigidbody;
     PhysicsMaterial2D originMaterial;
-    [SerializeField] PhysicsMaterial2D ZeroGravityPhysics;
+    [SerializeField] PhysicsMaterial2D OtherGravityPhysics;
+    [SerializeField] float GravityScale;
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.GetComponent<Rigidbody2D>() != false && other.GetComponent<CircleCollider2D>() != false)
         {
@@ -20,8 +21,8 @@ public class ZeroGravity : MonoBehaviour
             originMaterial = occ.sharedMaterial;
 
             orb.drag = 0;
-            orb.gravityScale = 0;
-            occ.sharedMaterial = ZeroGravityPhysics;
+            orb.gravityScale = GravityScale;
+            occ.sharedMaterial = OtherGravityPhysics;
         }
         
     }

@@ -21,7 +21,7 @@ public class EnemyHealthBar : MonoBehaviour
     private void Update()
     {
         transform.rotation = Quaternion.identity;
-        CurrentHealth = Enemy.Health; 
+        CurrentHealth = Enemy.Health;
         HealthBarImage.fillAmount = CurrentHealth / MaxHealth;
         canvasGroup.alpha = CurrentHealth<MaxHealth?1:0;
     }

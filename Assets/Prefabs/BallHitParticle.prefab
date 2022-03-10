@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1483604323096767996}
   m_Layer: 0
   m_Name: BallHitParticle
-  m_TagString: Untagged
+  m_TagString: NoSprite
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -7,16 +7,18 @@ public class DeathZone : MonoBehaviour
 {
     public float TimeUntilDeath;
     public string[] killTags;
+    public string[] ignoreTags;
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
         if(killTags != null)
         {
          if(killTags.Length > 0){
+             if(!ignoreTags.Contains(other.tag) || ignoreTags == null){
               if(!killTags.Contains(other.tag)){
                    Destroy(gameObject);
                    return;
-             }
+             }} else {return;}
          }
         }
 

@@ -9,6 +9,7 @@ TagManager:
   - Circle
   - Enemy
   - ZeroGravity
+  - NoSprite
   layers:
   - Default
   - TransparentFX

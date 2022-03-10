@@ -94,8 +94,6 @@ public class Ball : MonoBehaviour
     {
         Vector2 mouseWorldPosition = cam.ScreenToWorldPoint(Input.mousePosition);
         return Vector2.MoveTowards(transform.position, mouseWorldPosition, maxLaunchDistance);
-    
-
     }
 }
 }

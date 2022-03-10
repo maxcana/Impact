@@ -2,31 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBehavior : MonoBehaviour
+public class BigEnemyGuy : MonoBehaviour
 {
+    //TODO MAKE BOSS TAKE 1000 DAMAGE AND SHAKE SCREEN AND JUMP BACK UP IF FLIPPED OVER
     [SerializeField] float moveSpeed;
+    SpriteRenderer sr;
     public float MaxHealth = 100;
     public float Health { 
         get { return m_Health; } 
         set { m_Health = Mathf.Clamp(value, 0, MaxHealth); } }
     float m_Health;
+    [SerializeField] GameObject Enemy;
     private bool isCritical;
     float lastHurtTime;
     public float flipWaitTime = 1f;
     [SerializeField] private float rotationTime;
     bool isFlipping;
+    bool isPart2;
     Ball player;
     Rigidbody2D rb;
     [SerializeField] Collider2D groundCollider;
     [SerializeField] float wallDetectionRange = 1;
     SpriteRenderer sprite;
     RaycastHit2D[] groundResults = new RaycastHit2D[10];
+    bool deadOnHit;
 
     //private Vector3 eyePosition;
     public Transform eyeTransform;
-    public Transform damagePopupPosition;
     void Start()
     {   
+        sr = GetComponent<SpriteRenderer>();
+        isPart2 = false;
         Health = MaxHealth;
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Ball>();
@@ -34,8 +40,24 @@ public class EnemyBehavior : MonoBehaviour
     }
     void Update()
     {
+        if(rb.gravityScale != 0){
         if(isBallVisible()){Debug.DrawLine(eyeTransform.position, player.transform.position);}
         if(flipCheck()){StartCoroutine(Flip());}
+        if(!deadOnHit){sr.color = new Color(sr.color.r + functions.valueMoveTowards(sr.color.r, 155, 1f), sr.color.g + functions.valueMoveTowards(sr.color.g, 255, 1), sr.color.b + functions.valueMoveTowards(sr.color.b, 255, 1f));}
+        else {sr.color = new Color(sr.color.r + functions.valueMoveTowards(sr.color.r, 255, 1f), sr.color.g + functions.valueMoveTowards(sr.color.g, 255, 1f), sr.color.b + functions.valueMoveTowards(sr.color.b, 255, 1f));}
+        } else {
+            sr.color = new Color(sr.color.r + functions.valueMoveTowards(sr.color.r, 155, 1f), sr.color.g + functions.valueMoveTowards(sr.color.g, 0, 1f), sr.color.b + functions.valueMoveTowards(sr.color.b, 0, 1f));
+            rb.velocity = new Vector2(0, 3);
+            transform.localScale = new Vector2(transform.localScale.x + functions.valueMoveTowards(transform.localScale.x, 3, 1f), transform.localScale.y + functions.valueMoveTowards(transform.localScale.y, 3, 1f));
+
+            if(Mathf.Round(sr.color.r) == 155 && Mathf.Round(sr.color.g) == 0 && Mathf.Round(sr.color.b) == 0){
+                if(transform.localScale.x > 2.95 && transform.localScale.y > 2.95){
+                    rb.gravityScale = 1;
+                }
+            }
+        }
+
+
     }
 
     void Die(float TimeToDie){Destroy(gameObject, TimeToDie);}
@@ -45,8 +67,6 @@ public class EnemyBehavior : MonoBehaviour
         return colliderCount > 0;
     }
     void FixedUpdate() {
-        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-        //TODO if(Mathf.Round(rb.rotation) == 0 | Mathf.Round(rb.rotation) == 360){rb.rotation = 0;}
         if(Mathf.Abs(rb.rotation) % 360 < 5 && IsOnGround()){
             rb.rotation = 0;
             float moveStep = moveSpeed * Time.fixedDeltaTime;
@@ -75,7 +95,7 @@ public class EnemyBehavior : MonoBehaviour
         isFlipping = false;
         lastHurtTime = Time.time;
 
-        DealDamage(UnityEngine.Random.Range(-10,-20), Random.Range(0, 100) < 20, damagePopupPosition.position);
+        DealDamage(UnityEngine.Random.Range(-10,-20), Random.Range(0, 100) < 20, transform.position);
         //? DEALDAMAGE HEALS THE ENEMY HERE ^
     }
 
@@ -96,39 +116,27 @@ public class EnemyBehavior : MonoBehaviour
         orb = other.gameObject.GetComponent<Rigidbody2D>();
         if(orb != null)
         {
+
             float Damage;
-            float popUpDamage;
             isCritical = Random.Range(0, 100) < 20;
 
-            Damage = Mathf.Ceil(Mathf.Max(0.5f, orb.mass * orb.mass) * (isCritical ? 2.5f : 1) * (Mathf.Abs(orb.velocity.x) + Mathf.Abs(orb.velocity.y)));
-            popUpDamage = Mathf.Clamp(Damage, 0, Health);
+        
+                Damage = Mathf.Ceil(Mathf.Max(0.5f, orb.mass * orb.mass) * (isCritical?2.5f:1) * (Mathf.Abs(orb.velocity.x) + Mathf.Abs(orb.velocity.y)));
 
-                DealDamage(Damage, isCritical, popUpDamage, other.GetContact(0).point);
-                
+            DealDamage(Damage, isCritical, other.GetContact(0).point);
         }
     }
 
-    public void DealDamage(float Damage, bool Critical, float popUpDamage, Vector2 position)
-    {
-        if(popUpDamage > 0){
-                DamagePopup.Create(position, popUpDamage, isCritical);
-        }
-        Health -= Damage;
-        lastHurtTime = Time.time;
-        if(Health <= 0){Die(0f);}
-    }
     public void DealDamage(float Damage, bool Critical, Vector2 position)
     {
-                DamagePopup.Create(position, Damage, isCritical);
         Health -= Damage;
         lastHurtTime = Time.time;
-        if(Health <= 0){Die(0f);}
-    }
-    public void DealDamage(float Damage, bool Critical)
-    {
-        DamagePopup.Create(damagePopupPosition.position, Damage, isCritical);
-        Health -= Damage;
-        lastHurtTime = Time.time;
-        if(Health <= 0){Die(0f);}
+        DamagePopup.Create(position, Damage, Critical);
+        if(Health <= 0 && isPart2){Die(0f);} else if(Health <= 0 && !isPart2){
+            MaxHealth = MaxHealth * 10;
+            Health = MaxHealth;
+            isPart2 = true;
+            rb.gravityScale = 0;
+        }
     }
 }

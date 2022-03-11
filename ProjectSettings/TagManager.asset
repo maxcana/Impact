@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - ZeroGravity
   - NoSprite
+  - Deadly
   layers:
   - Default
   - TransparentFX

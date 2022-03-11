@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class BigEnemyGuy : MonoBehaviour
 {
-    //TODO MAKE BOSS TAKE 1000 DAMAGE AND SHAKE SCREEN AND JUMP BACK UP IF FLIPPED OVER
+    //! FIX BUG WHERE WHEN WALKING, DOESN'T TRIGGER TRIGGERS
+    //! FIX BUG WHERE HE DOESNT CHANGE COLOUR WHEN HE GOES INTO PHASE 2
+    //TODO MAKE BOSS TAKE DAMAGE BASED ON VELOCITY AND SHAKE SCREEN AND JUMP BACK UP IF FLIPPED OVER
     [SerializeField] float moveSpeed;
     SpriteRenderer sr;
     public float MaxHealth = 100;
@@ -12,11 +14,16 @@ public class BigEnemyGuy : MonoBehaviour
         get { return m_Health; } 
         set { m_Health = Mathf.Clamp(value, 0, MaxHealth); } }
     float m_Health;
+    float newMaxHealth;
     [SerializeField] GameObject Enemy;
     private bool isCritical;
     float lastHurtTime;
     public float flipWaitTime = 1f;
+    public static bool isDonePart2Intro;
     [SerializeField] private float rotationTime;
+    [SerializeField] float to0RotationTimePart2;
+    float howLongIHaveSpentRotatingTo0;
+    bool shoulIIncrementHowLongIHaveSpentRotatingTo0 = true;
     bool isFlipping;
     bool isPart2;
     Ball player;
@@ -25,34 +32,75 @@ public class BigEnemyGuy : MonoBehaviour
     [SerializeField] float wallDetectionRange = 1;
     SpriteRenderer sprite;
     RaycastHit2D[] groundResults = new RaycastHit2D[10];
-    bool deadOnHit;
+    bool deadOnHit = false;
+    bool isDamagable;
 
     //private Vector3 eyePosition;
     public Transform eyeTransform;
     void Start()
     {   
+        isDonePart2Intro = false;
         sr = GetComponent<SpriteRenderer>();
         isPart2 = false;
         Health = MaxHealth;
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Ball>();
         sprite = GetComponent<SpriteRenderer>();
+        isDamagable = true;
     }
     void Update()
     {
+        if(shoulIIncrementHowLongIHaveSpentRotatingTo0){
+        howLongIHaveSpentRotatingTo0 += Time.deltaTime;
+        }
+
         if(rb.gravityScale != 0){
         if(isBallVisible()){Debug.DrawLine(eyeTransform.position, player.transform.position);}
         if(flipCheck()){StartCoroutine(Flip());}
-        if(!deadOnHit){sr.color = new Color(sr.color.r + functions.valueMoveTowards(sr.color.r, 155, 1f), sr.color.g + functions.valueMoveTowards(sr.color.g, 255, 1), sr.color.b + functions.valueMoveTowards(sr.color.b, 255, 1f));}
-        else {sr.color = new Color(sr.color.r + functions.valueMoveTowards(sr.color.r, 255, 1f), sr.color.g + functions.valueMoveTowards(sr.color.g, 255, 1f), sr.color.b + functions.valueMoveTowards(sr.color.b, 255, 1f));}
+        if(isPart2){
+            if(deadOnHit){sr.color = new Color(sr.color.r + functions.valueMoveTowards(sr.color.r, 255, 1f), sr.color.g + functions.valueMoveTowards(sr.color.g, 0, 1), sr.color.b + functions.valueMoveTowards(sr.color.b, 0, 1f));}
+            else {sr.color = new Color(sr.color.r + functions.valueMoveTowards(sr.color.r, 255, 1f), sr.color.g + functions.valueMoveTowards(sr.color.g, 114, 1f), sr.color.b + functions.valueMoveTowards(sr.color.b, 114, 1f));}
+        }
+        
         } else {
-            sr.color = new Color(sr.color.r + functions.valueMoveTowards(sr.color.r, 155, 1f), sr.color.g + functions.valueMoveTowards(sr.color.g, 0, 1f), sr.color.b + functions.valueMoveTowards(sr.color.b, 0, 1f));
-            rb.velocity = new Vector2(0, 3);
-            transform.localScale = new Vector2(transform.localScale.x + functions.valueMoveTowards(transform.localScale.x, 3, 1f), transform.localScale.y + functions.valueMoveTowards(transform.localScale.y, 3, 1f));
+            
+            //? red animation
+            sr.color = new Color(sr.color.r + functions.valueMoveTowards(sr.color.r, 255, 1f), sr.color.g + functions.valueMoveTowards(sr.color.g, 114, 1f), sr.color.b + functions.valueMoveTowards(sr.color.b, 114, 1f));
+            
+            //? health change
+            MaxHealth += functions.valueMoveTowards(MaxHealth, newMaxHealth, 2f);
+            Health += functions.valueMoveTowards(Health, MaxHealth, 0.8f);
+            if(10000 > MaxHealth){MaxHealth++;}
+            if(10000 > Health){Health++;} else {Health = 10000;}
+            Health = Mathf.Ceil(Health);
 
-            if(Mathf.Round(sr.color.r) == 155 && Mathf.Round(sr.color.g) == 0 && Mathf.Round(sr.color.b) == 0){
+            //? size animation
+            rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x, 0, 15 * Time.deltaTime), 2);
+            transform.localScale = new Vector2(transform.localScale.x + functions.valueMoveTowards(transform.localScale.x, 3, 0.2f), transform.localScale.y + functions.valueMoveTowards(transform.localScale.y, 3, 0.2f));
+
+            //? rotate (nobody needs to read this junk)
+            float startAngle = rb.rotation;
+            float angle = Mathf.LerpAngle(startAngle, 0, howLongIHaveSpentRotatingTo0/to0RotationTimePart2);
+            float xvel = Mathf.LerpAngle(startAngle, 0, howLongIHaveSpentRotatingTo0/to0RotationTimePart2);
+            rb.MoveRotation(angle);
+            if(howLongIHaveSpentRotatingTo0 >= to0RotationTimePart2 / 3){
+                shoulIIncrementHowLongIHaveSpentRotatingTo0 = false;
+                rb.MoveRotation(angle);
+                rb.angularVelocity = 0;
+                rb.MoveRotation(0);
+                howLongIHaveSpentRotatingTo0 = 0;
+            }
+            
+
+            if(Health == 10000){
                 if(transform.localScale.x > 2.95 && transform.localScale.y > 2.95){
+                    sr.color = new Color(255, 114, 114);
                     rb.gravityScale = 1;
+                    rb.velocity = new Vector2(rb.velocity.x, -3);
+                    isDamagable = true;
+                    isDonePart2Intro = true;
+                    MaxHealth = newMaxHealth;
+                    Health = MaxHealth;
                 }
             }
         }
@@ -129,14 +177,19 @@ public class BigEnemyGuy : MonoBehaviour
 
     public void DealDamage(float Damage, bool Critical, Vector2 position)
     {
+        if(isDamagable){
         Health -= Damage;
         lastHurtTime = Time.time;
         DamagePopup.Create(position, Damage, Critical);
+
         if(Health <= 0 && isPart2){Die(0f);} else if(Health <= 0 && !isPart2){
-            MaxHealth = MaxHealth * 10;
-            Health = MaxHealth;
+            newMaxHealth = MaxHealth * 10;
+            Health = 1;
             isPart2 = true;
+            isDamagable = false;
+            howLongIHaveSpentRotatingTo0 = 0;
             rb.gravityScale = 0;
-        }
+            rb.useAutoMass = true;
+        }}
     }
 }

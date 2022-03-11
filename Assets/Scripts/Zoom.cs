@@ -28,8 +28,8 @@ public class Zoom : MonoBehaviour
                         rb.velocity = new Vector2(rb.velocity.x, yvZoom);
                     }
                 }
-                if(yvZoom > 0 && xvZoom == 0){
-                    if(rb.velocity.y < 0){
+                if(yvZoom < 0 && xvZoom == 0){
+                    if(rb.velocity.y > 0){
                         rb.velocity = new Vector2(rb.velocity.x, yvZoom);
                     }
                 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyBehavior : MonoBehaviour
 {
+
+    //! FIX BUG WHERE WHEN WALKING, DOESN'T TRIGGER TRIGGERS
     [SerializeField] float moveSpeed;
     public float MaxHealth = 100;
     public float Health { 
@@ -86,8 +88,9 @@ public class EnemyBehavior : MonoBehaviour
 
     bool isBallVisible()
     {
+        if(player != null){
         RaycastHit2D hitObject = Physics2D.Linecast(eyeTransform.position, player.transform.position);
-        return hitObject && hitObject.collider.gameObject == player.gameObject;
+        return hitObject && hitObject.collider.gameObject == player.gameObject;} else {return false;}
     }
 
      private void OnCollisionEnter2D(Collision2D other) 

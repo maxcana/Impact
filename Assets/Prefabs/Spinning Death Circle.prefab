@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8705200843923826047}
   m_Layer: 0
   m_Name: Spinning Death Circle
-  m_TagString: Untagged
+  m_TagString: Deadly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,3 +134,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeUntilDeath: 0
   killTags: []
+  ignoreTags: []

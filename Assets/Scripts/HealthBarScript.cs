@@ -4,36 +4,31 @@ using UnityEngine;
 using UnityEngine.UI;
 public class HealthBarScript : MonoBehaviour
 {
-    private Image HealthBarImage;
+    Image HealthBarImage;
     [SerializeField] enums.Bosses currentBoss;
     private float MaxHealth;
-    private float Health;
+    float Health;
     BossScript Boss;
     [SerializeField] BigEnemyGuy EnemyBoss;
+    [SerializeField] BossScript Hex;
     private void Start()
     {
-        if(currentBoss == enums.Bosses.Hex){
-            MaxHealth = BossScript.MaxHealth; } else {
-                if(currentBoss == enums.Bosses.BigEnemy){
-                    MaxHealth = EnemyBoss.MaxHealth; }
-
-        HealthBarImage = GetComponent<Image>();
-        Boss = FindObjectOfType<BossScript>();
-        }
+        HealthBarImage = GetComponent<Image>(); 
     }
     private void Update()
     {
         if(currentBoss == enums.Bosses.Hex){
-            MaxHealth = BossScript.MaxHealth; } else {
+            MaxHealth = Hex.MaxHealth; } else {
                 if(currentBoss == enums.Bosses.BigEnemy){
                     MaxHealth = EnemyBoss.MaxHealth; }}
 
         if(currentBoss == enums.Bosses.Hex){
-            Health = BossScript.Health; } else {
+            Health = Hex.Health; } else {
                 if(currentBoss == enums.Bosses.BigEnemy){
                     Health = EnemyBoss.Health; }}
 
         HealthBarImage.fillAmount += functions.valueMoveTowards(HealthBarImage.fillAmount, Health / MaxHealth, 10);
+        
     }
 }
     

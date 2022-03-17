@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class BigEnemyGuy : MonoBehaviour
 {
-    //! FIX BUG WHERE WHEN WALKING, DOESN'T TRIGGER TRIGGERS
+    //! FIX BUG WHERE WHEN WALKING, DOESN'T TRIGGER TRIGGERS, THIS ALLOWS BOSS TO WALK THROUGH BOTH ONE WAY DOORS ON THE SIDES
     //! FIX BUG WHERE HE DOESNT CHANGE COLOUR WHEN HE GOES INTO PHASE 2
+    //! HE ALSO RISES UP FOR WAY TOO LONG
     //TODO MAKE BOSS TAKE DAMAGE BASED ON VELOCITY AND SHAKE SCREEN AND JUMP BACK UP IF FLIPPED OVER
     [SerializeField] float moveSpeed;
     SpriteRenderer sr;
@@ -88,6 +89,7 @@ public class BigEnemyGuy : MonoBehaviour
                 rb.MoveRotation(angle);
                 rb.angularVelocity = 0;
                 rb.MoveRotation(0);
+                rb.mass = 10;
                 howLongIHaveSpentRotatingTo0 = 0;
             }
             
@@ -189,7 +191,6 @@ public class BigEnemyGuy : MonoBehaviour
             isDamagable = false;
             howLongIHaveSpentRotatingTo0 = 0;
             rb.gravityScale = 0;
-            rb.useAutoMass = true;
         }}
     }
 }

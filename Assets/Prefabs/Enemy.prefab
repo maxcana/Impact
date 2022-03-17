@@ -432,7 +432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   referenceCollider: {fileID: 8947999509610366711}
-  offset: {x: 0, y: 0}
+  offset: {x: 0, y: 0.3}
 --- !u!1 &7591673313093726282
 GameObject:
   m_ObjectHideFlags: 0

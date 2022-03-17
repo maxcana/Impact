@@ -952,6 +952,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  MaxHealth: 100
   AutoSetHealth: 1
   fadeSpeed: 2
   bossLevel: 10
@@ -1445,6 +1446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeUntilDeath: 0.1
   killTags: []
+  ignoreTags: []
 --- !u!1001 &364489855
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2006,7 +2008,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 5293530334240575266, guid: 7261184fb066c8e4c8a4028d91805315, type: 3}
+  scaleWithEnemyLordHealth: 0
   timeToSpawn: 400
+  beg: {fileID: 0}
 --- !u!1001 &599715462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2260,7 +2264,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 639494116066016863, guid: 118f089dccf411241a287a7d5dd52c32, type: 3}
+  scaleWithEnemyLordHealth: 0
   timeToSpawn: 32
+  beg: {fileID: 0}
 --- !u!4 &637050531
 Transform:
   m_ObjectHideFlags: 0
@@ -22098,7 +22104,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 639494116066016863, guid: 118f089dccf411241a287a7d5dd52c32, type: 3}
+  scaleWithEnemyLordHealth: 0
   timeToSpawn: 32
+  beg: {fileID: 0}
 --- !u!4 &1214974318
 Transform:
   m_ObjectHideFlags: 0
@@ -22271,7 +22279,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 5293530334240575266, guid: 7261184fb066c8e4c8a4028d91805315, type: 3}
+  scaleWithEnemyLordHealth: 0
   timeToSpawn: 600
+  beg: {fileID: 0}
 --- !u!1001 &1246009104
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23091,6 +23101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeUntilDeath: 0.1
   killTags: []
+  ignoreTags: []
 --- !u!1 &1471522914
 GameObject:
   m_ObjectHideFlags: 0
@@ -23891,6 +23902,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d3d8b71c6548e468064d732838e6df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentBoss: 0
+  enemyguy: {fileID: 0}
+  Hex: {fileID: 284525692}
 --- !u!114 &1649600484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24089,7 +24103,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 5293530334240575266, guid: 7261184fb066c8e4c8a4028d91805315, type: 3}
+  scaleWithEnemyLordHealth: 0
   timeToSpawn: 500
+  beg: {fileID: 0}
 --- !u!1001 &1682341240
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24765,7 +24781,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db4d4b9e597fac4fa35aedcc82ff2ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHealth: 0
+  currentBoss: 0
+  EnemyBoss: {fileID: 0}
+  Hex: {fileID: 284525692}
 --- !u!114 &1825637472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25355,7 +25373,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 639494116066016863, guid: 118f089dccf411241a287a7d5dd52c32, type: 3}
+  scaleWithEnemyLordHealth: 0
   timeToSpawn: 32
+  beg: {fileID: 0}
 --- !u!4 &2026035442
 Transform:
   m_ObjectHideFlags: 0
@@ -25665,6 +25685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeUntilDeath: 0.1
   killTags: []
+  ignoreTags: []
 --- !u!1 &2100051949
 GameObject:
   m_ObjectHideFlags: 0

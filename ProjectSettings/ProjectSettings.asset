@@ -295,6 +295,9 @@ PlayerSettings:
   - m_BuildTarget: iOSSupport
     m_APIs: 10000000
     m_Automatic: 1
+  - m_BuildTarget: WindowsStandaloneSupport
+    m_APIs: 02000000
+    m_Automatic: 1
   m_BuildTargetVRSettings: []
   openGLRequireES31: 0
   openGLRequireES31AEP: 0
@@ -662,7 +665,7 @@ PlayerSettings:
   cloudProjectId: 4ec93364-4004-4193-a65d-21b89905fb0d
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Coding Class Project
+  projectName: Impact
   organizationId: max-0
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0

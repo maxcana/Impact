@@ -10,6 +10,7 @@ public class HealthBarText : MonoBehaviour
     private float defaultTextSize;
     private float maxTextSize;
     [SerializeField] BigEnemyGuy enemyguy;
+    [SerializeField] BossScript Hex;
 
     void Awake()
     {
@@ -23,7 +24,7 @@ public class HealthBarText : MonoBehaviour
         string preHealth;
         preHealth = textMesh.text;
 
-        if(currentBoss == enums.Bosses.Hex){ textMesh.SetText(BossScript.Health.ToString()); }
+        if(currentBoss == enums.Bosses.Hex){ textMesh.SetText(Hex.Health.ToString()); }
         if(currentBoss == enums.Bosses.BigEnemy){ textMesh.SetText(enemyguy.Health.ToString());}
         
         if(preHealth != textMesh.text){

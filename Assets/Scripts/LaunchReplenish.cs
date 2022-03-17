@@ -10,5 +10,5 @@ public class LaunchReplenish : MonoBehaviour
         {
             Ball.launches = 1;
         }
-    } 
+    }
 }

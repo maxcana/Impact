@@ -6,11 +6,11 @@ public class BossScript : MonoBehaviour
 {
     [SerializeField] public float MaxHealthIsSetTo = 100;
     [SerializeField] Gradient dangerGradient;
-    public static float MaxHealth = 100;
-    public static float Health { 
+    public float MaxHealth = 100;
+    public float Health { 
         get { return m_Health; } 
         set { m_Health = Mathf.Clamp(value, 0, MaxHealth); } }
-    static float m_Health;
+    float m_Health;
     private bool isCritical;
     private int counter;
     [SerializeField] bool AutoSetHealth;

@@ -718,7 +718,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 639494116066016863, guid: 118f089dccf411241a287a7d5dd52c32, type: 3}
+  scaleWithEnemyLordHealth: 0
   timeToSpawn: 32
+  beg: {fileID: 0}
 --- !u!1 &190430219 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1686456521, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
@@ -1188,6 +1190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeUntilDeath: 0.1
   killTags: []
+  ignoreTags: []
 --- !u!4 &410896997
 Transform:
   m_ObjectHideFlags: 0
@@ -3231,7 +3234,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1158315503 stripped
 Transform:
@@ -3838,36 +3841,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 639494116066016862, guid: 118f089dccf411241a287a7d5dd52c32, type: 3}
   m_PrefabInstance: {fileID: 1371996043}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1416051009
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1416051010}
-  m_Layer: 0
-  m_Name: 'EXPERIMENT WITH LIGHTING:  MAKE A SECTION OF LEVELS THAT ARE DARK/FOGGY'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1416051010
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1416051009}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.534749, y: -4.5638456, z: -3.8507738}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1417585950
 GameObject:
   m_ObjectHideFlags: 0
@@ -4472,7 +4445,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1552197129 stripped
 MonoBehaviour:
@@ -4838,7 +4811,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1619346462
 GameObject:
@@ -5067,6 +5040,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1686115694
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1686115695}
+  m_Layer: 0
+  m_Name: ADD FOG AND PARTICLES IN FORE AND BACKGROUND
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1686115695
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686115694}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1135.4695, y: 1310.7075, z: -27.71976}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1697709264
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5211,10 +5214,6 @@ PrefabInstance:
     - target: {fileID: 603798046, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
       propertyPath: m_Layer
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 767408028, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
-      propertyPath: offset.y
-      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 1686456521, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
       propertyPath: m_Layer
@@ -5863,6 +5862,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeUntilDeath: 0
   killTags: []
+  ignoreTags: []
 --- !u!61 &2000180049
 BoxCollider2D:
   m_ObjectHideFlags: 0

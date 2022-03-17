@@ -9,10 +9,13 @@ public class Spawner : MonoBehaviour
     [SerializeField] bool scaleWithEnemyLordHealth;
     public float timeToSpawn;
     float initialTimeToSpawn;
+    [SerializeField] BigEnemyGuy beg;
 
     // Start is called before the first frame update
     void Start()
     {
+        print("You BETTER not forget about me");
+        print("You BETTER not forget about me");
         initialTimeToSpawn = timeToSpawn;
     }
 
@@ -20,7 +23,7 @@ public class Spawner : MonoBehaviour
     void FixedUpdate()
     {
         if (BigEnemyGuy.isDonePart2Intro){
-            timeToSpawn = initialTimeToSpawn - (BossScript.MaxHealth - BossScript.Health) / 30;
+            timeToSpawn = initialTimeToSpawn - (beg.MaxHealth - beg.Health) / 30;
         }
 
         counter += 1;

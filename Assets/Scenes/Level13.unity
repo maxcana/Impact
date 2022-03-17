@@ -335,25 +335,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1918764242745796967, guid: 8a1505807a5b8564da9d1270d5d29a7e, type: 3}
   m_PrefabInstance: {fileID: 28373171}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &41206627 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4029835557596656688, guid: 8a1505807a5b8564da9d1270d5d29a7e, type: 3}
-  m_PrefabInstance: {fileID: 1348676702}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &41206630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 41206627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47bdafdfb7615a9488c7c6cc258f731d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TimeUntilDeath: 0
-  killTags: []
 --- !u!1 &41704982
 GameObject:
   m_ObjectHideFlags: 0
@@ -1849,6 +1830,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeUntilDeath: 0
   killTags: []
+  ignoreTags: []
 --- !u!1001 &424769008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2256,7 +2238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xvZoom: 0
-  yvZoom: -10
+  yvZoom: 10
   OneWay: 1
 --- !u!61 &543417188
 BoxCollider2D:
@@ -4938,7 +4920,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100513725}
   m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: 50.8584, y: -6.0284, z: 36.646225}
+  m_LocalPosition: {x: 50.8326, y: -6.0056, z: 36.646225}
   m_LocalScale: {x: -5.8959584, y: 20.222033, z: 1}
   m_Children: []
   m_Father: {fileID: 1950482328}
@@ -5819,7 +5801,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2295111705296012258, guid: 8a1505807a5b8564da9d1270d5d29a7e, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4029835557596656688, guid: 8a1505807a5b8564da9d1270d5d29a7e, type: 3}
       propertyPath: m_Name
@@ -5827,11 +5809,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8789031997246433778, guid: 8a1505807a5b8564da9d1270d5d29a7e, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8789031997246433778, guid: 8a1505807a5b8564da9d1270d5d29a7e, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8789031997246433778, guid: 8a1505807a5b8564da9d1270d5d29a7e, type: 3}
       propertyPath: m_Color.r
@@ -9308,6 +9290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeUntilDeath: 0
   killTags: []
+  ignoreTags: []
 --- !u!4 &2098357280 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1918764242745796967, guid: 8a1505807a5b8564da9d1270d5d29a7e, type: 3}

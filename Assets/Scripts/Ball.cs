@@ -19,7 +19,7 @@ public class Ball : MonoBehaviour
     private float leftMouseTime;
     private float rightMouseTime;
     public static int launches = 1;
-    public static float maxLaunchDistance = 10f;
+    public static float maxLaunchDistance = 5f;
     [SerializeField] PhysicsMaterial2D ballPrivaterb;
     private Camera cam;
 
@@ -44,6 +44,8 @@ public class Ball : MonoBehaviour
         if(0.001f > Mathf.Abs(rb.velocity.x) + Mathf.Abs(rb.velocity.y)) {if(rb.gravityScale != 0){launches = 1;}}
         if(rb.gravityScale != 0){if(0.0012f > Mathf.Abs(rb.velocity.x) && SceneManager.GetActiveScene().buildIndex != 6) {{launches = 1;}}
         if((0.001f >= Mathf.Abs(rb.velocity.x) + Mathf.Abs(rb.velocity.y)) && rb.gravityScale == 0){Destroy(gameObject);} else if((0.05f > Mathf.Abs(rb.velocity.x) || 0.05f > Mathf.Abs(rb.velocity.y)) && rb.gravityScale == 0){rb.AddForce(rb.velocity);}
+        if(0.001f > Mathf.Abs(rb.velocity.y)) {if(rb.gravityScale != 0){launches = 1;}}
+        //? A bunch of edge cases where you get stuck at 0 velocity
 
 
         if(!inBossFight){
@@ -82,7 +84,7 @@ public class Ball : MonoBehaviour
             launches --;
             Vector2 finalLaunchPoint = GetLaunchPoint();
             Vector2 position = transform.position;
-            rb.velocity = new Vector2((finalLaunchPoint.x - position.x) * 3f, (finalLaunchPoint.y - position.y)*3f);
+            rb.velocity = new Vector2((finalLaunchPoint.x - position.x) * 6f, ((finalLaunchPoint.y - position.y)*6f) + 0.1f);
             }
         }
         

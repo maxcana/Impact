@@ -1649,8 +1649,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 639494116066016863, guid: 118f089dccf411241a287a7d5dd52c32, type: 3}
-  counter: 0
+  scaleWithEnemyLordHealth: 0
   timeToSpawn: 32
+  beg: {fileID: 0}
 --- !u!4 &473407858
 Transform:
   m_ObjectHideFlags: 0
@@ -2657,6 +2658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeUntilDeath: 0.1
   killTags: []
+  ignoreTags: []
 --- !u!1 &926513685
 GameObject:
   m_ObjectHideFlags: 0
@@ -3188,7 +3190,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7651536035257171495, guid: 7261184fb066c8e4c8a4028d91805315, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 582.8511
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7651536035257171495, guid: 7261184fb066c8e4c8a4028d91805315, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3267,6 +3269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeUntilDeath: 0
   killTags: []
+  ignoreTags: []
 --- !u!61 &980428728
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3729,7 +3732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7651536035257171495, guid: 7261184fb066c8e4c8a4028d91805315, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 582.8511
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7651536035257171495, guid: 7261184fb066c8e4c8a4028d91805315, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4089,7 +4092,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1435735257}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5782175, y: -8.129983, z: -10}
+  m_LocalPosition: {x: -1.7326021, y: -8.129989, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4449,8 +4452,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 639494116066016863, guid: 118f089dccf411241a287a7d5dd52c32, type: 3}
-  counter: 0
+  scaleWithEnemyLordHealth: 0
   timeToSpawn: 32
+  beg: {fileID: 0}
 --- !u!4 &1592210910
 Transform:
   m_ObjectHideFlags: 0

@@ -567,7 +567,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 639494116066016863, guid: 118f089dccf411241a287a7d5dd52c32, type: 3}
+  scaleWithEnemyLordHealth: 0
   timeToSpawn: 17
+  beg: {fileID: 0}
 --- !u!4 &123769573
 Transform:
   m_ObjectHideFlags: 0
@@ -576,7 +578,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 123769571}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 50.03, y: 29.92, z: 30}
+  m_LocalPosition: {x: 50.03, y: 29.92, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1048,6 +1050,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xvZoom: 0
   yvZoom: -15
+  OneWay: 0
 --- !u!61 &334968087
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1563,6 +1566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeUntilDeath: 0
   killTags: []
+  ignoreTags: []
 --- !u!1001 &463226133
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2078,6 +2082,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeUntilDeath: 0
   killTags: []
+  ignoreTags: []
 --- !u!1 &581085996
 GameObject:
   m_ObjectHideFlags: 0
@@ -2682,6 +2687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeUntilDeath: 0.1
   killTags: []
+  ignoreTags: []
 --- !u!1 &832002128
 GameObject:
   m_ObjectHideFlags: 0
@@ -2851,6 +2857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xvZoom: 0
   yvZoom: -15
+  OneWay: 0
 --- !u!61 &855800278
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3079,6 +3086,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeUntilDeath: 0
   killTags: []
+  ignoreTags: []
 --- !u!4 &908208956 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4220227930376771934, guid: f2d56aabeeaf17f4585ac76615015242, type: 3}
@@ -3821,6 +3829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeUntilDeath: 0
   killTags: []
+  ignoreTags: []
 --- !u!1 &1236613646
 GameObject:
   m_ObjectHideFlags: 0
@@ -3868,6 +3877,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xvZoom: 0
   yvZoom: -15
+  OneWay: 0
 --- !u!61 &1236613649
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3997,6 +4007,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xvZoom: 0
   yvZoom: -15
+  OneWay: 0
 --- !u!61 &1265917951
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4232,7 +4243,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1281083514}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.56621647, y: -8.129991, z: -10}
+  m_LocalPosition: {x: -0.41569233, y: -8.129986, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4315,6 +4326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xvZoom: 0
   yvZoom: -15
+  OneWay: 0
 --- !u!61 &1295605187
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4527,6 +4539,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xvZoom: 0
   yvZoom: -15
+  OneWay: 0
 --- !u!61 &1382366857
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10107,6 +10120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xvZoom: 0
   yvZoom: -15
+  OneWay: 0
 --- !u!61 &1529863177
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10972,6 +10986,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeUntilDeath: 0
   killTags: []
+  ignoreTags: []
 --- !u!1001 &1592456335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11263,6 +11278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeUntilDeath: 0
   killTags: []
+  ignoreTags: []
 --- !u!61 &1625873787
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11387,6 +11403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xvZoom: 0
   yvZoom: -2
+  OneWay: 0
 --- !u!61 &1641228853
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11781,6 +11798,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xvZoom: 0
   yvZoom: -15
+  OneWay: 0
 --- !u!61 &1758976294
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12179,6 +12197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeUntilDeath: 0
   killTags: []
+  ignoreTags: []
 --- !u!4 &1911846139 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4220227930376771934, guid: f2d56aabeeaf17f4585ac76615015242, type: 3}
@@ -13122,6 +13141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeUntilDeath: 0
   killTags: []
+  ignoreTags: []
 --- !u!4 &2097853364 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4220227930376771934, guid: f2d56aabeeaf17f4585ac76615015242, type: 3}

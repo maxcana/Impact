@@ -6,7 +6,6 @@ using TMPro;
 
 public class DamagePopup : MonoBehaviour
 {
-
     [SerializeField] AnimationCurve fontSizeCurve;
     public static DamagePopup Create(Vector3 position, float damageAmount, bool isCritical)
     {
@@ -33,6 +32,8 @@ public class DamagePopup : MonoBehaviour
 
     public void Setup(float damageAmount, bool isCritical)
     {
+        CameraShake.SmoothStart(Mathf.Clamp(damageAmount/1000, 0.1f, 0.5f), (Int16)Mathf.Clamp(Mathf.Round(damageAmount / 100), 0, 20));
+        if(damageAmount == 0){textMesh.enabled = false;}
         startSize = fontSizeCurve.Evaluate(damageAmount);
         moveXspeed = UnityEngine.Random.Range(-1f, 1f);
         textMesh.fontSize = startSize;
@@ -58,7 +59,7 @@ public class DamagePopup : MonoBehaviour
         disappearTimer = DISAPPEAR_TIMER_MAX;
 
         sortingOrder++;
-        if(damageAmount >= 1000) {sortingOrder += 1000;}
+        if(damageAmount >= 1000) {sortingOrder += 10000;}
         textMesh.sortingOrder = sortingOrder;
         moveYSpeed = 5f;
     }

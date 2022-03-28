@@ -77,7 +77,10 @@ public class EnemyBehavior : MonoBehaviour
         isFlipping = false;
         lastHurtTime = Time.time;
 
-        DealDamage(UnityEngine.Random.Range(-10,-20), Random.Range(0, 100) < 20, damagePopupPosition.position);
+        float Damage = UnityEngine.Random.Range(-10,-20);
+        Damage = Mathf.Clamp(Damage, 0-(MaxHealth - Health), 0);
+
+        DealDamage(Damage, Random.Range(0, 100) < 20, damagePopupPosition.position);
         //? DEALDAMAGE HEALS THE ENEMY HERE ^
     }
 
@@ -106,7 +109,10 @@ public class EnemyBehavior : MonoBehaviour
             Damage = Mathf.Ceil(Mathf.Max(0.5f, orb.mass * orb.mass) * (isCritical ? 2.5f : 1) * (Mathf.Abs(orb.velocity.x) + Mathf.Abs(orb.velocity.y)));
             popUpDamage = Mathf.Clamp(Damage, 0, Health);
 
+            if(Damage > 2){
+                DamageParticleScript.Create(other.GetContact(0).point, popUpDamage, Damage >= Health);
                 DealDamage(Damage, isCritical, popUpDamage, other.GetContact(0).point);
+            }
                 
         }
     }
@@ -122,7 +128,7 @@ public class EnemyBehavior : MonoBehaviour
     }
     public void DealDamage(float Damage, bool Critical, Vector2 position)
     {
-                DamagePopup.Create(position, Damage, isCritical);
+        DamagePopup.Create(position, Damage, isCritical);
         Health -= Damage;
         lastHurtTime = Time.time;
         if(Health <= 0){Die(0f);}

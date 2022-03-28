@@ -145,7 +145,10 @@ public class BigEnemyGuy : MonoBehaviour
         isFlipping = false;
         lastHurtTime = Time.time;
 
-        DealDamage(UnityEngine.Random.Range(-10,-20), Random.Range(0, 100) < 20, transform.position);
+        float Damage = UnityEngine.Random.Range(-50,(MaxHealth - Health) / 40);
+        float popUpDamage = Mathf.Clamp(Damage, 0-(MaxHealth - Health), 0);
+
+        DealDamage(Damage, Random.Range(0, 100) < 20, transform.position, popUpDamage);
         //? DEALDAMAGE HEALS THE ENEMY HERE ^
     }
 
@@ -168,21 +171,26 @@ public class BigEnemyGuy : MonoBehaviour
         {
 
             float Damage;
+            float popUpDamage;
+
             isCritical = Random.Range(0, 100) < 20;
 
-        
-                Damage = Mathf.Ceil(Mathf.Max(0.5f, orb.mass * orb.mass) * (isCritical?2.5f:1) * (Mathf.Abs(orb.velocity.x) + Mathf.Abs(orb.velocity.y)));
-
-            DealDamage(Damage, isCritical, other.GetContact(0).point);
+            Damage = Mathf.Ceil(Mathf.Max(0.5f, orb.mass * orb.mass) * (isCritical?2.5f:1) * (Mathf.Abs(orb.velocity.x) + Mathf.Abs(orb.velocity.y)));
+            popUpDamage = Mathf.Clamp(Damage, 0, Health);
+            
+            if(Damage > 2){
+            DamageParticleScript.Create(other.GetContact(0).point, popUpDamage, Damage >= Health);
+            DealDamage(Damage, isCritical, other.GetContact(0).point, popUpDamage);
+            }
         }
     }
 
-    public void DealDamage(float Damage, bool Critical, Vector2 position)
+    public void DealDamage(float Damage, bool Critical, Vector2 position, float popUpDamage)
     {
         if(isDamagable){
         Health -= Damage;
         lastHurtTime = Time.time;
-        DamagePopup.Create(position, Damage, Critical);
+        DamagePopup.Create(position, popUpDamage, Critical);
 
         if(Health <= 0 && isPart2){Die(0f);} else if(Health <= 0 && !isPart2){
             newMaxHealth = MaxHealth * 10;

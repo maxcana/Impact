@@ -106,11 +106,13 @@ public class BossScript : MonoBehaviour
                 Damage = Mathf.Ceil(Mathf.Max(0.5f, orb.mass * orb.mass) * (isCritical ? 2.5f : 1) * (Mathf.Abs(orb.velocity.x) + Mathf.Abs(orb.velocity.y)));
                 popUpDamage = Mathf.Clamp(Damage, 0, Health);
 
+                if(Damage > 2){
                 Health -= Damage;
                 if(popUpDamage > 0){
-                DamagePopup.Create(other.GetContact(0).point, popUpDamage, isCritical);
+                    DamageParticleScript.Create(other.GetContact(0).point, popUpDamage, Damage >= Health);
+                    DamagePopup.Create(other.GetContact(0).point, popUpDamage, isCritical);
                 }
-                timeSinceLastDamageTaken = Time.time;
+                timeSinceLastDamageTaken = Time.time;}
             }
         }
     }
@@ -121,5 +123,6 @@ public class BossScript : MonoBehaviour
         if(Damage == 0){return;}
         Health -= Damage;
         DamagePopup.Create(transform.position, Damage, isCritical);
+        //W h y
     }
 }

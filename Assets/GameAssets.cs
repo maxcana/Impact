@@ -15,4 +15,5 @@ public class GameAssets : MonoBehaviour
 
     public Transform DamagePopup;
     public Transform DeathCircle;
+    public Transform DamageParticle;
 }

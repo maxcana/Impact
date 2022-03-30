@@ -29,6 +29,9 @@ public class HealthBarScript : MonoBehaviour
 
         HealthBarImage.fillAmount += functions.valueMoveTowards(HealthBarImage.fillAmount, Health / MaxHealth, 10);
         
+        if(Mathf.Abs((HealthBarImage.fillAmount) - (Health / MaxHealth)) < 0.004f){
+            HealthBarImage.fillAmount = Health / MaxHealth;
+        }
     }
 }
     

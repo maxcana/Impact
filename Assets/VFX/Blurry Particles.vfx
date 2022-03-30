@@ -20,10 +20,7 @@ MonoBehaviour:
       y: 0
       width: 100
       height: 100
-    contents:
-    - model: {fileID: 8926484042661614720}
-      id: 0
-      isStickyNote: 0
+    contents: []
   stickyNoteInfos:
   - title: Do I use this?
     position:
@@ -174,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UIIgnoredErrors: []
-  m_Parent: {fileID: 0}
+  m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
   m_UICollapsed: 1
@@ -686,7 +683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UIIgnoredErrors: []
-  m_Parent: {fileID: 0}
+  m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
   m_UICollapsed: 1
@@ -1277,7 +1274,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"f19f924639155104d8a8a0030435a27d","type":3}}'
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"6fdd01f7fb3c9824bbc22e6df02d4484","type":3}}'
     m_Space: 2147483647
   m_Property:
     name: mainTexture
@@ -1523,7 +1520,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614698}
   m_ExposedName: UnSmoothness
   m_Exposed: 1
-  m_Order: 0
+  m_Order: 1
   m_Category: 
   m_Min:
     m_Type:

@@ -46,3 +46,4 @@ MonoBehaviour:
   DamagePopup: {fileID: 3005452455609762495, guid: 86979832ddf4ace4d868086deb4caebf, type: 3}
   DeathCircle: {fileID: 0}
   DamageParticle: {fileID: 1343267177868505043, guid: 7c9b1f97fd3e40f4f90672f1c98e4084, type: 3}
+  Shake: {fileID: 0}

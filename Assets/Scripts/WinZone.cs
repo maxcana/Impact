@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class WinZone : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public static int levelsUnlocked = 1;
     void Start()
     {
         
@@ -18,5 +18,8 @@ public class WinZone : MonoBehaviour
         int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
         Debug.Log("Tried to load: "+ nextLevel);
         SceneManager.LoadScene(nextLevel);
+        if(nextLevel > levelsUnlocked){
+            levelsUnlocked = nextLevel;
+        }
     }
 }

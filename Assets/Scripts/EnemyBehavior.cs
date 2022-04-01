@@ -80,7 +80,7 @@ public class EnemyBehavior : MonoBehaviour
         float Damage = UnityEngine.Random.Range(-10,-20);
         Damage = Mathf.Clamp(Damage, 0-(MaxHealth - Health), 0);
 
-        DealDamage(Damage, Random.Range(0, 100) < 20, damagePopupPosition.position);
+        DealDamage(Damage, Random.Range(0, 100) < 20, damagePopupPosition.position, 0);
         //? DEALDAMAGE HEALS THE ENEMY HERE ^
     }
 
@@ -111,31 +111,31 @@ public class EnemyBehavior : MonoBehaviour
 
             if(Damage > 2){
                 DamageParticleScript.Create(other.GetContact(0).point, popUpDamage, Damage >= Health);
-                DealDamage(Damage, isCritical, popUpDamage, other.GetContact(0).point);
+                DealDamage(Damage, isCritical, popUpDamage, other.GetContact(0).point, other.rigidbody.mass * rb.mass);
             }
                 
         }
     }
 
-    public void DealDamage(float Damage, bool Critical, float popUpDamage, Vector2 position)
+    public void DealDamage(float Damage, bool Critical, float popUpDamage, Vector2 position, float totalmass)
     {
         if(popUpDamage > 0){
-                DamagePopup.Create(position, popUpDamage, isCritical);
+                DamagePopup.Create(position, popUpDamage, isCritical, totalmass);
         }
         Health -= Damage;
         lastHurtTime = Time.time;
         if(Health <= 0){Die(0f);}
     }
-    public void DealDamage(float Damage, bool Critical, Vector2 position)
+    public void DealDamage(float Damage, bool Critical, Vector2 position, float totalmass)
     {
-        DamagePopup.Create(position, Damage, isCritical);
+        DamagePopup.Create(position, Damage, isCritical, totalmass);
         Health -= Damage;
         lastHurtTime = Time.time;
         if(Health <= 0){Die(0f);}
     }
-    public void DealDamage(float Damage, bool Critical)
+    public void DealDamages(float Damage, bool Critical, float totalmass)
     {
-        DamagePopup.Create(damagePopupPosition.position, Damage, isCritical);
+        DamagePopup.Create(damagePopupPosition.position, Damage, isCritical, totalmass);
         Health -= Damage;
         lastHurtTime = Time.time;
         if(Health <= 0){Die(0f);}

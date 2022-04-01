@@ -45,6 +45,7 @@ public class BossBarEffect : MonoBehaviour
         //if(HealthBarImage.fillAmount)
         if(Mathf.Abs((HealthBarImage.fillAmount) - (Health / MaxHealth)) < 0.004f){
             HealthBarImage.fillAmount = Health / MaxHealth;
+            maxCounter = startMaxCounter;
         }
         if(HealthBarImage.fillAmount > 0.997f){
             HealthBarImage.fillAmount = 1;

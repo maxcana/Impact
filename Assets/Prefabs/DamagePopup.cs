@@ -7,12 +7,12 @@ using TMPro;
 public class DamagePopup : MonoBehaviour
 {
     [SerializeField] AnimationCurve fontSizeCurve;
-    public static DamagePopup Create(Vector3 position, float damageAmount, bool isCritical)
+    public static DamagePopup Create(Vector3 position, float damageAmount, bool isCritical, float totalmass)
     {
         Transform damagePopupTransform = Instantiate(GameAssets.i.DamagePopup, position, Quaternion.identity);
 
         DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
-        damagePopup.Setup(damageAmount, isCritical);
+        damagePopup.Setup(damageAmount, isCritical, totalmass);
 
         return damagePopup;
     }
@@ -30,13 +30,16 @@ public class DamagePopup : MonoBehaviour
         textMesh = transform.GetComponent<TextMeshPro>();
     }
 
-    public void Setup(float damageAmount, bool isCritical)
+    public void Setup(float damageAmount, bool isCritical, float totalmass)
     {
-        CameraShake.SmoothStart(Mathf.Clamp(damageAmount/1000, 0.1f, 0.5f), (Int16)Mathf.Clamp(Mathf.Round(damageAmount / 100), 0, 20));
         if(damageAmount == 0){textMesh.enabled = false;}
         startSize = fontSizeCurve.Evaluate(damageAmount);
         moveXspeed = UnityEngine.Random.Range(-1f, 1f);
         textMesh.fontSize = startSize;
+
+        if(damageAmount > 250 && totalmass > 20){
+            GameAssets.i.Shake.Shake(Mathf.Clamp((damageAmount / 1000f) + totalmass/1000, 0.5f, 0.8f), Mathf.Clamp((damageAmount / 150f) + totalmass/300, 1f, 10));
+        }
 
         if (damageAmount >= 0)
         {

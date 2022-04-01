@@ -180,17 +180,17 @@ public class BigEnemyGuy : MonoBehaviour
             
             if(Damage > 2){
             DamageParticleScript.Create(other.GetContact(0).point, popUpDamage, Damage >= Health);
-            DealDamage(Damage, isCritical, other.GetContact(0).point, popUpDamage);
+            DealDamage(Damage, isCritical, other.GetContact(0).point, popUpDamage, other.rigidbody.mass * rb.mass);
             }
         }
     }
 
-    public void DealDamage(float Damage, bool Critical, Vector2 position, float popUpDamage)
+    public void DealDamage(float Damage, bool Critical, Vector2 position, float popUpDamage, float totalmass = 0)
     {
         if(isDamagable){
         Health -= Damage;
         lastHurtTime = Time.time;
-        DamagePopup.Create(position, popUpDamage, Critical);
+        DamagePopup.Create(position, popUpDamage, Critical, totalmass);
 
         if(Health <= 0 && isPart2){Die(0f);} else if(Health <= 0 && !isPart2){
             newMaxHealth = MaxHealth * 10;

@@ -27,7 +27,7 @@ public class DeathZone : MonoBehaviour
         {
             if(other.tag == "Enemy"){
                 EnemyBehavior e = other.GetComponent<EnemyBehavior>();
-                e.DealDamage(e.Health, false);
+                e.DealDamages(e.Health, false, 0);
             } else {
                 Destroy(other.gameObject, TimeUntilDeath);
                 }

@@ -41,12 +41,17 @@ public class CameraShake : MonoBehaviour
             virtualCameraNoise = virtualCamera.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
         }
     }
+    private void OnDisable() {
+        StopAllCoroutines();
+        ResetValues();
+    }
 
     public void Shake(float duration, float amplitude)
     {
-        if (virtualCamera == null || virtualCameraNoise == null)
+        print(duration + " " + amplitude);
+        if (virtualCamera == null || virtualCameraNoise == null){
             return;
-
+        }
         //get the most duration and amplitude from the current values and apply those;
         float shakeDuration = duration > timeLeft ? duration : timeLeft;
         float shakeAmplitude = amplitude > currentAmplitude ? amplitude : currentAmplitude;

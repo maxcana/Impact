@@ -60,3 +60,6 @@ TagManager:
   - name: ui
     uniqueID: 719570665
     locked: 0
+  - name: mouse
+    uniqueID: 1688590521
+    locked: 0

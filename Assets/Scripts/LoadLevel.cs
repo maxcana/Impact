@@ -10,7 +10,9 @@ public class LoadLevel : MonoBehaviour
     Button button;
     string textValue;
     private void Awake() {
-        textValue = transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
+        if(transform.GetChild(0).GetComponent<TextMeshProUGUI>().text != null){
+            textValue = transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
+        }
     }
     private void Start() {
         button = GetComponent<Button>();

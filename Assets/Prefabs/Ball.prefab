@@ -280,6 +280,7 @@ MonoBehaviour:
   slowMotionSpeed: 0.2
   slowDownTime: 0.33
   inBossFight: 0
+  willLaunchOnHit: 0
   ballPrivaterb: {fileID: 6200000, guid: 9cf599b6b00e9aa46b6dec42b29e31ff, type: 2}
 --- !u!120 &8389257000942953447
 LineRenderer:
@@ -432,3 +433,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04c95268e6b43bd4ab8f77d2d5daee71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EraseLevelData: 65000000720000006100000073000000650000006c0000006500000076000000650000006c00000064000000610000007400000061000000
+  NextLevel: 6e0000006500000078000000740000006c0000006500000076000000650000006c000000

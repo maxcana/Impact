@@ -21,6 +21,9 @@ public class DamageParticleScript : MonoBehaviour
         sr.color = new Color(0, 0, 0, 0.7f);
         damageAmount = Damage;
         isAKill = isKill;
+        if(Damage < 3){
+            sr.enabled = false;
+        }
     }
     private void Awake() {
         sr = GetComponent<SpriteRenderer>();

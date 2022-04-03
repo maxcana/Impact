@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7897518387998366673}
   - component: {fileID: 4669121023662037693}
   - component: {fileID: 2156919238137833057}
+  - component: {fileID: 8145608538058243729}
   m_Layer: 0
   m_Name: Smoke
   m_TagString: Untagged
@@ -111,4 +112,15 @@ VFXRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!210 &8145608538058243729
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727397034970349936}
+  m_Enabled: 1
+  m_SortingLayerID: 1457243281
+  m_SortingLayer: -1
   m_SortingOrder: 0

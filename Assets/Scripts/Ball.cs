@@ -20,9 +20,9 @@ public class Ball : MonoBehaviour
     private float rightMouseTime;
     public static int launches = 1;
     public static float maxLaunchDistance = 5f;
+    public bool willLaunchOnHit;
     [SerializeField] PhysicsMaterial2D ballPrivaterb;
     private Camera cam;
-
     private void Awake()
         {
             cc2d = GetComponent<CircleCollider2D>();
@@ -52,45 +52,56 @@ public class Ball : MonoBehaviour
             if(launches == 1)
             {
                 currentSlowDown = Mathf.Clamp01(currentSlowDown + Time.deltaTime / slowDownTime);
-            } else {    currentSlowDown = 0;    }
+            } else {  
+                if(willLaunchOnHit){
+                    currentSlowDown = Mathf.Clamp01(currentSlowDown - Time.deltaTime / slowDownTime);
+                } else {
+                    currentSlowDown = 0;
+                } 
+            }
         }
 
         if(Input.GetMouseButtonDown(0)){leftMouseTime = Time.time;}
         if(Input.GetMouseButtonDown(1)){rightMouseTime = Time.time;}
 
-        if(Input.GetMouseButton(0) && leftMouseTime > rightMouseTime)
+        if((Input.GetMouseButton(0) && leftMouseTime > rightMouseTime) || willLaunchOnHit)
         {
 
             if(inBossFight) {currentSlowDown = Mathf.Clamp01(currentSlowDown + Time.deltaTime / slowDownTime);}
             launchLine.SetPosition(0, transform.position);
             launchLine.SetPosition(1, GetLaunchPoint());
-            if(launches > 0 || inBossFight)
-            {
-                launchLine.enabled = true;
-            }
+
+        if(launches > 0 || inBossFight)
+        {
+            launchLine.enabled = true;
+        }
+
         } else {
             launchLine.enabled = false;
             if(inBossFight) {
-                                  currentSlowDown = 0;
-                            }
+                currentSlowDown = 0;
             }
+        }
+        
 
-         if (Input.GetMouseButtonUp(0) && leftMouseTime > rightMouseTime) 
-        { 
-            
-            
+         if ((Input.GetMouseButtonUp(0) && leftMouseTime > rightMouseTime) || willLaunchOnHit) 
+        {   
             if(launches > 0 || inBossFight)
             {
-            launches --;
-            Vector2 finalLaunchPoint = GetLaunchPoint();
-            Vector2 position = transform.position;
-            rb.velocity = new Vector2((finalLaunchPoint.x - position.x) * 6f, ((finalLaunchPoint.y - position.y)*6f) + 0.1f);
+                launches --;
+                Vector2 finalLaunchPoint = GetLaunchPoint();
+                Vector2 position = transform.position;
+                rb.velocity = new Vector2((finalLaunchPoint.x - position.x) * 6f, ((finalLaunchPoint.y - position.y)*6f) + 0.1f);
+                if(willLaunchOnHit){
+                    currentSlowDown = 1;
+                }
             }
         }
         
 
         Time.timeScale = Mathf.Lerp(1, slowMotionSpeed, currentSlowDown);
         postprocessing.weight = currentSlowDown;
+
     }
     Vector2 GetLaunchPoint()
     {

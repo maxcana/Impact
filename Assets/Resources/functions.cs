@@ -18,4 +18,5 @@ public class functions : MonoBehaviour
     {
         return number > a & number < b;
     }
+
 }

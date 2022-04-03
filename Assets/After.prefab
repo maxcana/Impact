@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7065152506091159076}
   - component: {fileID: 7065152506091159078}
   - component: {fileID: 7065152506091159079}
+  - component: {fileID: 2973486888796782601}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -75,6 +76,17 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!210 &2973486888796782601
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7065152506091159077}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &7065152506754358817
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,6 +342,7 @@ GameObject:
   - component: {fileID: 7065152507912303418}
   - component: {fileID: 7065152507912303419}
   - component: {fileID: 7065152507912303416}
+  - component: {fileID: 6142077619407891935}
   m_Layer: 0
   m_Name: Smoke
   m_TagString: Untagged
@@ -431,6 +444,17 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!210 &6142077619407891935
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7065152507912303417}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &9077411756529603595
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,6 +466,7 @@ GameObject:
   - component: {fileID: 9077411756529603636}
   - component: {fileID: 9077411756529603638}
   - component: {fileID: 9077411756529603637}
+  - component: {fileID: 7729457976359899375}
   m_Layer: 0
   m_Name: Sharp Particles
   m_TagString: Untagged
@@ -543,6 +568,17 @@ VFXRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!210 &7729457976359899375
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9077411756529603595}
+  m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0

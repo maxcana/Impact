@@ -43,19 +43,19 @@ public class DamagePopup : MonoBehaviour
 
         if (damageAmount >= 0)
         {
-            textColor = new Color(255, 0, 0);
+            textColor = new Color(1, 0.125f, 0.125f);
 
             textMesh.SetText(damageAmount.ToString());
         }
         else
         {
 
-            textColor = new Color(0, 255, 0);
+            textColor = new Color(0.125f, 1, 0.125f);
 
             textMesh.SetText((damageAmount * -1f).ToString());
         }
 
-        if(damageAmount >= 1000){textColor = new Color(256, 196, 0);}
+        if(damageAmount >= 1000){textColor = new Color(1, 1, 0);}
 
 
         textMesh.color = textColor;

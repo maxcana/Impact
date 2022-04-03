@@ -21,7 +21,9 @@ public class FollowBall : MonoBehaviour
 
     void LateUpdate()
     {
+        if(ballrb != null){
         float desiredSize = Mathf.Lerp(sizeMin, sizeMax, Math.Abs(ballrb.velocity.magnitude)*velocitySizeMultiplier);
         cam.m_Lens.OrthographicSize = Mathf.Lerp(cam.m_Lens.OrthographicSize, desiredSize, Time.deltaTime * zoomSpeed);
+        }
     }
 }

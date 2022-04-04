@@ -14,13 +14,12 @@ public class stuff : MonoBehaviour
         nextlevelindex = 0;
     }
     
-    //! These only work in a level
     private void Update() {
 
         if(Input.GetKeyDown(EraseLevelData[eraseleveldataindex])){ 
           eraseleveldataindex += 1;
           if(eraseleveldataindex == EraseLevelData.Length){
-              WinZone.levelsUnlocked = 1; 
+              data.levelsUnlocked = 1; 
               PlayerPrefs.SetInt("LevelsUnlocked", 1);
            eraseleveldataindex = 0;
           }
@@ -38,11 +37,14 @@ public class stuff : MonoBehaviour
             SceneManager.LoadScene("Level Select");
         }
         if(Input.GetKeyDown("j")){
-            WinZone.levelsUnlocked = 16;
+            data.levelsUnlocked = 16;
         }
         if(Input.GetKeyDown("d")){
-            print("levelsunlocked: " + WinZone.levelsUnlocked);
+            print("levelsunlocked: " + data.levelsUnlocked);
             print("playerprefslevelsunlocked: " + PlayerPrefs.GetInt("LevelsUnlocked"));
+        }
+        if(! SceneManager.GetActiveScene().name.Contains("Level")){
+            Time.timeScale = 1;
         }
     }
 }

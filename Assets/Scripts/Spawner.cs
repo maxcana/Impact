@@ -14,8 +14,6 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print("You BETTER not forget about me");
-        print("You BETTER not forget about me");
         initialTimeToSpawn = timeToSpawn;
     }
 

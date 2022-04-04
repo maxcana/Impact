@@ -9,7 +9,6 @@ public class CameraShake : MonoBehaviour
     public CinemachineBrain cinemachineBrain;
     CinemachineVirtualCamera virtualCamera;
     private CinemachineBasicMultiChannelPerlin virtualCameraNoise;
-
     float timeLeft = 0;
     float currentAmplitude = 0;
     public float startUp = 0.05f;
@@ -20,14 +19,18 @@ public class CameraShake : MonoBehaviour
 
     private void Start()
     {
-        if (!cinemachineBrain)
+        if (!cinemachineBrain){
             cinemachineBrain = Camera.main.GetComponent<CinemachineBrain>();
+        }
+        
+        if (!virtualCamera)
+            virtualCamera = GetComponent<CinemachineVirtualCamera>();
 
-        //if (!virtualCamera)
-        //    virtualCamera = GetComponent<CinemachineVirtualCamera>();
+        if (virtualCamera)
+            virtualCameraNoise = virtualCamera.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
 
-        //if (virtualCamera)
-        //    virtualCameraNoise = virtualCamera.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
+        //! I add this because the shaking all the time makes me go insane
+        OnDisable();
     }
 
     private void LateUpdate()
@@ -135,5 +138,4 @@ public class CameraShake : MonoBehaviour
         position.y = SmoothStop(t, power, origin.y, finish.y);
         return position;
     }
-
 }

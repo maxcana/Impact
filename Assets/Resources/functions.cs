@@ -19,4 +19,7 @@ public class functions : MonoBehaviour
         return number > a & number < b;
     }
 
+    public static float Sin(float value, float speed, float multiplier){
+        return Mathf.Sin(value * speed) * multiplier;
+    }
 }

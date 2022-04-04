@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class BigEnemyGuy : MonoBehaviour
 {
-    //! FIX BUG WHERE WHEN WALKING, DOESN'T TRIGGER TRIGGERS, THIS ALLOWS BOSS TO WALK THROUGH BOTH ONE WAY DOORS ON THE SIDES
-    //! FIX BUG WHERE HE DOESNT CHANGE COLOUR WHEN HE GOES INTO PHASE 2
-    //! HE ALSO RISES UP FOR WAY TOO LONG
+    //* means bug that was fixed
+    
+    //* FIX BUG WHERE WHEN WALKING, DOESN'T TRIGGER TRIGGERS, THIS ALLOWS BOSS TO WALK THROUGH BOTH ONE WAY DOORS ON THE SIDES
+    //! FIX BUG WHERE HE DOESNT CHANGE COLOUR WHEN HE GOES INTO PHASE 2, HE ALSO RISES UP FOR WAY TOO LONG
+    //* FIX BUG WHERE IT DOESNT DISPLAY DAMAGE TAKEN WHEN HIT INTO A BOX TO DO THIS, I  MUST ASSIGN CAMERA SHAKE TO EVERY BALL CAMERA BY MAKING BALL CAMERA A PREFAB
     //TODO MAKE BOSS TAKE DAMAGE BASED ON VELOCITY AND SHAKE SCREEN AND JUMP BACK UP IF FLIPPED OVER
     [SerializeField] float moveSpeed;
     SpriteRenderer sr;
@@ -145,7 +147,7 @@ public class BigEnemyGuy : MonoBehaviour
         isFlipping = false;
         lastHurtTime = Time.time;
 
-        float Damage = UnityEngine.Random.Range(-50,(MaxHealth - Health) / 40);
+        float Damage = Mathf.Round(UnityEngine.Random.Range(-50,(MaxHealth - Health) / 40));
         float popUpDamage = Mathf.Clamp(Damage, 0-(MaxHealth - Health), 0);
 
         DealDamage(Damage, Random.Range(0, 100) < 20, transform.position, popUpDamage);
@@ -179,8 +181,9 @@ public class BigEnemyGuy : MonoBehaviour
             popUpDamage = Mathf.Clamp(Damage, 0, Health);
             
             if(Damage > 2){
-            DamageParticleScript.Create(other.GetContact(0).point, popUpDamage, Damage >= Health);
-            DealDamage(Damage, isCritical, other.GetContact(0).point, popUpDamage, other.rigidbody.mass * rb.mass);
+                print("Enemy boss was damaged with " + Damage + " damage.");
+                DamageParticleScript.Create(other.GetContact(0).point, popUpDamage, Damage >= Health);
+                DealDamage(Damage, isCritical, other.GetContact(0).point, popUpDamage, other.rigidbody.mass * rb.mass);
             }
         }
     }

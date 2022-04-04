@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class WinZone : MonoBehaviour
 {
     [SerializeField] bool returnToMenu;
-    public static int levelsUnlocked;
     void Start()
     {
 
@@ -21,10 +20,11 @@ public class WinZone : MonoBehaviour
                 int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
                 if(nextLevelName.Contains("Level") && !nextLevelName.Contains("Challenge")){
                     SceneManager.LoadScene(nextLevel);
-                    if(nextLevel > levelsUnlocked){
+                    if(nextLevel > data.levelsUnlocked){
                         //! -2 for the main menu and level select (what about tutorial?) well buid settings start at 0 and level names start at 1
-                      levelsUnlocked = nextLevel - 2;
-                      PlayerPrefs.SetInt("LevelsUnlocked", levelsUnlocked);
+                      data.levelsUnlocked = nextLevel - 2;
+                      PlayerPrefs.SetInt("LevelsUnlocked", data.levelsUnlocked);
+                      PlayerPrefs.Save();
                     }
                 } else {
                     SceneManager.LoadScene("Level Select");

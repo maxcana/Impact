@@ -7,9 +7,9 @@ public class PlayerPrefsData : MonoBehaviour
     void Start()
     {
         if(PlayerPrefs.GetInt("LevelsUnlocked") < 1){
-            WinZone.levelsUnlocked = 1;
+            data.levelsUnlocked = 1;
         } else {
-            WinZone.levelsUnlocked = PlayerPrefs.GetInt("LevelsUnlocked");
+            data.levelsUnlocked = PlayerPrefs.GetInt("LevelsUnlocked");
         }
     }
 }

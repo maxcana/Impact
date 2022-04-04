@@ -22,7 +22,7 @@ public class LoadLevel : MonoBehaviour
 
             //? ridiculous hack, gets last character of words "Challenge (6,5,4,3,2,1)" and checks if your unlocked levels are >= to 5x that
             //? (eg. string = "Challenge 6") are your unlocked levels bigger or equal to 6x5? if yes, it unlocks it, if no it disables it
-            if(WinZone.levelsUnlocked >= int.Parse(textValue.ToCharArray()[textValue.ToCharArray().Length - 1].ToString()) * 5){
+            if(data.levelsUnlocked >= int.Parse(textValue.ToCharArray()[textValue.ToCharArray().Length - 1].ToString()) * 5){
                 button.interactable = true;
                 button.onClick.AddListener(OnClick);
             } else {
@@ -31,7 +31,7 @@ public class LoadLevel : MonoBehaviour
 
         } else {
 
-            if(WinZone.levelsUnlocked >= int.Parse(textValue)){
+            if(data.levelsUnlocked >= int.Parse(textValue)){
                 button.interactable = true;
                 button.onClick.AddListener(OnClick);
             } else {

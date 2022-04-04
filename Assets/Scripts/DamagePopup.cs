@@ -38,7 +38,7 @@ public class DamagePopup : MonoBehaviour
         textMesh.fontSize = startSize;
 
         if(damageAmount > 250 && totalmass > 20){
-            GameAssets.i.Shake.Shake(Mathf.Clamp((damageAmount / 3000f) + totalmass/3000, 0.1f, 0.5f), Mathf.Clamp((damageAmount / 300f) + totalmass/600, 0.5f, 6));
+            //! GameAssets.i.Shake.Shake(Mathf.Clamp((damageAmount / 3000f) + totalmass/3000, 0.1f, 0.5f), Mathf.Clamp((damageAmount / 300f) + totalmass/600, 0.5f, 6));
         }
 
         if (damageAmount >= 0)
@@ -62,7 +62,7 @@ public class DamagePopup : MonoBehaviour
         disappearTimer = DISAPPEAR_TIMER_MAX;
 
         sortingOrder++;
-        if(damageAmount >= 1000) {sortingOrder += 10000;}
+        if(damageAmount >= 1000) {sortingOrder *= 100;}
         textMesh.sortingOrder = sortingOrder;
         moveYSpeed = 5f;
     }

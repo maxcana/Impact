@@ -11,5 +11,11 @@ public class PlayerPrefsData : MonoBehaviour
         } else {
             data.levelsUnlocked = PlayerPrefs.GetInt("LevelsUnlocked");
         }
+
+        if(PlayerPrefs.GetInt("Coins") < 0){
+            data.coins = 0;
+        } else {
+            data.coins = PlayerPrefs.GetInt("Coins");
+        }
     }
 }

@@ -16,7 +16,7 @@ public class cursorScript : MonoBehaviour
     void Update()
     {
         var += Time.unscaledDeltaTime;
-        transform.localScale = new Vector2(0.03f + Mathf.Sin(var * 15)/200, 0.03f + Mathf.Sin(var * 15)/200);
+        transform.localScale = new Vector2(0.03f + Mathf.Sin(var * 8)/200, 0.03f + Mathf.Sin(var * 8)/200);
         if(sr.enabled == true){
             Cursor.visible = false;
         } else if (sr.enabled == false){

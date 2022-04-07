@@ -11,6 +11,7 @@ TagManager:
   - ZeroGravity
   - NoSprite
   - Deadly
+  - GroundsDamage
   layers:
   - Default
   - TransparentFX

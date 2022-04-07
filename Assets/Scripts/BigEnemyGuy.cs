@@ -54,32 +54,32 @@ public class BigEnemyGuy : MonoBehaviour
     void Update()
     {
         if(shoulIIncrementHowLongIHaveSpentRotatingTo0){
-        howLongIHaveSpentRotatingTo0 += Time.deltaTime;
+            howLongIHaveSpentRotatingTo0 += Time.deltaTime;
         }
 
         if(rb.gravityScale != 0){
         if(isBallVisible()){Debug.DrawLine(eyeTransform.position, player.transform.position);}
         if(flipCheck()){StartCoroutine(Flip());}
         if(isPart2){
-            if(deadOnHit){sr.color = new Color(sr.color.r + functions.valueMoveTowards(sr.color.r, 255, 1f), sr.color.g + functions.valueMoveTowards(sr.color.g, 0, 1), sr.color.b + functions.valueMoveTowards(sr.color.b, 0, 1f));}
-            else {sr.color = new Color(sr.color.r + functions.valueMoveTowards(sr.color.r, 255, 1f), sr.color.g + functions.valueMoveTowards(sr.color.g, 114, 1f), sr.color.b + functions.valueMoveTowards(sr.color.b, 114, 1f));}
+            if(deadOnHit){sr.color = new Color(sr.color.r + functions.valueMoveTowards(sr.color.r, 1, 1f), sr.color.g + functions.valueMoveTowards(sr.color.g, 0, 1), sr.color.b + functions.valueMoveTowards(sr.color.b, 0, 1f));}
+            else {sr.color = new Color(sr.color.r + functions.valueMoveTowards(sr.color.r, 1f, 1f), sr.color.g + functions.valueMoveTowards(sr.color.g, 0.4f, 1f), sr.color.b + functions.valueMoveTowards(sr.color.b, 0.4f, 1f));}
         }
         
         } else {
             
             //? red animation
-            sr.color = new Color(sr.color.r + functions.valueMoveTowards(sr.color.r, 255, 1f), sr.color.g + functions.valueMoveTowards(sr.color.g, 114, 1f), sr.color.b + functions.valueMoveTowards(sr.color.b, 114, 1f));
+            sr.color = new Color(sr.color.r + functions.valueMoveTowards(sr.color.r, 1, 0.7f), sr.color.g + functions.valueMoveTowards(sr.color.g, 0.4f, 0.7f), sr.color.b + functions.valueMoveTowards(sr.color.b, 0.4f, 0.7f));
             
             //? health change
-            MaxHealth += functions.valueMoveTowards(MaxHealth, newMaxHealth, 2f);
-            Health += functions.valueMoveTowards(Health, MaxHealth, 0.8f);
+            MaxHealth += functions.valueMoveTowards(MaxHealth, newMaxHealth, 4f);
+            Health += functions.valueMoveTowards(Health, MaxHealth, 1.6f);
             if(10000 > MaxHealth){MaxHealth++;}
             if(10000 > Health){Health++;} else {Health = 10000;}
             Health = Mathf.Ceil(Health);
 
             //? size animation
-            rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x, 0, 15 * Time.deltaTime), 2);
-            transform.localScale = new Vector2(transform.localScale.x + functions.valueMoveTowards(transform.localScale.x, 3, 0.2f), transform.localScale.y + functions.valueMoveTowards(transform.localScale.y, 3, 0.2f));
+            rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x, 0, 15 * Time.deltaTime), 6);
+            transform.localScale = new Vector2(transform.localScale.x + functions.valueMoveTowards(transform.localScale.x, 3, 0.7f), transform.localScale.y + functions.valueMoveTowards(transform.localScale.y, 3, 0.7f));
 
             //? rotate (nobody needs to read this junk)
             float startAngle = rb.rotation;
@@ -97,8 +97,8 @@ public class BigEnemyGuy : MonoBehaviour
             
 
             if(Health == 10000){
-                if(transform.localScale.x > 2.95 && transform.localScale.y > 2.95){
-                    sr.color = new Color(255, 114, 114);
+                if(transform.localScale.x > 2.3 && transform.localScale.y > 2.3){
+                    sr.color = new Color(1, 0.4f, 0.4f);
                     rb.gravityScale = 1;
                     rb.velocity = new Vector2(rb.velocity.x, -3);
                     isDamagable = true;
@@ -184,6 +184,12 @@ public class BigEnemyGuy : MonoBehaviour
                 print("Enemy boss was damaged with " + Damage + " damage.");
                 DamageParticleScript.Create(other.GetContact(0).point, popUpDamage, Damage >= Health);
                 DealDamage(Damage, isCritical, other.GetContact(0).point, popUpDamage, other.rigidbody.mass * rb.mass);
+            }
+        } else {
+            if(other.gameObject.tag == "GroundsDamage"){
+                float Damage = Mathf.Abs(rb.velocity.y);
+                float popUpDamage = Mathf.Clamp(Damage, 0, Health);
+                DealDamage(Damage, false, other.GetContact(0).point, popUpDamage, 25 * rb.mass);
             }
         }
     }

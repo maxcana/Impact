@@ -38,19 +38,19 @@ public class DamagePopup : MonoBehaviour
         textMesh.fontSize = startSize;
 
         if(damageAmount > 250 && totalmass > 20){
-            //! GameAssets.i.Shake.Shake(Mathf.Clamp((damageAmount / 3000f) + totalmass/3000, 0.1f, 0.5f), Mathf.Clamp((damageAmount / 300f) + totalmass/600, 0.5f, 6));
+            GameAssets.i.Shake.Shake(Mathf.Clamp((damageAmount / 3000f) + totalmass/3000, 0.1f, 0.5f), Mathf.Clamp((damageAmount / 300f) + totalmass/600, 0.5f, 6));
         }
 
         if (damageAmount >= 0)
         {
-            textColor = new Color(1, 0.125f, 0.125f);
+            textColor = new Color(1, 0.005f, 0.005f);
 
             textMesh.SetText(damageAmount.ToString());
         }
         else
         {
 
-            textColor = new Color(0.125f, 1, 0.125f);
+            textColor = new Color(0.005f, 1, 0.005f);
 
             textMesh.SetText((damageAmount * -1f).ToString());
         }

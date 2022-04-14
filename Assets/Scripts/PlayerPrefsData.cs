@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class PlayerPrefsData : MonoBehaviour
 {
+    public static item[] loadedItems;
     void Start()
     {
         PlayerPrefs.Save();
@@ -16,13 +18,12 @@ public class PlayerPrefsData : MonoBehaviour
         }
 
         data.coins = PlayerPrefs.GetInt("Coins");
-        if(!data.collectedItems.ContainsKey("Base Damage")){
-            data.collectedItems.Add("Base Damage", PlayerPrefs.GetInt("Upgrade0Amount"));
-        }
-         if(PlayerPrefs.GetInt("Upgrade0Amount") < 0){
-            if(!data.collectedItems.ContainsKey("Base Damage")){
-                data.collectedItems.Add("Base Damage", PlayerPrefs.GetInt("Upgrade0Amount"));
-            } else { data.collectedItems["Base Damage"] = PlayerPrefs.GetInt("Upgrade0Amount"); }
+        LoadAllItems();
+    }
+    public static void LoadAllItems(){
+        loadedItems = Resources.LoadAll("Items", typeof(item)).Select(i => (item) i).ToArray();
+        foreach(item i in loadedItems){
+            i.Load();
         }
     }
 }

@@ -9,17 +9,17 @@ public class stuff : MonoBehaviour
     [SerializeField] KeyCode[] NextLevel = new KeyCode[9];
     int eraseleveldataindex;
     int nextlevelindex;
+    [SerializeField] item damageItem;
     private void Start() {
         eraseleveldataindex = 0;
         nextlevelindex = 0;
+
+        //! TEST ONLY
+        data.coins = 10000000;
     }
     
     private void Update() {
-        if(data.collectedItems.ContainsKey("Base Damage")){
-            data.baseDamage = 10 + data.collectedItems["Base Damage"] * 5;
-        } else {
-            data.baseDamage = 10;
-        }
+        data.baseDamage = 10 + damageItem.GetAmount() * 5;
     
         if(Input.GetKeyDown(EraseLevelData[eraseleveldataindex])){ 
           eraseleveldataindex += 1;

@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 7845268447385329802}
   - component: {fileID: -3708835380485178665}
   - component: {fileID: -6583150405161990563}
-  - component: {fileID: 5328000671759038922}
-  - component: {fileID: 6296013646771671051}
   m_Layer: 0
   m_Name: Mouse
   m_TagString: Untagged
@@ -97,29 +95,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5328000671759038922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5024288721746961473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22a449331499b9c40ae4ec695c00a927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6296013646771671051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5024288721746961473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04c95268e6b43bd4ab8f77d2d5daee71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EraseLevelData: 65000000720000006100000073000000650000006c0000006500000076000000650000006c00000064000000610000007400000061000000
-  NextLevel: 6e0000006500000078000000740000006c0000006500000076000000650000006c000000

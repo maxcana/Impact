@@ -107,7 +107,10 @@ public class BossScript : MonoBehaviour
                 if(other.gameObject.tag == "Player"){
                     Damage *= data.baseDamage / 10;
                 }
+                
                 popUpDamage = Mathf.Clamp(Damage, 0, Health);
+                Damage = Mathf.Floor(Damage);
+                popUpDamage = Mathf.Floor(popUpDamage);
 
                 if(Damage > 2){
                 Health -= Damage;
@@ -122,6 +125,7 @@ public class BossScript : MonoBehaviour
 
     private void HealDamage(float Damage, bool Critical)
     {
+        Damage = Mathf.Floor(Damage);
         Damage = -1 * (Mathf.Clamp(Health - Damage, 0f, MaxHealth) - Health);
         if(Damage == 0){return;}
         Health -= Damage;

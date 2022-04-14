@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class shopItem : MonoBehaviour
 {
@@ -9,15 +11,22 @@ public class shopItem : MonoBehaviour
         if (data.coins >= item.cost){ 
             data.coins -= item.cost;
             PlayerPrefs.SetInt("Coins", data.coins);
-            if(! data.collectedItems.ContainsKey(item.itemName)){
-                data.collectedItems.Add(item.itemName, 1);
+            if(! data.collectedItems.ContainsKey(item)){
+                data.collectedItems.Add(item, 1);
             } else {
-                data.collectedItems[item.itemName]++;
+                data.collectedItems[item]++;
             }
-            if(item.itemName == "Base Damage"){
-                PlayerPrefs.SetInt("Upgrade0Amount", item.GetAmount());
-            }
+            item.Save();
             print("Item name: " +  item.itemName + " Item amount: " + item.GetAmount());
         }
+    }
+    private void Start() {
+        TextMeshProUGUI titleText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI description = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        Image image = transform.GetChild(2).GetComponent<Image>();
+        transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = item.cost.ToString();
+        image.sprite = item.image;
+        description.text = item.description;
+        titleText.text = item.itemName;
     }
 }

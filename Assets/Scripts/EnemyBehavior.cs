@@ -122,6 +122,8 @@ public class EnemyBehavior : MonoBehaviour
 
     public void DealDamage(float Damage, bool Critical, float popUpDamage, Vector2 position, float totalmass)
     {
+        Damage = Mathf.Floor(Damage);
+        popUpDamage = Mathf.Floor(popUpDamage);
         if(popUpDamage > 0){
                 DamagePopup.Create(position, popUpDamage, isCritical, totalmass);
         }

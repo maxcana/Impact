@@ -218,6 +218,8 @@ public class BigEnemyGuy : MonoBehaviour
 
     public void DealDamage(float Damage, bool Critical, Vector2 position, float popUpDamage, float totalmass = 0)
     {
+        Damage = Mathf.Floor(Damage);
+        popUpDamage = Mathf.Floor(popUpDamage);
         if(isDamagable){
         Health -= Damage;
         lastHurtTime = Time.time;

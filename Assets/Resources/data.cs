@@ -6,4 +6,7 @@ public class data : MonoBehaviour
 {
     public static int levelsUnlocked;
     public static int coins;
+    public static float baseDamage;
+    public static Dictionary<string, int> collectedItems = new Dictionary<string, int>();
+    
 }

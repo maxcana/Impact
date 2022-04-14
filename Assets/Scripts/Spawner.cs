@@ -20,8 +20,10 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (BigEnemyGuy.isDonePart2Intro){
-            timeToSpawn = initialTimeToSpawn - (beg.MaxHealth - beg.Health) / 30;
+        if(scaleWithEnemyLordHealth){
+            if (BigEnemyGuy.isDonePart2Intro){
+                timeToSpawn = initialTimeToSpawn - (beg.MaxHealth - beg.Health) / 30;
+            }
         }
 
         counter += 1;

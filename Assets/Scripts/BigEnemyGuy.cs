@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class BigEnemyGuy : MonoBehaviour
 {
-    //* means bug that was fixed
-    
-    //* FIX BUG WHERE WHEN WALKING, DOESN'T TRIGGER TRIGGERS, THIS ALLOWS BOSS TO WALK THROUGH BOTH ONE WAY DOORS ON THE SIDES
-    //! FIX BUG WHERE HE DOESNT CHANGE COLOUR WHEN HE GOES INTO PHASE 2, HE ALSO RISES UP FOR WAY TOO LONG
-    //* FIX BUG WHERE IT DOESNT DISPLAY DAMAGE TAKEN WHEN HIT INTO A BOX TO DO THIS, I  MUST ASSIGN CAMERA SHAKE TO EVERY BALL CAMERA BY MAKING BALL CAMERA A PREFAB
-    //TODO MAKE BOSS TAKE DAMAGE BASED ON VELOCITY AND SHAKE SCREEN AND JUMP BACK UP IF FLIPPED OVER
     [SerializeField] float moveSpeed;
     SpriteRenderer sr;
     public float MaxHealth = 100;
@@ -36,23 +30,40 @@ public class BigEnemyGuy : MonoBehaviour
     SpriteRenderer sprite;
     RaycastHit2D[] groundResults = new RaycastHit2D[10];
     bool deadOnHit = false;
+    bool didTurnOndamage;
     bool isDamagable;
 
     //private Vector3 eyePosition;
     public Transform eyeTransform;
+    float TimeSincePart2;
     void Start()
     {   
+        didTurnOndamage = false;
+        isDamagable = false;
         isDonePart2Intro = false;
         sr = GetComponent<SpriteRenderer>();
         isPart2 = false;
+        TimeSincePart2 = 0;
         Health = MaxHealth;
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Ball>();
         sprite = GetComponent<SpriteRenderer>();
-        isDamagable = true;
     }
     void Update()
     {
+        if(isPart2){TimeSincePart2+=Time.deltaTime;}
+        if(!isPart2){
+            if(Time.time > 2 && !didTurnOndamage){
+            isDamagable = true;
+            didTurnOndamage = true;
+            }
+        } else {
+            if(TimeSincePart2 > 2 && !didTurnOndamage){
+                isDamagable = true;
+                didTurnOndamage = true;
+            }
+        }
+        
         if(shoulIIncrementHowLongIHaveSpentRotatingTo0){
             howLongIHaveSpentRotatingTo0 += Time.deltaTime;
         }
@@ -97,11 +108,12 @@ public class BigEnemyGuy : MonoBehaviour
             
 
             if(Health == 10000){
-                if(transform.localScale.x > 2.3 && transform.localScale.y > 2.3){
+                if(transform.localScale.x > 2.3f && transform.localScale.y > 2.3f){
                     sr.color = new Color(1, 0.4f, 0.4f);
                     rb.gravityScale = 1;
                     rb.velocity = new Vector2(rb.velocity.x, -3);
-                    isDamagable = true;
+                    didTurnOndamage = false;
+                    TimeSincePart2 = 0;
                     isDonePart2Intro = true;
                     MaxHealth = newMaxHealth;
                     Health = MaxHealth;
@@ -176,20 +188,30 @@ public class BigEnemyGuy : MonoBehaviour
             float popUpDamage;
 
             isCritical = Random.Range(0, 100) < 20;
-
             Damage = Mathf.Ceil(Mathf.Max(0.5f, orb.mass * orb.mass) * (isCritical?2.5f:1) * (Mathf.Abs(orb.velocity.x) + Mathf.Abs(orb.velocity.y)));
+            if(other.gameObject.tag == "Player"){
+                Damage *= data.baseDamage / 10;
+            }
             popUpDamage = Mathf.Clamp(Damage, 0, Health);
             
             if(Damage > 2){
-                print("Enemy boss was damaged with " + Damage + " damage.");
                 DamageParticleScript.Create(other.GetContact(0).point, popUpDamage, Damage >= Health);
                 DealDamage(Damage, isCritical, other.GetContact(0).point, popUpDamage, other.rigidbody.mass * rb.mass);
             }
         } else {
             if(other.gameObject.tag == "GroundsDamage"){
-                float Damage = Mathf.Abs(rb.velocity.y);
-                float popUpDamage = Mathf.Clamp(Damage, 0, Health);
-                DealDamage(Damage, false, other.GetContact(0).point, popUpDamage, 25 * rb.mass);
+                float Damage;
+                if(rb.velocity.y < 0){
+                    if(Mathf.Abs(transform.rotation.eulerAngles.z) > 70){
+                        Damage = Mathf.Round(Mathf.Abs(rb.velocity.y) * 600);
+                    } else {Damage = Mathf.Round(Mathf.Abs(rb.velocity.y) * 125);}
+                } else {Damage = 0;}
+                
+                if(Damage >= 1000){
+                    Damage = Mathf.Round(Damage/500) * 500;
+                    float popUpDamage = Mathf.Clamp(Damage, 0, Health);
+                    DealDamage(Damage, false, other.GetContact(0).point, popUpDamage, 25 * rb.mass);
+                }
             }
         }
     }

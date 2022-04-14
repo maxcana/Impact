@@ -15,7 +15,12 @@ public class stuff : MonoBehaviour
     }
     
     private void Update() {
-
+        if(data.collectedItems.ContainsKey("Base Damage")){
+            data.baseDamage = 10 + data.collectedItems["Base Damage"] * 5;
+        } else {
+            data.baseDamage = 10;
+        }
+    
         if(Input.GetKeyDown(EraseLevelData[eraseleveldataindex])){ 
           eraseleveldataindex += 1;
           if(eraseleveldataindex == EraseLevelData.Length){
@@ -43,6 +48,7 @@ public class stuff : MonoBehaviour
             print("levelsunlocked: " + data.levelsUnlocked);
             print("playerprefslevelsunlocked: " + PlayerPrefs.GetInt("LevelsUnlocked"));
         }
+        //! TIME SCALE 1 (THIS MAKES STUFF REQUIRED IN THE BUILD)
         if(! SceneManager.GetActiveScene().name.Contains("Level")){
             Time.timeScale = 1;
         }

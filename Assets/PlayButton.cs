@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class PlayButton : MonoBehaviour 
 {
+    [SerializeField] string sceneToLoad;
     float desiredSize = 1;
     float currentSize = 1;
     float bounce;
@@ -28,6 +29,6 @@ public class PlayButton : MonoBehaviour
     }
     void OnClick(){
         currentSize -= 0.5f;
-        SceneManager.LoadScene("Level Select");
+        SceneManager.LoadScene(sceneToLoad);
     }
 }

@@ -13,7 +13,7 @@ public class cursorScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         var += Time.unscaledDeltaTime;
         transform.localScale = new Vector2(0.03f + Mathf.Sin(var * 8)/200, 0.03f + Mathf.Sin(var * 8)/200);

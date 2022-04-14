@@ -107,6 +107,9 @@ public class EnemyBehavior : MonoBehaviour
             isCritical = Random.Range(0, 100) < 20;
 
             Damage = Mathf.Ceil(Mathf.Max(0.5f, orb.mass * orb.mass) * (isCritical ? 2.5f : 1) * (Mathf.Abs(orb.velocity.x) + Mathf.Abs(orb.velocity.y)));
+            if(other.gameObject.tag == "Player"){
+                Damage *= data.baseDamage / 10;
+            }
             popUpDamage = Mathf.Clamp(Damage, 0, Health);
 
             if(Damage > 2){

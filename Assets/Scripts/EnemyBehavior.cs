@@ -40,7 +40,10 @@ public class EnemyBehavior : MonoBehaviour
         if(flipCheck()){StartCoroutine(Flip());}
     }
 
-    void Die(float TimeToDie){Destroy(gameObject, TimeToDie);}
+    void Die(float TimeToDie){
+        functions.SpawnCoins(transform.position, 1, UnityEngine.Random.Range(2, 6));
+        Destroy(gameObject, TimeToDie);
+    }
 
     bool IsOnGround(){
         int colliderCount = groundCollider.Cast(Vector2.down, groundResults, 0.1f);

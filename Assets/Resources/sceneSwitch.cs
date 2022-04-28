@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+/*
 using System.IO;
 using UnityEditor;
 using UnityEditor.SceneManagement;
+*/
 
-public class sceneSwitch : Editor
+public class sceneSwitch //: Editor
 {
+    //? Comment for build
+    /*
     [MenuItem("Scenes/Next Scene")]
     static void NextScene(){
          List<string> scenes = new List<string>();
@@ -40,5 +44,5 @@ public class sceneSwitch : Editor
             EditorSceneManager.OpenScene("Assets/Scenes/Level Select.unity");
         }
         
-    }
+    }*/
 }

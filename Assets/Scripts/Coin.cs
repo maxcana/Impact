@@ -9,7 +9,7 @@ public class Coin : MonoBehaviour
     [SerializeField] float bobAmount = 0.2f;
     [SerializeField] bool isCollectable = true;
     [SerializeField] bool doesBob = true;
-    [SerializeField] int worth;
+    [SerializeField] public int worth;
     public AudioClip collect;
     bool isCollecting = false;
     private void Start() {

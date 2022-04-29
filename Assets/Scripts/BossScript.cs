@@ -4,12 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class BossScript : MonoBehaviour
 {
+    [SerializeField] Projectile projectile;
     [SerializeField] public float MaxHealthIsSetTo = 100;
     [SerializeField] Gradient dangerGradient;
     public float MaxHealth = 100;
-    public float Health { 
-        get { return m_Health; } 
-        set { m_Health = Mathf.Clamp(value, 0, MaxHealth); } }
+    public float Health
+    {
+        get { return m_Health; }
+        set { m_Health = Mathf.Clamp(value, 0, MaxHealth); }
+    }
     float m_Health;
     private bool isCritical;
     private int counter;
@@ -29,7 +32,7 @@ public class BossScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         willKillOnHit = false;
-        if(AutoSetHealth){MaxHealth = bossLevel * 500;} else {MaxHealth = MaxHealthIsSetTo;}
+        if (AutoSetHealth) { MaxHealth = bossLevel * 500; } else { MaxHealth = MaxHealthIsSetTo; }
         Health = MaxHealth;
         counter = 0;
         timeSinceLastDamageTaken = Time.time;
@@ -41,48 +44,76 @@ public class BossScript : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //?heals over time
+        if (Time.time > timeSinceLastDamageTaken + Mathf.Clamp((8f - (bossLevel / 20)), 0, 8) && Health != 0)
+        {
+            if (UnityEngine.Random.Range(1, (int)Mathf.Clamp(26 - Mathf.Ceil(bossLevel / 10), 1, 26)) == 1)
+            {
+                HealDamage(Mathf.Round(UnityEngine.Random.Range(-10, (0 - 20 - (bossLevel / 3)))), Random.Range(0, 100) < Mathf.Clamp((20 - bossLevel / 10), 0, 100));
+            }
+        }
+
+        //? if it spins too fast or it is attacking then it will kill on hit 
+        if (Mathf.Abs(rb.angularVelocity) >= 1350 || IsBetween(450, 1100, counter)) { willKillOnHit = true; } else { willKillOnHit = false; }
+
+
+
         counter++;
         if (IsBetween(0, 200, counter))
         {
             rb.angularVelocity += 10;
         }
 
-        if (IsBetween(230, 250, counter)) { rb.angularVelocity /= 1.3f;}
+        if (IsBetween(230, 250, counter)) { rb.angularVelocity /= 1.3f; }
 
         if (IsBetween(250, 450, counter))
         {
             rb.angularVelocity -= 10;
         }
 
-        //?heals over time
-        if (Time.time > timeSinceLastDamageTaken + Mathf.Clamp((8f - (bossLevel / 20)), 0, 8) && Health != 0){
-            if (UnityEngine.Random.Range(1, (int)Mathf.Clamp(26 - Mathf.Ceil(bossLevel / 10), 1,26)) == 1){
-                HealDamage(Mathf.Round(UnityEngine.Random.Range(-10, (0 - 20 - (bossLevel / 3)))), Random.Range(0, 100) < Mathf.Clamp((20 - bossLevel / 10), 0,100)); } }
-        
-        //? if it spins too fast then it will kill on hit
-        if (Mathf.Abs(rb.angularVelocity) >= 1350) { willKillOnHit = true;} else {willKillOnHit = false;}
+        if (counter == 500 || counter == 550 || counter == 600 || counter == 650)
+        {
+            StartCoroutine(playShootPattern(transform.localEulerAngles.z, 6, 360 / 6, 0));
+        }
 
-        if (counter == 800)
+        if (counter == 700)
+        {
+           StartCoroutine(playShootPattern(transform.localEulerAngles.z, 144, 360 / 6, 0.05f));
+        }
+
+        if (counter == 1200)
         {
             counter = 0;
-            //Instantiate(GameAssets.i.DeathCircle, transform.position, Quaternion.Slerp(a,b,0.1f));
         }
-        
-    }
 
-    private void Update() {
-        float stepTime = Time.deltaTime * (willKillOnHit? fadeSpeed:-fadeSpeed);
+    }
+    public IEnumerator playShootPattern(float startingDegree, int amount, float degree, float delay)
+    {
+        var wait = new WaitForSeconds(delay);
+        for (int i = 0; i < amount; i++)
+        {
+            Projectile p = Instantiate(projectile);
+            p.transform.position = transform.position;
+            p.direction = functions.degreeToVector2(degree * i + startingDegree);
+            yield return wait;
+        }
+    }
+    private void Update()
+    {
+        float stepTime = Time.deltaTime * (willKillOnHit ? fadeSpeed : -fadeSpeed);
         dangerTime = Mathf.Clamp01(dangerTime + stepTime);
         sr.color = dangerGradient.Evaluate(dangerTime);
-        if(Health == 0){
+        if (Health == 0)
+        {
             rb.gravityScale = 1;
             transform.localScale = new Vector3(transform.localScale.x + functions.valueMoveTowards(transform.localScale.x, 0, 0.6f), transform.localScale.y + functions.valueMoveTowards(transform.localScale.y, 0, 0.6f), transform.localScale.z);
             rb.mass += functions.valueMoveTowards(rb.mass, 0, 2f);
         }
-        if(transform.localScale.x + transform.localScale.y <= 0.02f){
-                Destroy(gameObject);
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            }
+        if (transform.localScale.x + transform.localScale.y <= 0.02f)
+        {
+            Destroy(gameObject);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
     private bool IsBetween(int a, int b, int number)
     {
@@ -96,7 +127,7 @@ public class BossScript : MonoBehaviour
         if (orb != null)
         {
 
-            if (dangerTime == 1) { if(Health > 0){Destroy(other.gameObject);} }
+            if (dangerTime == 1) { if (Health > 0) { Destroy(other.gameObject); } }
             else
             {
                 float Damage;
@@ -104,21 +135,25 @@ public class BossScript : MonoBehaviour
                 isCritical = Random.Range(0, 100) < 20;
 
                 Damage = Mathf.Ceil(Mathf.Max(0.5f, orb.mass * orb.mass) * (isCritical ? 2.5f : 1) * (Mathf.Abs(orb.velocity.x) + Mathf.Abs(orb.velocity.y)));
-                if(other.gameObject.tag == "Player"){
+                if (other.gameObject.tag == "Player")
+                {
                     Damage *= data.baseDamage / 10;
                 }
-                
+
                 popUpDamage = Mathf.Clamp(Damage, 0, Health);
                 Damage = Mathf.Floor(Damage);
                 popUpDamage = Mathf.Floor(popUpDamage);
 
-                if(Damage > 2){
-                Health -= Damage;
-                if(popUpDamage > 0){
-                    DamageParticleScript.Create(other.GetContact(0).point, popUpDamage, Damage >= Health);
-                    DamagePopup.Create(other.GetContact(0).point, popUpDamage, isCritical, other.rigidbody.mass * rb.mass);
+                if (Damage > 2)
+                {
+                    Health -= Damage;
+                    if (popUpDamage > 0)
+                    {
+                        DamageParticleScript.Create(other.GetContact(0).point, popUpDamage, Damage >= Health);
+                        DamagePopup.Create(other.GetContact(0).point, popUpDamage, isCritical, other.rigidbody.mass * rb.mass);
+                    }
+                    timeSinceLastDamageTaken = Time.time;
                 }
-                timeSinceLastDamageTaken = Time.time;}
             }
         }
     }
@@ -127,7 +162,7 @@ public class BossScript : MonoBehaviour
     {
         Damage = Mathf.Floor(Damage);
         Damage = -1 * (Mathf.Clamp(Health - Damage, 0f, MaxHealth) - Health);
-        if(Damage == 0){return;}
+        if (Damage == 0) { return; }
         Health -= Damage;
         DamagePopup.Create(transform.position, Damage, isCritical, 0);
         //W h y

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3024001154590440179}
   - component: {fileID: 3024001154590440176}
   - component: {fileID: 3024001154590440190}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: DroppedCoin
   m_TagString: Untagged
   m_Icon: {fileID: 0}

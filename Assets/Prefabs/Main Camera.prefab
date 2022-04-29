@@ -108,7 +108,7 @@ MonoBehaviour:
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 265
   m_VolumeTrigger: {fileID: 0}
   m_RenderPostProcessing: 1
   m_Antialiasing: 0
@@ -178,8 +178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04c95268e6b43bd4ab8f77d2d5daee71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EraseLevelData: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  NextLevel: 000000000000000000000000000000000000000000000000000000000000000000000000
   damageItem: {fileID: 11400000, guid: d9b285a7d2c0f7d4bb3d0c876bc7da96, type: 2}
 --- !u!114 &8077020808778100330
 MonoBehaviour:

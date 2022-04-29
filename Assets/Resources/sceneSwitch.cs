@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-/*
+
 using System.IO;
 using UnityEditor;
 using UnityEditor.SceneManagement;
-*/
 
-public class sceneSwitch //: Editor
+
+public class sceneSwitch : Editor
 {
-    //? Comment for build
-    /*
+    //!! Comment for build
+    
     [MenuItem("Scenes/Next Scene")]
     static void NextScene(){
          List<string> scenes = new List<string>();
@@ -38,11 +38,11 @@ public class sceneSwitch //: Editor
             EditorSceneManager.OpenScene(scenes[EditorSceneManager.GetActiveScene().buildIndex - 1]);
         }
     }
-    [MenuItem("Scenes/Level Select")]
-    static void LevelSelect(){
+    [MenuItem("Scenes/Main Menu")]
+    static void MainMenu(){
         if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()){
-            EditorSceneManager.OpenScene("Assets/Scenes/Level Select.unity");
+            EditorSceneManager.OpenScene("Assets/Scenes/Main Menu.unity");
         }
         
-    }*/
+    }
 }

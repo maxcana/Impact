@@ -36,6 +36,8 @@ public class BigHitParticle : MonoBehaviour
             var e = particleClone.emission;
             e.SetBurst(0, new ParticleSystem.Burst(0, UnityEngine.Random.Range(5,8)));
             particleClone.Play();
+            //! NOT WORKING (SHAKE)
+            shake.Shake(0.1f, 2);
             Debug.Log("Tried to spawn particles");
 
             //shake.Shake(0.5f, other.relativeVelocity.sqrMagnitude);

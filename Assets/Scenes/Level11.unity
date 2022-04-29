@@ -567,11 +567,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2d56aabeeaf17f4585ac76615015242, type: 3}
---- !u!4 &109975893 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1493401494899561186, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
-  m_PrefabInstance: {fileID: 573478950}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &123769571
 GameObject:
   m_ObjectHideFlags: 0
@@ -2446,14 +2441,6 @@ PrefabInstance:
       propertyPath: Health
       value: 300
       objectReference: {fileID: 0}
-    - target: {fileID: -1383118996443528115, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
-      propertyPath: MaxHealth
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: -1383118996443528115, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
-      propertyPath: damagePopupPosition
-      value: 
-      objectReference: {fileID: 109975893}
     - target: {fileID: 1686456527, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
       propertyPath: m_Camera
       value: 
@@ -4918,7 +4905,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 259061705490574928, guid: 1188713185ac1f94099c99d272f206d4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.082357
+      value: -3.4542975
       objectReference: {fileID: 0}
     - target: {fileID: 259061705490574928, guid: 1188713185ac1f94099c99d272f206d4, type: 3}
       propertyPath: m_LocalPosition.y

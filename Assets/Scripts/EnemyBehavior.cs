@@ -6,6 +6,7 @@ public class EnemyBehavior : MonoBehaviour
 {
 
     //! FIX BUG WHERE WHEN WALKING, DOESN'T TRIGGER TRIGGERS
+    [SerializeField] float value = 1;
     [SerializeField] float moveSpeed;
     public float MaxHealth = 100;
     public float Health { 
@@ -41,7 +42,7 @@ public class EnemyBehavior : MonoBehaviour
     }
 
     void Die(float TimeToDie){
-        functions.SpawnCoins(transform.position, 1, UnityEngine.Random.Range(2, 6));
+        functions.SpawnCoins(transform.position, value, UnityEngine.Random.Range(Mathf.RoundToInt(value * 2), Mathf.CeilToInt(value * 6)));
         Destroy(gameObject, TimeToDie);
     }
 

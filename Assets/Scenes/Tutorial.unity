@@ -944,6 +944,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 118f089dccf411241a287a7d5dd52c32, type: 3}
+--- !u!1 &297455097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 297455098}
+  m_Layer: 0
+  m_Name: REPLENISHABLE OBJECT DOESN't WORK (THE LERPING IN COROUTINE)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &297455098
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297455097}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.534749, y: -4.5638456, z: -3.8507738}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &322095975 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 603798048, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
@@ -5050,37 +5080,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 118f089dccf411241a287a7d5dd52c32, type: 3}
---- !u!1 &1703144867
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1703144868}
-  m_Layer: 0
-  m_Name: FIX BUG WHERE BALL PROFILE DOESN't WORK BECAUSE OF THE LAYER BALL IS SET
-    TO, "BALL"; IT WORKS ON DEFAULT.
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1703144868
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1703144867}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.534749, y: -4.5638456, z: -3.8507738}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1718817387
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7055,6 +7054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8be24d0930f3274ab7c42a26f282ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  value: 1
   moveSpeed: 0
   MaxHealth: 1e+12
   flipWaitTime: 10000

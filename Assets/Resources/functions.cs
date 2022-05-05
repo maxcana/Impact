@@ -5,16 +5,22 @@ using UnityEngine;
 public class functions : MonoBehaviour
 {
     //!
-    public static Vector2 positionMoveTowards(Vector2 currentpos, Vector2 endpos, float speed)
+    public static Vector2 positionMoveTowards(Vector2 currentpos, Vector2 endpos, float speed, bool useDeltaTime = true)
     {
         //? gets the position to move towards by from the start to end position
-        return speed * Time.deltaTime * (endpos - currentpos);
+        if(useDeltaTime)
+            return speed * Time.deltaTime * (endpos - currentpos);
+        else 
+            return speed * (1f/60f) * (endpos - currentpos);
     }
 
-    public static float valueMoveTowards(float currentvalue, float endvalue, float speed)
+    public static float valueMoveTowards(float currentvalue, float endvalue, float speed, bool useDeltaTime = true)
     {
         //? gets the value to move towards by from the start to end value
-        return speed * Time.deltaTime * (endvalue - currentvalue);
+        if(useDeltaTime)
+            return speed * Time.deltaTime * (endvalue - currentvalue);
+        else
+            return speed * (1f/60f) * (endvalue - currentvalue);
     }
     public static Vector2 degreeToVector2(float degrees)
     {

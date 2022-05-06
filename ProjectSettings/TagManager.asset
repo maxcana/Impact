@@ -12,6 +12,8 @@ TagManager:
   - NoSprite
   - Deadly
   - GroundsDamage
+  - BallCamera
+  - Explosive
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - Water
   - UI
   - post processing
-  - DroppedCoin
+  - Don't Collide With Self Or Player
   - Ball
   - 
   - 

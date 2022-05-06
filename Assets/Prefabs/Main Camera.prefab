@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 259061705490574932}
   - component: {fileID: 259061705490574933}
   - component: {fileID: 5784216267199662094}
+  - component: {fileID: 9112596111657666763}
   - component: {fileID: 8077020808778100330}
   m_Layer: 0
   m_Name: Main Camera
@@ -64,7 +65,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 5.5
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -179,6 +180,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageItem: {fileID: 11400000, guid: d9b285a7d2c0f7d4bb3d0c876bc7da96, type: 2}
+--- !u!114 &9112596111657666763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259061705490574922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d5e3eb0d4a35f46a78dadf40e711d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8077020808778100330
 MonoBehaviour:
   m_ObjectHideFlags: 0

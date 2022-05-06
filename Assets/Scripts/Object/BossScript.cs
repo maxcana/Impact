@@ -41,7 +41,6 @@ public class BossScript : MonoBehaviour
         pc2d.enabled = true;
         rb.mass = 200;
     }
-
     private void FixedUpdate()
     {
         //?heals over time
@@ -78,7 +77,8 @@ public class BossScript : MonoBehaviour
 
         if (counter == 700)
         {
-           StartCoroutine(playShootPattern(transform.localEulerAngles.z, 144, 360 / 6, 0.05f));
+            StartCoroutine(playShootPattern(transform.localEulerAngles.z, 144, 360 / 6, 0.05f));
+            StartCoroutine(playShootPattern(transform.localEulerAngles.z + 360 / 12, 72, 360 / 6, 0.1f));
         }
 
         if (counter == 1200)
@@ -166,5 +166,18 @@ public class BossScript : MonoBehaviour
         Health -= Damage;
         DamagePopup.Create(transform.position, Damage, isCritical, 0);
         //W h y
+    }
+    public void DealDamageWithAutoPopupDamageAtDefaultPosition(float Damage)
+    {
+        float popUpDamage;
+        isCritical = Random.Range(0, 100) < 20;
+        popUpDamage = Mathf.Clamp(Damage, 0, Health);
+
+        Health -= Damage;
+        if (popUpDamage > 0)
+        {
+            DamagePopup.Create(transform.position, popUpDamage, isCritical, 0);
+        }
+        timeSinceLastDamageTaken = Time.time;
     }
 }

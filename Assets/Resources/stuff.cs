@@ -6,23 +6,46 @@ using UnityEngine.SceneManagement;
 public class stuff : MonoBehaviour
 {
     [SerializeField] item damageItem;
-    private void Start() {
+    private void Start()
+    {
         print("stuff says hi");
     }
-    
-    private void Update() {
+
+    private void Update()
+    {
         data.baseDamage = 10 + damageItem.GetAmount() * 5;
 
-        if(Input.GetKeyDown("j")){
+        //! TIME SCALE 1 (THIS MAKES STUFF REQUIRED IN THE BUILD)
+        if (!SceneManager.GetActiveScene().name.Contains("Level"))
+        {
+            Time.timeScale = 1;
+        }
+
+        //*dev tools
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Destroy(GameObject.FindWithTag("Player"));
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        }
+        if (Input.GetKeyDown("j"))
+        {
             //just
-        
+
             PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") + 100);
             PlayerPrefs.SetInt("LevelsUnlocked", 16);
             data.levelsUnlocked = 16;
             data.coins += 100;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        if(Input.GetKeyDown("k")){
+        if (Input.GetKeyDown("k"))
+        {
             //kidding
 
             print("wiped save");
@@ -33,11 +56,6 @@ public class stuff : MonoBehaviour
             data.coins = 0;
             data.levelsUnlocked = 0;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-
-        //! TIME SCALE 1 (THIS MAKES STUFF REQUIRED IN THE BUILD)
-        if(! SceneManager.GetActiveScene().name.Contains("Level")){
-            Time.timeScale = 1;
         }
     }
 }

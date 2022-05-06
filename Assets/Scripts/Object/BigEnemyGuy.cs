@@ -234,4 +234,11 @@ public class BigEnemyGuy : MonoBehaviour
             rb.gravityScale = 0;
         }}
     }
+    public void DealDamageWithAutoPopupDamageAtDefaultPosition(float Damage){
+        float popUpDamage;
+        isCritical = Random.Range(0, 100) < 20;
+        popUpDamage = Mathf.Clamp(Damage, 0, Health);
+
+        DealDamage(Damage, isCritical, transform.position, popUpDamage);
+    }
 }

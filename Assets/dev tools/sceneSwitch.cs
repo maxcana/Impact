@@ -11,9 +11,10 @@ public class sceneSwitch : Editor
 {
     //!! Comment for build
     
+    
     [MenuItem("Scenes/Next Scene")]
     static void NextScene(){
-         List<string> scenes = new List<string>();
+        List<string> scenes = new List<string>();
         foreach(EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
         {
             if(scene.enabled){

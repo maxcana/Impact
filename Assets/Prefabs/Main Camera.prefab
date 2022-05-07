@@ -180,6 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageItem: {fileID: 11400000, guid: d9b285a7d2c0f7d4bb3d0c876bc7da96, type: 2}
+  explosionForceItem: {fileID: 11400000, guid: ccd1271dbd319bb409a35e4755284b2f, type: 2}
 --- !u!114 &9112596111657666763
 MonoBehaviour:
   m_ObjectHideFlags: 0

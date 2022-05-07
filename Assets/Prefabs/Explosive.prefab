@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 643986475799855129}
   m_Layer: 0
   m_Name: ExplosiveCollider
-  m_TagString: Untagged
+  m_TagString: ExplosiveCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f86b87bf16bbb64081a1458ec449539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionSound: {fileID: 8300000, guid: 197ef4badf25b8f4ab9544dba56a62d2, type: 3}
   explosion: {fileID: 2682790361845427778, guid: 769f4b94500550548b2fa74a8b414091, type: 3}
 --- !u!1 &643986476817890050
 GameObject:
@@ -136,7 +137,7 @@ GameObject:
   - component: {fileID: 643986476817890048}
   m_Layer: 0
   m_Name: Explosion
-  m_TagString: Untagged
+  m_TagString: Explosion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -195,7 +196,7 @@ GameObject:
   - component: {fileID: 643986477070674244}
   - component: {fileID: 643986477070674245}
   - component: {fileID: 643986477070674246}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Explosive
   m_TagString: Explosive
   m_Icon: {fileID: 0}

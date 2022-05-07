@@ -96,9 +96,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9d384ab5418e6640a4f4c2e74636a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bobAmount: 0.2
   isCollectable: 1
+  doesBob: 1
   worth: 1
-  collect: {fileID: 8300000, guid: a01b3d99594ab2144be5ff65604ada45, type: 3}
+  collect: {fileID: 8300000, guid: d4b4d9f488f4cf84cbbf5cea5d625d7b, type: 3}
+  highWorthCollect: {fileID: 8300000, guid: 6a6d8e2345958014f826303b9fbdf702, type: 3}
 --- !u!60 &6604483985348785703
 PolygonCollider2D:
   m_ObjectHideFlags: 0

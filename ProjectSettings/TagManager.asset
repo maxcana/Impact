@@ -14,6 +14,10 @@ TagManager:
   - GroundsDamage
   - BallCamera
   - Explosive
+  - Explosion
+  - ExplosiveCollider
+  - WinZone
+  - WinZoneSound
   layers:
   - Default
   - TransparentFX
@@ -24,7 +28,7 @@ TagManager:
   - post processing
   - Don't Collide With Self Or Player
   - Ball
-  - 
+  - Don't Collide With Player
   - 
   - 
   - 

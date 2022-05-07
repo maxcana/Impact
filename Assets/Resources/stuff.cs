@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,20 @@ using UnityEngine.SceneManagement;
 public class stuff : MonoBehaviour
 {
     [SerializeField] item damageItem;
+    [SerializeField] item explosionForceItem;
+    private void Awake()
+    {
+        GameObject[] gameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+        string[] gameObjectTags = new string[gameObjects.Length];
+        int i = 0;
+        foreach(var gameObject in gameObjects){
+            gameObjectTags[i] = gameObject.tag;
+            i++;
+        }
+        if (! gameObjectTags.Contains("WinZoneSound")){
+            Instantiate(Resources.Load("WinZoneSound") as GameObject);
+        }
+    }
     private void Start()
     {
         print("stuff says hi");
@@ -14,8 +29,9 @@ public class stuff : MonoBehaviour
     private void Update()
     {
         data.baseDamage = 10 + damageItem.GetAmount() * 5;
+        data.explosionForce = 50 + explosionForceItem.GetAmount() * 10;
 
-        //! TIME SCALE 1 (THIS MAKES STUFF REQUIRED IN THE BUILD)
+        //!STUFF IS REQUIRED IN THE BUILD
         if (!SceneManager.GetActiveScene().name.Contains("Level"))
         {
             Time.timeScale = 1;
@@ -49,9 +65,7 @@ public class stuff : MonoBehaviour
             //kidding
 
             print("wiped save");
-            PlayerPrefs.SetInt("LevelsUnlocked", 0);
-            PlayerPrefs.SetInt("Coins", 0);
-            PlayerPrefs.SetInt("Upgrade0Amount", 0);
+            PlayerPrefs.DeleteAll();
             data.collectedItems.Clear();
             data.coins = 0;
             data.levelsUnlocked = 0;

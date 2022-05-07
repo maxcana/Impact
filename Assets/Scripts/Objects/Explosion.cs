@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    [SerializeField] float force;
+    Explosive ourExplosiveFriend;
     float timer = 0;
     private void Awake()
     {
+        ourExplosiveFriend = transform.parent.GetChild(0).GetComponent<Explosive>();
         gameObject.SetActive(false);
     }
     private void OnEnable()
@@ -30,7 +31,8 @@ public class Explosion : MonoBehaviour
             Vector2 direction = (other.transform.position - transform.position).normalized;
             float distance = Vector2.Distance(transform.position, other.transform.position);
 
-            Vector2 velocity = direction * force * Mathf.Clamp01(1 - (distance / GetComponent<CircleCollider2D>().radius));
+
+            Vector2 velocity = ourExplosiveFriend.setForce ? (direction * ourExplosiveFriend.force * Mathf.Clamp01(1 - (distance / GetComponent<CircleCollider2D>().radius))) : (direction *  data.explosionForce * Mathf.Clamp01(1 - (distance / GetComponent<CircleCollider2D>().radius)));
             other.attachedRigidbody.velocity = velocity;
 
             if (other.tag == "Enemy")
@@ -39,7 +41,7 @@ public class Explosion : MonoBehaviour
                 EnemyBehavior eb;
                 BossScript bs;
                 BigEnemyGuy beg;
-                float damageToDeal = 10 + Mathf.Ceil(100 * (force * Mathf.Clamp01(1 - (distance / GetComponent<CircleCollider2D>().radius))));
+                float damageToDeal = ourExplosiveFriend.setForce ? (10 + Mathf.Ceil(100 * (ourExplosiveFriend.force * Mathf.Clamp01(1 - (distance / GetComponent<CircleCollider2D>().radius))))) : (10 + Mathf.Ceil(100 * (data.explosionForce * Mathf.Clamp01(1 - (distance / GetComponent<CircleCollider2D>().radius)))));
                 if (TryGetComponent(out eb)) eb.DealDamageWithAutoPopupDamageAtDefaultPosition(damageToDeal);
                 if (TryGetComponent(out bs)) bs.DealDamageWithAutoPopupDamageAtDefaultPosition(damageToDeal);
                 if (TryGetComponent(out beg)) beg.DealDamageWithAutoPopupDamageAtDefaultPosition(damageToDeal);

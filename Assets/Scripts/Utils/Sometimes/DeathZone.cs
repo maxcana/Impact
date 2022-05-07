@@ -26,9 +26,15 @@ public class DeathZone : MonoBehaviour
                 else { return; }
             }
         }
-        if (other.tag == "Explosive")
+
+        if (other.tag == "Explosive" || other.tag == "ExplosiveCollider")
         {
-            other.transform.GetChild(0).GetComponent<Explosive>().Explode();
+            if(other.tag == "ExplosiveCollider")
+            {
+                StartCoroutine(other.GetComponent<Explosive>().Explode());
+            } else {
+                StartCoroutine(other.transform.GetChild(0).GetComponent<Explosive>().Explode());
+            }
         }
         else
         {

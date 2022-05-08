@@ -24,6 +24,7 @@ public class BigEnemyGuy : MonoBehaviour
     bool isFlipping;
     bool isPart2;
     Ball player;
+    float timeSinceLastGroundDamage;
     Rigidbody2D rb;
     [SerializeField] Collider2D groundCollider;
     [SerializeField] float wallDetectionRange = 1;
@@ -38,6 +39,7 @@ public class BigEnemyGuy : MonoBehaviour
     float TimeSincePart2;
     void Start()
     {   
+        timeSinceLastGroundDamage = 0;
         didTurnOndamage = false;
         isDamagable = false;
         isDonePart2Intro = false;
@@ -51,6 +53,7 @@ public class BigEnemyGuy : MonoBehaviour
     }
     void Update()
     {
+        timeSinceLastGroundDamage += Time.deltaTime;
         if(isPart2){TimeSincePart2+=Time.deltaTime;}
         if(!isPart2){
             if(Time.time > 2 && !didTurnOndamage){
@@ -183,7 +186,6 @@ public class BigEnemyGuy : MonoBehaviour
         orb = other.gameObject.GetComponent<Rigidbody2D>();
         if(orb != null)
         {
-
             float Damage;
             float popUpDamage;
 
@@ -207,7 +209,8 @@ public class BigEnemyGuy : MonoBehaviour
                     } else {Damage = Mathf.Round(Mathf.Abs(rb.velocity.y) * 125);}
                 } else {Damage = 0;}
                 
-                if(Damage >= 1000){
+                if(Damage >= 1000 && isPart2 && timeSinceLastGroundDamage > 2){
+                    timeSinceLastGroundDamage = 0;
                     Damage = Mathf.Round(Damage/500) * 500;
                     float popUpDamage = Mathf.Clamp(Damage, 0, Health);
                     DealDamage(Damage, false, other.GetContact(0).point, popUpDamage, 25 * rb.mass);

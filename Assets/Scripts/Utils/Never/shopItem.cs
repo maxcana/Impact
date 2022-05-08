@@ -29,7 +29,7 @@ public class shopItem : MonoBehaviour
         TextMeshProUGUI titleText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         TextMeshProUGUI description = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         Image image = transform.GetChild(2).GetComponent<Image>();
-        transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = item.cost.ToString();
+        transform.GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = item.cost.ToString();
         image.sprite = item.image;
         description.text = item.description;
         titleText.text = item.itemName;

@@ -25,6 +25,7 @@ public class shopItem : MonoBehaviour
             GameAssets.i.sound.PlayOneShot(notEnoughCoinsNoise);
         }
     }
+    //hi
     private void Start() {
         TextMeshProUGUI titleText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         TextMeshProUGUI description = transform.GetChild(1).GetComponent<TextMeshProUGUI>();

@@ -17,17 +17,20 @@ public class BossScript : MonoBehaviour
     private bool isCritical;
     private int counter;
     [SerializeField] bool AutoSetHealth;
+    [SerializeField] PolygonCollider2D[] shards;
     private bool willKillOnHit;
     float timeSinceLastDamageTaken;
     [SerializeField] float fadeSpeed;
     [SerializeField] float bossLevel;
     float dangerTime;
     Rigidbody2D rb;
+    bool dead;
     SpriteRenderer sr;
     PolygonCollider2D pc2d;
 
     private void Start()
     {
+        dead = false;
         pc2d = GetComponent<PolygonCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
@@ -103,17 +106,26 @@ public class BossScript : MonoBehaviour
         float stepTime = Time.deltaTime * (willKillOnHit ? fadeSpeed : -fadeSpeed);
         dangerTime = Mathf.Clamp01(dangerTime + stepTime);
         sr.color = dangerGradient.Evaluate(dangerTime);
-        if (Health == 0)
+        if (Health == 0 && !dead)
         {
-            rb.gravityScale = 1;
-            transform.localScale = new Vector3(transform.localScale.x + functions.valueMoveTowards(transform.localScale.x, 0, 0.6f), transform.localScale.y + functions.valueMoveTowards(transform.localScale.y, 0, 0.6f), transform.localScale.z);
-            rb.mass += functions.valueMoveTowards(rb.mass, 0, 2f);
+            dead = true;
+            StartCoroutine(Die(4f));
         }
-        if (transform.localScale.x + transform.localScale.y <= 0.02f)
+    }
+    public IEnumerator Die(float delay)
+    {
+        Vector2 position = transform.position;
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<PolygonCollider2D>().enabled = false;
+        foreach (var shard in shards)
         {
-            Destroy(gameObject);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            shard.transform.parent = transform.parent;
+            shard.gameObject.SetActive(true);
+            shard.attachedRigidbody.velocity = 2 * ((Vector2)shard.bounds.center - position);
         }
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Destroy(gameObject);
     }
     private bool IsBetween(int a, int b, int number)
     {
@@ -133,8 +145,9 @@ public class BossScript : MonoBehaviour
                 float Damage;
                 float popUpDamage;
                 isCritical = Random.Range(0, 100) < 20;
+                bool isHyperCritical = Random.Range(0, 100) < 5;
 
-                Damage = Mathf.Ceil(Mathf.Max(0.5f, orb.mass * orb.mass) * (isCritical ? 2.5f : 1) * (Mathf.Abs(orb.velocity.x) + Mathf.Abs(orb.velocity.y)));
+                Damage = Mathf.Ceil(Mathf.Max(0.5f, orb.mass * orb.mass) * (isHyperCritical ? 6f : isCritical ? 2.5f : 1) * (Mathf.Abs(orb.velocity.x) + Mathf.Abs(orb.velocity.y)));
                 if (other.gameObject.tag == "Player")
                 {
                     Damage *= data.baseDamage / 10;
@@ -150,7 +163,7 @@ public class BossScript : MonoBehaviour
                     if (popUpDamage > 0)
                     {
                         DamageParticleScript.Create(other.GetContact(0).point, popUpDamage, Damage >= Health);
-                        DamagePopup.Create(other.GetContact(0).point, popUpDamage, isCritical, other.rigidbody.mass * rb.mass);
+                        DamagePopup.Create(other.GetContact(0).point, popUpDamage, isCritical, other.rigidbody.mass * rb.mass, isHyperCritical);
                     }
                     timeSinceLastDamageTaken = Time.time;
                 }
@@ -164,7 +177,7 @@ public class BossScript : MonoBehaviour
         Damage = -1 * (Mathf.Clamp(Health - Damage, 0f, MaxHealth) - Health);
         if (Damage == 0) { return; }
         Health -= Damage;
-        DamagePopup.Create(transform.position, Damage, isCritical, 0);
+        DamagePopup.Create(transform.position, Damage, false, 0, false);
         //W h y
     }
     public void DealDamageWithAutoPopupDamageAtDefaultPosition(float Damage)
@@ -176,7 +189,7 @@ public class BossScript : MonoBehaviour
         Health -= Damage;
         if (popUpDamage > 0)
         {
-            DamagePopup.Create(transform.position, popUpDamage, isCritical, 0);
+            DamagePopup.Create(transform.position, popUpDamage, isCritical, 0, false);
         }
         timeSinceLastDamageTaken = Time.time;
     }

@@ -43,7 +43,7 @@ public class DeathZone : MonoBehaviour
                 if (other.tag == "Enemy")
                 {
                     EnemyBehavior e = other.GetComponent<EnemyBehavior>();
-                    e.DealDamages(e.Health, false, 0);
+                    e.DealDamages(e.Health, false, false, 0);
                 }
                 else
                 {

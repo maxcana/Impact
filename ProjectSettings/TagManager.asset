@@ -18,6 +18,7 @@ TagManager:
   - ExplosiveCollider
   - WinZone
   - WinZoneSound
+  - CostToUnlockNextLevel
   layers:
   - Default
   - TransparentFX

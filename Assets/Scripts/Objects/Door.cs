@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    [SerializeField] bool x;
     SpriteRenderer sr;
     Vector2 o;
     bool open = false;
     SignalReciever reciever;
     private void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
         o = transform.position;
         reciever = GetComponent<SignalReciever>();
     }
@@ -22,15 +22,26 @@ public class Door : MonoBehaviour
 
     private void Update()
     {
-        if (open)
+        if (!x)
         {
-            sr.color += new Color(0,0,0,functions.valueMoveTowards(sr.color.a, 0, 10));
-            transform.Translate(new Vector2(0, functions.valueMoveTowards(transform.position.y, o.y + transform.localScale.y * 1.02f, 10)));
-        }
-        else
-        {
-            sr.color += new Color(0,0,0,functions.valueMoveTowards(sr.color.a, 1, 10));
-            transform.Translate(new Vector2(0, functions.valueMoveTowards(transform.position.y, o.y, 10)));
+            if (open)
+            {
+                transform.Translate(new Vector2(0, functions.valueMoveTowards(transform.position.y, o.y + transform.localScale.y * 1.02f, 20)));
+            }
+            else
+            {
+                transform.Translate(new Vector2(0, functions.valueMoveTowards(transform.position.y, o.y, 20)));
+            }
+        } else {
+            if (open)
+            {
+                print("open");
+                transform.Translate(new Vector2(functions.valueMoveTowards(transform.position.x, o.x + transform.localScale.x * 1.02f, 20), 0));
+            }
+            else
+            {
+                transform.Translate(new Vector2(functions.valueMoveTowards(transform.position.x, o.x, 20), 0));
+            }
         }
     }
     private void OpenDoor(bool value)

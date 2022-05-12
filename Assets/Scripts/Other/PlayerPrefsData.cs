@@ -7,7 +7,7 @@ using System.Linq;
 public class PlayerPrefsData : MonoBehaviour
 {
     public static item[] loadedItems;
-    void Start()
+    void Awake()
     {
         PlayerPrefs.Save();
 

@@ -165,7 +165,7 @@ public class BigEnemyGuy : MonoBehaviour
         float Damage = Mathf.Round(UnityEngine.Random.Range(-50,(MaxHealth - Health) / 40));
         float popUpDamage = Mathf.Clamp(Damage, 0-(MaxHealth - Health), 0);
 
-        DealDamage(Damage, Random.Range(0, 100) < 20, transform.position, popUpDamage);
+        DealDamage(Damage, false, false, transform.position, popUpDamage);
         //? DEALDAMAGE HEALS THE ENEMY HERE ^
     }
 
@@ -189,8 +189,9 @@ public class BigEnemyGuy : MonoBehaviour
             float Damage;
             float popUpDamage;
 
+            bool isHyperCritical = Random.Range(0, 100) < 5;
             isCritical = Random.Range(0, 100) < 20;
-            Damage = Mathf.Ceil(Mathf.Max(0.5f, orb.mass * orb.mass) * (isCritical?2.5f:1) * (Mathf.Abs(orb.velocity.x) + Mathf.Abs(orb.velocity.y)));
+            Damage = Mathf.Ceil(Mathf.Max(0.5f, orb.mass * orb.mass) * (isHyperCritical?6f:isCritical?2.5f:1) * (Mathf.Abs(orb.velocity.x) + Mathf.Abs(orb.velocity.y)));
             if(other.gameObject.tag == "Player"){
                 Damage *= data.baseDamage / 10;
             }
@@ -198,7 +199,7 @@ public class BigEnemyGuy : MonoBehaviour
             
             if(Damage > 2){
                 DamageParticleScript.Create(other.GetContact(0).point, popUpDamage, Damage >= Health);
-                DealDamage(Damage, isCritical, other.GetContact(0).point, popUpDamage, other.rigidbody.mass * rb.mass);
+                DealDamage(Damage, isCritical, isHyperCritical, other.GetContact(0).point, popUpDamage, other.rigidbody.mass * rb.mass);
             }
         } else {
             if(other.gameObject.tag == "GroundsDamage"){
@@ -213,20 +214,20 @@ public class BigEnemyGuy : MonoBehaviour
                     timeSinceLastGroundDamage = 0;
                     Damage = Mathf.Round(Damage/500) * 500;
                     float popUpDamage = Mathf.Clamp(Damage, 0, Health);
-                    DealDamage(Damage, false, other.GetContact(0).point, popUpDamage, 25 * rb.mass);
+                    DealDamage(Damage, false, false, other.GetContact(0).point, popUpDamage, 25 * rb.mass);
                 }
             }
         }
     }
 
-    public void DealDamage(float Damage, bool Critical, Vector2 position, float popUpDamage, float totalmass = 0)
+    public void DealDamage(float Damage, bool Critical, bool isHyperCritical, Vector2 position, float popUpDamage, float totalmass = 0)
     {
         Damage = Mathf.Floor(Damage);
         popUpDamage = Mathf.Floor(popUpDamage);
         if(isDamagable){
         Health -= Damage;
         lastHurtTime = Time.time;
-        DamagePopup.Create(position, popUpDamage, Critical, totalmass);
+        DamagePopup.Create(position, popUpDamage, Critical, totalmass, isHyperCritical);
 
         if(Health <= 0 && isPart2){Die(0f);} else if(Health <= 0 && !isPart2){
             newMaxHealth = MaxHealth * 10;
@@ -242,6 +243,6 @@ public class BigEnemyGuy : MonoBehaviour
         isCritical = Random.Range(0, 100) < 20;
         popUpDamage = Mathf.Clamp(Damage, 0, Health);
 
-        DealDamage(Damage, isCritical, transform.position, popUpDamage);
+        DealDamage(Damage, isCritical, false, transform.position, popUpDamage);
     }
 }

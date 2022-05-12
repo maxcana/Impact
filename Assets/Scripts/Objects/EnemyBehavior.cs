@@ -92,7 +92,7 @@ public class EnemyBehavior : MonoBehaviour
         float Damage = UnityEngine.Random.Range(-10, -20);
         Damage = Mathf.Clamp(Damage, 0 - (MaxHealth - Health), 0);
 
-        DealDamage(Damage, Random.Range(0, 100) < 20, damagePopupPosition.position, 0);
+        DealDamage(Damage, false, false, damagePopupPosition.position, 0);
         //? DEALDAMAGE HEALS THE ENEMY HERE ^
     }
 
@@ -119,9 +119,10 @@ public class EnemyBehavior : MonoBehaviour
         {
             float Damage;
             float popUpDamage;
+            bool isHyperCritical = Random.Range(0, 100) < 5;
             isCritical = Random.Range(0, 100) < 20;
 
-            Damage = Mathf.Ceil(Mathf.Max(0.5f, orb.mass * orb.mass) * (isCritical ? 2.5f : 1) * (Mathf.Abs(orb.velocity.x) + Mathf.Abs(orb.velocity.y)));
+            Damage = Mathf.Ceil(Mathf.Max(0.5f, orb.mass * orb.mass) * (isHyperCritical ? 6f : isCritical ? 2.5f : 1) * (Mathf.Abs(orb.velocity.x) + Mathf.Abs(orb.velocity.y)));
             if (other.gameObject.tag == "Player")
             {
                 Damage *= data.baseDamage / 10;
@@ -131,34 +132,34 @@ public class EnemyBehavior : MonoBehaviour
             if (Damage > 2)
             {
                 DamageParticleScript.Create(other.GetContact(0).point, popUpDamage, Damage >= Health);
-                DealDamage(Damage, isCritical, popUpDamage, other.GetContact(0).point, other.rigidbody.mass * rb.mass);
+                DealDamage(Damage, isCritical, isHyperCritical, popUpDamage, other.GetContact(0).point, other.rigidbody.mass * rb.mass);
             }
 
         }
     }
 
-    public void DealDamage(float Damage, bool Critical, float popUpDamage, Vector2 position, float totalmass = 0)
+    public void DealDamage(float Damage, bool Critical, bool hyperCritical, float popUpDamage, Vector2 position, float totalmass = 0)
     {
         Damage = Mathf.Floor(Damage);
         popUpDamage = Mathf.Floor(popUpDamage);
         if (popUpDamage > 0)
         {
-            DamagePopup.Create(position, popUpDamage, isCritical, totalmass);
+            DamagePopup.Create(position, popUpDamage, isCritical, totalmass, hyperCritical);
         }
         Health -= Damage;
         lastHurtTime = Time.time;
         if (Health <= 0) { Die(0f); }
     }
-    public void DealDamage(float Damage, bool Critical, Vector2 position, float totalmass = 0)
+    public void DealDamage(float Damage, bool Critical, bool hyperCritical, Vector2 position, float totalmass = 0)
     {
-        DamagePopup.Create(position, Damage, isCritical, totalmass);
+        DamagePopup.Create(position, Damage, isCritical, totalmass, hyperCritical);
         Health -= Damage;
         lastHurtTime = Time.time;
         if (Health <= 0) { Die(0f); }
     }
-    public void DealDamages(float Damage, bool Critical, float totalmass = 0)
+    public void DealDamages(float Damage, bool Critical, bool hyperCritical, float totalmass = 0)
     {
-        DamagePopup.Create(damagePopupPosition.position, Damage, isCritical, totalmass);
+        DamagePopup.Create(damagePopupPosition.position, Damage, isCritical, totalmass, hyperCritical);
         Health -= Damage;
         lastHurtTime = Time.time;
         if (Health <= 0) { Die(0f); }
@@ -169,6 +170,6 @@ public class EnemyBehavior : MonoBehaviour
         isCritical = Random.Range(0, 100) < 20;
         popUpDamage = Mathf.Clamp(Damage, 0, Health);
 
-        DealDamage(Damage, isCritical, popUpDamage, damagePopupPosition.position);
+        DealDamage(Damage, isCritical, false, popUpDamage, damagePopupPosition.position);
     }
 }

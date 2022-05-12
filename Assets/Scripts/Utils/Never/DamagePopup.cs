@@ -7,12 +7,12 @@ using TMPro;
 public class DamagePopup : MonoBehaviour
 {
     [SerializeField] AnimationCurve fontSizeCurve;
-    public static DamagePopup Create(Vector3 position, float damageAmount, bool isCritical, float totalmass)
+    public static DamagePopup Create(Vector3 position, float damageAmount, bool isCritical, float totalmass, bool isHyperCritical)
     {
         Transform damagePopupTransform = Instantiate(GameAssets.i.DamagePopup, position, Quaternion.identity);
 
         DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
-        damagePopup.Setup(damageAmount, isCritical, totalmass);
+        damagePopup.Setup(damageAmount, isCritical, totalmass, isHyperCritical);
 
         return damagePopup;
     }
@@ -30,7 +30,7 @@ public class DamagePopup : MonoBehaviour
         textMesh = transform.GetComponent<TextMeshPro>();
     }
 
-    public void Setup(float damageAmount, bool isCritical, float totalmass)
+    public void Setup(float damageAmount, bool isCritical, float totalmass, bool isHyperCritical = false)
     {
         if(damageAmount == 0){textMesh.enabled = false;}
         startSize = fontSizeCurve.Evaluate(damageAmount);
@@ -44,14 +44,14 @@ public class DamagePopup : MonoBehaviour
         if (damageAmount >= 0)
         {
             textColor = new Color(1, 0.005f, 0.005f);
-            textMesh.text = isCritical ? damageAmount.ToString() + "!" : damageAmount.ToString();
+            textMesh.text = isHyperCritical ? damageAmount.ToString() + "!!" : isCritical ? damageAmount.ToString() + "!" : damageAmount.ToString();
         }
         else
         {
 
             textColor = new Color(0.005f, 1, 0.005f);
 
-            textMesh.text = isCritical ? (damageAmount * -1f).ToString() + "!" : (damageAmount * -1f).ToString();
+            textMesh.text = isHyperCritical ? (damageAmount * -1f).ToString() + "!!" : isCritical ? (damageAmount * -1f).ToString() + "!" : (damageAmount * -1f).ToString();
         }
 
         if(damageAmount >= 1000){textColor = new Color(1, 1, 0);}

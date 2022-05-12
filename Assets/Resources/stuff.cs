@@ -13,11 +13,13 @@ public class stuff : MonoBehaviour
         GameObject[] gameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
         string[] gameObjectTags = new string[gameObjects.Length];
         int i = 0;
-        foreach(var gameObject in gameObjects){
+        foreach (var gameObject in gameObjects)
+        {
             gameObjectTags[i] = gameObject.tag;
             i++;
         }
-        if (! gameObjectTags.Contains("WinZoneSound")){
+        if (!gameObjectTags.Contains("WinZoneSound"))
+        {
             Instantiate(Resources.Load("WinZoneSound") as GameObject);
         }
     }
@@ -60,6 +62,14 @@ public class stuff : MonoBehaviour
             data.coins += 100;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            data.coins = data.coins == 0 ? 1 : data.coins;
+            data.coins *= 2;
+            PlayerPrefs.SetInt("Coins", data.coins);
+        }
+
+
         if (Input.GetKeyDown("k"))
         {
             //kidding
@@ -68,7 +78,8 @@ public class stuff : MonoBehaviour
             PlayerPrefs.DeleteAll();
             data.collectedItems.Clear();
             data.coins = 0;
-            data.levelsUnlocked = 0;
+            data.levelsUnlocked = 1;
+            PlayerPrefs.SetInt("LevelsUnlocked", 1);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }

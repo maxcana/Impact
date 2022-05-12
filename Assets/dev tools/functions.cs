@@ -31,11 +31,11 @@ public class functions : MonoBehaviour
 
     public static bool IsBetween(int a, int b, int number)
     {
-        return number > a & number < b;
+        return number > a && number < b;
     }
     public static bool IsBetweenf(float a, float b, float number)
     {
-        return number > a & number < b;
+        return number > a && number < b;
     }
 
     public static float Sin(float value, float speed, float multiplier)

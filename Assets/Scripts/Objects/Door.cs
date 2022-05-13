@@ -6,14 +6,17 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     [SerializeField] bool x;
-    SpriteRenderer sr;
     Vector2 o;
     bool open = false;
     SignalReciever reciever;
+    Transform graphicTransform;
+    Collider2D doorCollider;
     private void Awake()
     {
-        o = transform.position;
+        graphicTransform = transform.GetChild(0).GetComponent<Transform>();
+        o = graphicTransform.position;
         reciever = GetComponent<SignalReciever>();
+        doorCollider = GetComponent<Collider2D>();
     }
     private void OnEnable()
     {
@@ -26,21 +29,24 @@ public class Door : MonoBehaviour
         {
             if (open)
             {
-                transform.Translate(new Vector2(0, functions.valueMoveTowards(transform.position.y, o.y + transform.localScale.y * 1.02f, 20)));
+                doorCollider.enabled = false;
+                graphicTransform.Translate(new Vector2(0, functions.valueMoveTowards(graphicTransform.position.y, o.y + transform.localScale.y * 1.02f, 30)));
             }
             else
             {
-                transform.Translate(new Vector2(0, functions.valueMoveTowards(transform.position.y, o.y, 20)));
+                doorCollider.enabled = true;
+                graphicTransform.Translate(new Vector2(0, functions.valueMoveTowards(graphicTransform.position.y, o.y, 30)));
             }
         } else {
             if (open)
             {
-                print("open");
-                transform.Translate(new Vector2(functions.valueMoveTowards(transform.position.x, o.x + transform.localScale.x * 1.02f, 20), 0));
+                doorCollider.enabled = false;
+                graphicTransform.Translate(new Vector2(functions.valueMoveTowards(graphicTransform.position.x, o.x + transform.localScale.x * 1.02f, 30), 0));
             }
             else
             {
-                transform.Translate(new Vector2(functions.valueMoveTowards(transform.position.x, o.x, 20), 0));
+                doorCollider.enabled = true;
+                graphicTransform.Translate(new Vector2(functions.valueMoveTowards(graphicTransform.position.x, o.x, 30), 0));
             }
         }
     }

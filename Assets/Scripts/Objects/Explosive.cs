@@ -9,7 +9,7 @@ public class Explosive : MonoBehaviour
     [SerializeField] ParticleSystem explosion;
     public bool setForce;
     public float force = float.NaN;
-    private void Awake()
+    private void Start()
     {
         explosionObject = transform.parent.GetChild(transform.GetSiblingIndex() + 1).gameObject;
     }

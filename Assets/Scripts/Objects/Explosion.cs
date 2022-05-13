@@ -31,26 +31,24 @@ public class Explosion : MonoBehaviour
             Vector2 direction = (other.transform.position - transform.position).normalized;
             float distance = Vector2.Distance(transform.position, other.transform.position);
 
-
+            float force = ourExplosiveFriend.setForce ? (direction * ourExplosiveFriend.force * Mathf.Clamp01(1 - (distance / GetComponent<CircleCollider2D>().radius))).magnitude : (direction *  data.explosionForce * Mathf.Clamp01(1 - (distance / GetComponent<CircleCollider2D>().radius))).magnitude;
             Vector2 velocity = ourExplosiveFriend.setForce ? (direction * ourExplosiveFriend.force * Mathf.Clamp01(1 - (distance / GetComponent<CircleCollider2D>().radius))) : (direction *  data.explosionForce * Mathf.Clamp01(1 - (distance / GetComponent<CircleCollider2D>().radius)));
             other.attachedRigidbody.velocity = velocity;
 
             if (other.tag == "Enemy")
             {
                 //! List Every Boss Here!
-                EnemyBehavior eb;
-                BossScript bs;
-                BigEnemyGuy beg;
-                float damageToDeal = ourExplosiveFriend.setForce ? (10 + Mathf.Ceil(100 * (ourExplosiveFriend.force * Mathf.Clamp01(1 - (distance / GetComponent<CircleCollider2D>().radius))))) : (10 + Mathf.Ceil(100 * (data.explosionForce * Mathf.Clamp01(1 - (distance / GetComponent<CircleCollider2D>().radius)))));
-                if (TryGetComponent(out eb)) eb.DealDamageWithAutoPopupDamageAtDefaultPosition(damageToDeal);
-                if (TryGetComponent(out bs)) bs.DealDamageWithAutoPopupDamageAtDefaultPosition(damageToDeal);
-                if (TryGetComponent(out beg)) beg.DealDamageWithAutoPopupDamageAtDefaultPosition(damageToDeal);
+                float damageToDeal = Mathf.Round(force * 10); 
+                print("enemy should have taken " + damageToDeal + " damage.");
+                if (other.TryGetComponent<EnemyBehavior>(out EnemyBehavior eb)) eb.DealDamageWithAutoPopupDamageAtDefaultPosition(damageToDeal);
+                if (other.TryGetComponent<BossScript>(out BossScript bs)) bs.DealDamageWithAutoPopupDamageAtDefaultPosition(damageToDeal);
+                if (other.TryGetComponent<BigEnemyGuy>(out BigEnemyGuy beg)) beg.DealDamageWithAutoPopupDamageAtDefaultPosition(damageToDeal);
+                print("enemy velocity: " + other.attachedRigidbody.velocity);
             }
         }
     }
     private void Start()
     {
         Debug.LogWarning("Don't forget about this when adding new bosses!");
-        //goto Line 33
     }
 }

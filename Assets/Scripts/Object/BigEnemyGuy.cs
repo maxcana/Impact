@@ -134,7 +134,7 @@ public class BigEnemyGuy : MonoBehaviour
         return colliderCount > 0;
     }
     void FixedUpdate() {
-        if(Mathf.Abs(rb.rotation) % 360 < 5 && IsOnGround()){
+        if(Mathf.Abs(rb.rotation) % 360 < 5 && IsOnGround() && rb.velocity.magnitude < 5){
             rb.rotation = 0;
             float moveStep = moveSpeed * Time.fixedDeltaTime;
             Vector2 endPosition = rb.position + Vector2.right * moveStep;

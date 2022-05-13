@@ -1070,6 +1070,7 @@ GameObject:
   m_Component:
   - component: {fileID: 284525694}
   - component: {fileID: 284525693}
+  - component: {fileID: 284525697}
   - component: {fileID: 284525692}
   - component: {fileID: 284525696}
   - component: {fileID: 284525695}
@@ -1125,18 +1126,6 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   MaxHealth: 100
   AutoSetHealth: 1
-  shards:
-  - {fileID: 564403910}
-  - {fileID: 1697686923}
-  - {fileID: 874289941}
-  - {fileID: 1200755669}
-  - {fileID: 1388286368}
-  - {fileID: 254676628}
-  - {fileID: 1104890300}
-  - {fileID: 706919172}
-  - {fileID: 1016908512}
-  - {fileID: 744773726}
-  - {fileID: 1744928909}
   fadeSpeed: 2
   bossLevel: 10
 --- !u!212 &284525693
@@ -1267,6 +1256,30 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &284525697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284525691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78cee3a8f1b5d7a4ab3a827ebb9beb20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shards:
+  - {fileID: 564403910}
+  - {fileID: 1697686923}
+  - {fileID: 874289941}
+  - {fileID: 1200755669}
+  - {fileID: 1388286368}
+  - {fileID: 254676628}
+  - {fileID: 1104890300}
+  - {fileID: 706919172}
+  - {fileID: 1016908512}
+  - {fileID: 744773726}
+  - {fileID: 1744928909}
 --- !u!1001 &306467349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10112,10 +10125,6 @@ PrefabInstance:
     - target: {fileID: 8389257000942953441, guid: a9acafbcbf8d7e54c9dc49d522b1460f, type: 3}
       propertyPath: m_Name
       value: Ball
-      objectReference: {fileID: 0}
-    - target: {fileID: 8389257000942953442, guid: a9acafbcbf8d7e54c9dc49d522b1460f, type: 3}
-      propertyPath: m_Mass
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8389257000942953444, guid: a9acafbcbf8d7e54c9dc49d522b1460f, type: 3}
       propertyPath: m_RootOrder

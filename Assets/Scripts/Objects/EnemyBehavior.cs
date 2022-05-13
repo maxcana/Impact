@@ -40,12 +40,16 @@ public class EnemyBehavior : MonoBehaviour
     void Update()
     {
         if (isBallVisible()) { Debug.DrawLine(eyeTransform.position, player.transform.position); }
-        if (flipCheck()) { StartCoroutine(Flip()); }
+        if (flipCheck()) { 
+            print("enemy flipped");
+            StartCoroutine(Flip()); 
+        }
     }
 
-    void Die(float TimeToDie)
+    public void Die(float TimeToDie)
     {
         functions.SpawnCoins(transform.position, value, UnityEngine.Random.Range(Mathf.RoundToInt(value * 2), Mathf.CeilToInt(value * 6)));
+        GetComponent<Shards>().Disperse(transform.position, 25);
         Destroy(gameObject, TimeToDie);
     }
 
@@ -56,9 +60,8 @@ public class EnemyBehavior : MonoBehaviour
     }
     void FixedUpdate()
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         //TODO if(Mathf.Round(rb.rotation) == 0 | Mathf.Round(rb.rotation) == 360){rb.rotation = 0;}
-        if (Mathf.Abs(rb.rotation) % 360 < 5 && IsOnGround())
+        if (Mathf.Abs(rb.rotation) % 360 < 5 && IsOnGround() && rb.velocity.magnitude < 5)
         {
             rb.rotation = 0;
             float moveStep = moveSpeed * Time.fixedDeltaTime;
@@ -98,7 +101,7 @@ public class EnemyBehavior : MonoBehaviour
 
     bool flipCheck()
     {
-        return (Time.time > lastHurtTime + flipWaitTime && Mathf.Abs(transform.rotation.eulerAngles.z) > 30 && !isFlipping);
+        return (Time.time > lastHurtTime + flipWaitTime && Mathf.Abs(transform.rotation.eulerAngles.z) > 30 && !isFlipping && rb.velocity.magnitude < 10);
     }
 
     bool isBallVisible()

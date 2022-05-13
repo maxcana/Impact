@@ -17,7 +17,6 @@ public class BossScript : MonoBehaviour
     private bool isCritical;
     private int counter;
     [SerializeField] bool AutoSetHealth;
-    [SerializeField] PolygonCollider2D[] shards;
     private bool willKillOnHit;
     float timeSinceLastDamageTaken;
     [SerializeField] float fadeSpeed;
@@ -46,6 +45,8 @@ public class BossScript : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if(dead)
+            return;
         //?heals over time
         if (Time.time > timeSinceLastDamageTaken + Mathf.Clamp((8f - (bossLevel / 20)), 0, 8) && Health != 0)
         {
@@ -114,15 +115,7 @@ public class BossScript : MonoBehaviour
     }
     public IEnumerator Die(float delay)
     {
-        Vector2 position = transform.position;
-        GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<PolygonCollider2D>().enabled = false;
-        foreach (var shard in shards)
-        {
-            shard.transform.parent = transform.parent;
-            shard.gameObject.SetActive(true);
-            shard.attachedRigidbody.velocity = 2 * ((Vector2)shard.bounds.center - position);
-        }
+        GetComponent<Shards>().Disperse(transform.position);
         yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Destroy(gameObject);

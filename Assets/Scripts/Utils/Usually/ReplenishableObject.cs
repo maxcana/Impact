@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class ReplenishableObject : MonoBehaviour
 {
-    float timeSpentNotMoving = 0f;
+    [SerializeField] const float respawnTime = 2.5f;
+    float timer = 0f;
     bool isRunning;
+    bool isTouchingButton;
     Collider2D anyCollider;
     Vector2 o;
     Vector3 ov3;
@@ -20,21 +22,36 @@ public class ReplenishableObject : MonoBehaviour
     }
     private void Start()
     {
+        isTouchingButton = false;
         o = transform.position;
         ov3 = new Vector3(o.x, o.y);
         isRunning = false;
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Button")
+        {
+            isTouchingButton = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Button")
+        {
+            isTouchingButton = false;
+        }
+    }
     private void Update()
     {
-        if (IsNotMoving() && Vector2.Distance(o, transform.position) > 1)
+        if (IsNotMoving() && Vector2.Distance(o, transform.position) > 1 && isTouchingButton == false)
         {
-            timeSpentNotMoving += Time.deltaTime;
+            timer += Time.deltaTime;
         }
         else
         {
-            timeSpentNotMoving = 0;
+            timer = 0;
         }
-        if (timeSpentNotMoving > 5 && !isRunning)
+        if (timer > respawnTime && !isRunning)
         {
             isRunning = true;
             StartCoroutine(flash(35));
@@ -59,20 +76,22 @@ public class ReplenishableObject : MonoBehaviour
             }
             yield return new WaitForSeconds(0.05f);
         }
-        
+
         rb.simulated = false;
         anyCollider.enabled = false;
         //Move Toward Starting Position
         sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0);
-        while(Vector2.Distance(transform.position, o) > 0.1f){
-            //! This is not fps independent, yet it doesn't lerp right, instead of gliding, it teleports...
-
+        while (Vector2.Distance(transform.position, o) > 0.1f)
+        {
             float speed = 10f;
-            sr.color += new Color(0,0,0,functions.valueMoveTowards(sr.color.a, 1, speed));
+            sr.color += new Color(0, 0, 0, functions.valueMoveTowards(sr.color.a, 1, speed));
             transform.position += new Vector3(functions.positionMoveTowards(transform.position, o, speed).x, functions.positionMoveTowards(transform.position, o, speed).y);
+            //! doesnt work
+            //transform.rotation = (Quaternion.Euler(0, 0, transform.rotation.z % 360 + functions.valueMoveTowards(transform.rotation.eulerAngles.z, 0, speed)));
             yield return null;
         }
         transform.position = o;
+        transform.rotation = (Quaternion.Euler(0,0,0));
         sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
         //Move Toward Starting Position End
         anyCollider.enabled = true;
@@ -88,7 +107,7 @@ public class ReplenishableObject : MonoBehaviour
     {
         sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
         print("Replenishable object started moving again or spawned at original position");
-        timeSpentNotMoving = 0;
+        timer = 0;
         isRunning = false;
     }
 }

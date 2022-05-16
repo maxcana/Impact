@@ -32,7 +32,7 @@ public class DamagePopup : MonoBehaviour
 
     public void Setup(float damageAmount, bool isCritical, float totalmass, bool isHyperCritical = false)
     {
-        if(damageAmount == 0){textMesh.enabled = false;}
+        if(damageAmount == 0){Destroy(gameObject);}
         startSize = fontSizeCurve.Evaluate(damageAmount);
         moveXspeed = UnityEngine.Random.Range(-1f, 1f);
         textMesh.fontSize = startSize;

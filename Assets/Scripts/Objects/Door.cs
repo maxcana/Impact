@@ -6,6 +6,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     [SerializeField] bool x;
+    [SerializeField] bool reverse;
     Vector2 o;
     bool open = false;
     SignalReciever reciever;
@@ -30,7 +31,7 @@ public class Door : MonoBehaviour
             if (open)
             {
                 doorCollider.enabled = false;
-                graphicTransform.Translate(new Vector2(0, functions.valueMoveTowards(graphicTransform.position.y, o.y + transform.localScale.y * 1.02f, 30)));
+                graphicTransform.Translate(new Vector2(0, functions.valueMoveTowards(graphicTransform.position.y, reverse ? o.y - transform.localScale.y * 1.02f : o.y + transform.localScale.y * 1.02f, 30)));
             }
             else
             {
@@ -41,7 +42,7 @@ public class Door : MonoBehaviour
             if (open)
             {
                 doorCollider.enabled = false;
-                graphicTransform.Translate(new Vector2(functions.valueMoveTowards(graphicTransform.position.x, o.x + transform.localScale.x * 1.02f, 30), 0));
+                graphicTransform.Translate(new Vector2(functions.valueMoveTowards(graphicTransform.position.x, reverse ? o.x - transform.localScale.x * 1.02f : o.x + transform.localScale.x * 1.02f, 30), 0));
             }
             else
             {

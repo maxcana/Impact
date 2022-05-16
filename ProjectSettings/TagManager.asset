@@ -19,6 +19,7 @@ TagManager:
   - WinZone
   - WinZoneSound
   - CostToUnlockNextLevel
+  - Button
   layers:
   - Default
   - TransparentFX

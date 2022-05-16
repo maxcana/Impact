@@ -7,35 +7,38 @@ public class DoorOpenerThingThatIsDefinitelyNotAButton : MonoBehaviour
     [SerializeField] AudioClip click;
     [SerializeField] bool hold;
     SpriteRenderer sr;
-    Vector2 o;
+    Transform graphicTransform;
     SignalSender sender;
     bool pressed = false;
     List<Collider2D> thingsOnTheButton = new List<Collider2D>();
     private void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
-        o = transform.position;
+        graphicTransform = transform.GetChild(0).GetComponent<Transform>();
+        sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
         sender = GetComponent<SignalSender>();
         pressed = false;
+
     }
     private void Update()
     {
         if (pressed)
         {
-            transform.Translate(new Vector2(0f, functions.valueMoveTowards(transform.position.y, o.y - transform.localScale.y * 0.6f, 10)));
+            graphicTransform.localPosition += (new Vector3(0f, functions.valueMoveTowards(graphicTransform.localPosition.y, -transform.localScale.y * 0.6f, 10)));
             float toChange = functions.valueMoveTowards(sr.color.r, 191f / 255f, 10);
             sr.color += new Color(toChange, toChange, toChange);
         }
         else
         {
-            transform.Translate(new Vector2(0f, functions.valueMoveTowards(transform.position.y, o.y, 10)));
+            graphicTransform.localPosition += (new Vector3(0f, functions.valueMoveTowards(graphicTransform.localPosition.y, 0, 10)));
             float toChange = functions.valueMoveTowards(sr.color.r, 227f / 255f, 10);
             sr.color += new Color(toChange, toChange, toChange);
         }
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        GameAssets.i.sound.PlayOneShot(click);
+        if (!pressed)
+            GameAssets.i.sound.PlayOneShot(click);
+
         if (hold)
         {
             if (thingsOnTheButton.Count == 0)

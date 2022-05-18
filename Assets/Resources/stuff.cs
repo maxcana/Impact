@@ -70,7 +70,7 @@ public class stuff : MonoBehaviour
             PlayerPrefs.SetInt("Coins", data.coins);
         }
 
-
+        //hi im a coment
         if (Input.GetKeyDown("k"))
         {
             //kidding

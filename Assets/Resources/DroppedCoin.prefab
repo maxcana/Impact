@@ -50,6 +50,7 @@ MonoBehaviour:
   isCollectable: 0
   doesBob: 0
   worth: 1
+  dropped: 0
   collect: {fileID: 0}
   highWorthCollect: {fileID: 0}
 --- !u!50 &3024001154590440176
@@ -206,6 +207,7 @@ MonoBehaviour:
   isCollectable: 1
   doesBob: 0
   worth: 0
+  dropped: 1
   collect: {fileID: 8300000, guid: d4b4d9f488f4cf84cbbf5cea5d625d7b, type: 3}
   highWorthCollect: {fileID: 8300000, guid: 6a6d8e2345958014f826303b9fbdf702, type: 3}
 --- !u!60 &7158619872843703379

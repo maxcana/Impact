@@ -10,6 +10,7 @@ public class Coin : MonoBehaviour
     [SerializeField] bool isCollectable = true;
     [SerializeField] bool doesBob = true;
     [SerializeField] public int worth;
+    [SerializeField] bool dropped;
     public AudioClip collect;
     public AudioClip highWorthCollect;
     bool isCollecting = false;
@@ -28,7 +29,7 @@ public class Coin : MonoBehaviour
             transform.localScale += new Vector3(Time.deltaTime * 4, Time.deltaTime * 8, 0);
             if (sr.color.a < 0.05f)
             {
-                Destroy(gameObject);
+                Destroy(dropped ? transform.parent.gameObject : gameObject);
             }
         }
     }

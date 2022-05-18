@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class stuff : MonoBehaviour
 {
@@ -81,6 +82,13 @@ public class stuff : MonoBehaviour
             data.levelsUnlocked = 1;
             PlayerPrefs.SetInt("LevelsUnlocked", 1);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        if(Input.GetKey("t")){
+            // teleport
+            GameObject player = GameObject.FindWithTag("Player");
+            Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            player.GetComponent<Rigidbody2D>().velocity = 50 * (new Vector3(pos.x, pos.y, player.transform.position.z) - player.transform.position);
+            player.transform.position = pos;
         }
     }
 }

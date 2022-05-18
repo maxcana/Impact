@@ -15,7 +15,7 @@ public class Shards : MonoBehaviour
             shard.transform.parent = transform.parent;
             shard.gameObject.SetActive(true);
             shard.attachedRigidbody.velocity = power * ((Vector2)shard.bounds.center - position);
-            Fade(1f + ((++i) / 12), shard);
+            Fade(0.1f + ((++i) / 12), shard);
         }
     }
     public async void Fade(float delay, PolygonCollider2D collider)

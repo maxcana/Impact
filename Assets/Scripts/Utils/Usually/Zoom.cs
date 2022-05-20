@@ -15,7 +15,9 @@ public class Zoom : MonoBehaviour
             other.transform.rotation = Quaternion.Euler(0,0,0);
         }
         rb = other.GetComponent<Rigidbody2D>();
-
+        if(!rb){
+            return;
+        }
             if(OneWay){
                 if(xvZoom > 0 && yvZoom == 0){
                     if(rb.velocity.x < 0){

@@ -21,6 +21,7 @@ public class GameAssets : MonoBehaviour
     public AudioSource sound;
     public Transform DamagePopup;
     public Transform DeathCircle;
+    public Transform circleIndicator;
     public Transform DamageParticle;
     public CameraShake Shake;
 }

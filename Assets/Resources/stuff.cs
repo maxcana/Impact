@@ -7,6 +7,7 @@ using Cinemachine;
 
 public class stuff : MonoBehaviour
 {
+    float timeSinceLastTeleport;
     [SerializeField] item damageItem;
     [SerializeField] item explosionForceItem;
     private void Awake()
@@ -26,11 +27,13 @@ public class stuff : MonoBehaviour
     }
     private void Start()
     {
+        timeSinceLastTeleport = 0;
         print("stuff says hi");
     }
 
     private void Update()
     {
+        timeSinceLastTeleport += Time.deltaTime;
         data.baseDamage = 10 + damageItem.GetAmount() * 5;
         data.explosionForce = 50 + explosionForceItem.GetAmount() * 10;
 
@@ -83,11 +86,16 @@ public class stuff : MonoBehaviour
             PlayerPrefs.SetInt("LevelsUnlocked", 1);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        if(Input.GetKey("t")){
+        if (Input.GetKey("t"))
+        {
             // teleport
             GameObject player = GameObject.FindWithTag("Player");
             Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            player.GetComponent<Rigidbody2D>().velocity = 50 * (new Vector3(pos.x, pos.y, player.transform.position.z) - player.transform.position);
+            if (timeSinceLastTeleport > Time.deltaTime)
+            {
+                player.GetComponent<Rigidbody2D>().velocity = 5 * (new Vector3(pos.x, pos.y, player.transform.position.z) - player.transform.position);
+            }
+            timeSinceLastTeleport = 0;
             player.transform.position = pos;
         }
     }

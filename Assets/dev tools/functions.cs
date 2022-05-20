@@ -37,10 +37,16 @@ public class functions : MonoBehaviour
     {
         return number > a && number < b;
     }
-
     public static float Sin(float value, float speed, float multiplier)
     {
         return Mathf.Sin(value * speed) * multiplier;
+    }
+    public static float Random(float min, float max){
+        return UnityEngine.Random.Range(min, max);
+    }
+    public static void SpawnCircle(Vector2 position, float lifeTime){
+        Transform circle = Instantiate(GameAssets.i.circleIndicator, position, Quaternion.identity);
+        circle.GetComponent<CircleIndicator>().life = lifeTime;
     }
     public static void SpawnCoins(Vector2 position, float rarity, int amount, float range = 5)
     {
@@ -51,12 +57,10 @@ public class functions : MonoBehaviour
             coin.GetComponent<Rigidbody2D>().velocity = new Vector2(UnityEngine.Random.Range(range * -1, range), UnityEngine.Random.Range(range * -0.1f, range * 0.8f));
             int worth = 1;
 
-            //! I shall assume that this is the same as using stacked if statements
             worth = TakeChance(Mathf.Clamp(rarity * 5, 0, 100)) ? 10 : TakeChance(Mathf.Clamp(rarity * 10, 0, 100)) ? 5 : 1;
             switch (worth)
             {
                 case 1:
-                    //!! BUG:why is this red
                     sr.color = new Color(1f, 147f / 255f, 0, 1f);
                     break;
                 case 5:

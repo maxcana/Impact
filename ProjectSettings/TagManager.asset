@@ -20,6 +20,7 @@ TagManager:
   - WinZoneSound
   - CostToUnlockNextLevel
   - Button
+  - TeleportPosition
   layers:
   - Default
   - TransparentFX
@@ -31,7 +32,7 @@ TagManager:
   - Don't Collide With Self Or Player
   - Ball
   - Don't Collide With Player
-  - 
+  - Only Collide With Player
   - 
   - 
   - 

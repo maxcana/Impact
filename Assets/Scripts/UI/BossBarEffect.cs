@@ -14,6 +14,7 @@ public class BossBarEffect : MonoBehaviour
     [SerializeField] enums.Bosses currentBoss;
     [SerializeField] BigEnemyGuy EnemyBoss;
     [SerializeField] BossScript Hex;
+    [SerializeField] Tri tri;
     private float MaxHealth;
     float lastHealth;
     float Health;
@@ -24,34 +25,31 @@ public class BossBarEffect : MonoBehaviour
     {
         maxCounter = startMaxCounter;
         counter = maxCounter;
-        HealthBarImage = GetComponent<Image>(); 
+        HealthBarImage = GetComponent<Image>();
     }
     void Update()
     {
-         if(currentBoss == enums.Bosses.Hex){
-            MaxHealth = Hex.MaxHealth; } else {
-                if(currentBoss == enums.Bosses.BigEnemy){
-                    MaxHealth = EnemyBoss.MaxHealth; }}
-
-        if(currentBoss == enums.Bosses.Hex){
-            Health = Hex.Health; } else {
-                if(currentBoss == enums.Bosses.BigEnemy){
-                    Health = EnemyBoss.Health; }}
+        Health = currentBoss == enums.Bosses.Hex ? Hex.Health : currentBoss == enums.Bosses.BigEnemy ? EnemyBoss.Health : currentBoss == enums.Bosses.Tri ? tri.Health : 6969696969696969;
+        MaxHealth = currentBoss == enums.Bosses.Hex ? Hex.MaxHealth : currentBoss == enums.Bosses.BigEnemy ? EnemyBoss.MaxHealth : currentBoss == enums.Bosses.Tri ? tri.MaxHealth : 6969696969696969;
 
         counter -= Time.deltaTime;
-        if(counter <= 0){
+        if (counter <= 0)
+        {
             HealthBarImage.fillAmount += functions.valueMoveTowards(HealthBarImage.fillAmount, Health / MaxHealth, 10);
         }
         //if(HealthBarImage.fillAmount)
-        if(Mathf.Abs((HealthBarImage.fillAmount) - (Health / MaxHealth)) < 0.004f){
+        if (Mathf.Abs((HealthBarImage.fillAmount) - (Health / MaxHealth)) < 0.004f)
+        {
             HealthBarImage.fillAmount = Health / MaxHealth;
             maxCounter = startMaxCounter;
         }
-        if(HealthBarImage.fillAmount > 0.997f){
+        if (HealthBarImage.fillAmount > 0.997f)
+        {
             HealthBarImage.fillAmount = 1;
         }
 
-        if(lastHealth > Health){
+        if (lastHealth > Health)
+        {
             counter = maxCounter;
             maxCounter *= 0.95f;
         }

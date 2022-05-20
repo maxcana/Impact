@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class enums : MonoBehaviour
 {
-            public enum Bosses{Hex, BigEnemy};
+            public enum Bosses{Hex, BigEnemy, Tri, Oct};
 }

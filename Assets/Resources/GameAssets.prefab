@@ -47,6 +47,7 @@ MonoBehaviour:
   sound: {fileID: 0}
   DamagePopup: {fileID: 3005452455609762495, guid: 86979832ddf4ace4d868086deb4caebf, type: 3}
   DeathCircle: {fileID: 0}
+  circleIndicator: {fileID: 48847016753452144, guid: 51bd69a7fad08ad43b7aafd577984adb, type: 3}
   DamageParticle: {fileID: 1343267177868505043, guid: 7c9b1f97fd3e40f4f90672f1c98e4084, type: 3}
   Shake: {fileID: 0}
 --- !u!82 &1784191799380157143

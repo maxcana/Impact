@@ -33,7 +33,7 @@ public class Explosive : MonoBehaviour
             yield return new WaitForSeconds(delay);
         
         ParticleSystem particleClone = GameObject.Instantiate(explosion, transform.position, Quaternion.Euler(90, 0, 0));
-        GameAssets.i.Shake.Shake(0.1f, 15);
+        GameAssets.i.Shake.Shake(0.15f, 15);
         GameAssets.i.sound.PlayOneShot(explosionSound, 0.3f);
 
         short strength = (short)Mathf.Clamp((setForce ? force : data.explosionForce) / 100f, 1, 20);

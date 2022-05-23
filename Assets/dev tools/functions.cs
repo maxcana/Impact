@@ -8,19 +8,23 @@ public class functions : MonoBehaviour
     public static Vector2 positionMoveTowards(Vector2 currentpos, Vector2 endpos, float speed, bool useDeltaTime = true)
     {
         //? gets the position to move towards by from the start to end position
-        if(useDeltaTime)
-            return speed * Time.deltaTime * (endpos - currentpos);
-        else 
-            return speed * (1f/60f) * (endpos - currentpos);
+        if (useDeltaTime)
+            return Mathf.Clamp01(speed * Time.deltaTime) * (endpos - currentpos);
+        else
+            return speed * (1f / 60f) * (endpos - currentpos);
     }
 
     public static float valueMoveTowards(float currentvalue, float endvalue, float speed, bool useDeltaTime = true)
     {
         //? gets the value to move towards by from the start to end value
-        if(useDeltaTime)
-            return speed * Time.deltaTime * (endvalue - currentvalue);
+        if (useDeltaTime)
+            return Mathf.Clamp01(speed * Time.deltaTime) * (endvalue - currentvalue);
         else
-            return speed * (1f/60f) * (endvalue - currentvalue);
+            return speed * (1f / 60f) * (endvalue - currentvalue);
+    }
+    public static Color colorMoveTowards(Color currentColor, Vector4 endColor, float speed, bool divideBy255 = true)
+    {
+        return new Color(Mathf.Clamp01(speed * Time.deltaTime) * ((divideBy255 ? (endColor.x / 255f) : (endColor.x))  - currentColor.r), Mathf.Clamp01(speed * Time.deltaTime) * ((divideBy255 ? (endColor.y / 255f) : (endColor.y))  - currentColor.g), Mathf.Clamp01(speed * Time.deltaTime) * ((divideBy255 ? (endColor.z / 255f) : (endColor.z)) - currentColor.b), Mathf.Clamp01(speed * Time.deltaTime) * ((divideBy255 ? (endColor.w / 255f) : (endColor.w))  - currentColor.a));
     }
     public static Vector2 degreeToVector2(float degrees)
     {
@@ -41,10 +45,12 @@ public class functions : MonoBehaviour
     {
         return Mathf.Sin(value * speed) * multiplier;
     }
-    public static float Random(float min, float max){
+    public static float Random(float min, float max)
+    {
         return UnityEngine.Random.Range(min, max);
     }
-    public static void SpawnCircle(Vector2 position, float lifeTime){
+    public static void SpawnCircle(Vector2 position, float lifeTime)
+    {
         Transform circle = Instantiate(GameAssets.i.circleIndicator, position, Quaternion.identity);
         circle.GetComponent<CircleIndicator>().life = lifeTime;
     }

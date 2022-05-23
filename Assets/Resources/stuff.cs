@@ -10,6 +10,7 @@ public class stuff : MonoBehaviour
     float timeSinceLastTeleport;
     [SerializeField] item damageItem;
     [SerializeField] item explosionForceItem;
+    [SerializeField] item massItem;
     private void Awake()
     {
         GameObject[] gameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
@@ -35,7 +36,8 @@ public class stuff : MonoBehaviour
     {
         timeSinceLastTeleport += Time.deltaTime;
         data.baseDamage = 10 + damageItem.GetAmount() * 5;
-        data.explosionForce = 50 + explosionForceItem.GetAmount() * 10;
+        data.explosionForce = 100 + explosionForceItem.GetAmount() * 10;
+        data.mass = 1 + massItem.GetAmount() * 0.1f;
 
         //!STUFF IS REQUIRED IN THE BUILD
         if (!SceneManager.GetActiveScene().name.Contains("Level"))

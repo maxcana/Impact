@@ -239,9 +239,65 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2578447974943303223, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 337.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 3604100496020005630, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8300994234336511747, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763952689124082044, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763952689124082044, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763952689124082044, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763952689124082044, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763952689124082044, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763952689124082044, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -62.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763952689564674298, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763952689564674298, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763952689564674298, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 180.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763952689564674298, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 113.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763952689564674298, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 116.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763952689564674298, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -62.5
       objectReference: {fileID: 0}
     - target: {fileID: 8763952689881632274, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
       propertyPath: m_Name
@@ -2420,7 +2476,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 5293530334240575266, guid: 7261184fb066c8e4c8a4028d91805315, type: 3}
-  spawnAtRandomVelocity: 0
+  velocity: {x: 0, y: 0}
+  forceVelocity: 0
   scaleWithEnemyLordHealth: 0
   timeToSpawn: 400
   beg: {fileID: 0}
@@ -2677,7 +2734,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 639494116066016863, guid: 118f089dccf411241a287a7d5dd52c32, type: 3}
-  spawnAtRandomVelocity: 0
+  velocity: {x: 0, y: 0}
+  forceVelocity: 0
   scaleWithEnemyLordHealth: 0
   timeToSpawn: 32
   beg: {fileID: 0}
@@ -6243,7 +6301,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 639494116066016863, guid: 118f089dccf411241a287a7d5dd52c32, type: 3}
-  spawnAtRandomVelocity: 0
+  velocity: {x: 0, y: 0}
+  forceVelocity: 0
   scaleWithEnemyLordHealth: 0
   timeToSpawn: 32
   beg: {fileID: 0}
@@ -6419,7 +6478,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 5293530334240575266, guid: 7261184fb066c8e4c8a4028d91805315, type: 3}
-  spawnAtRandomVelocity: 0
+  velocity: {x: 0, y: 0}
+  forceVelocity: 0
   scaleWithEnemyLordHealth: 0
   timeToSpawn: 600
   beg: {fileID: 0}
@@ -8375,7 +8435,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 5293530334240575266, guid: 7261184fb066c8e4c8a4028d91805315, type: 3}
-  spawnAtRandomVelocity: 0
+  velocity: {x: 0, y: 0}
+  forceVelocity: 0
   scaleWithEnemyLordHealth: 0
   timeToSpawn: 500
   beg: {fileID: 0}
@@ -10210,7 +10271,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 639494116066016863, guid: 118f089dccf411241a287a7d5dd52c32, type: 3}
-  spawnAtRandomVelocity: 0
+  velocity: {x: 0, y: 0}
+  forceVelocity: 0
   scaleWithEnemyLordHealth: 0
   timeToSpawn: 32
   beg: {fileID: 0}

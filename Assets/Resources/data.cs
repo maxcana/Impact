@@ -8,5 +8,6 @@ public class data : MonoBehaviour
     public static int coins;
     public static float baseDamage;
     public static float explosionForce;
+    public static float mass;
     public static Dictionary<item, int> collectedItems = new Dictionary<item, int>();
 }

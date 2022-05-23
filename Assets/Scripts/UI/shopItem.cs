@@ -12,7 +12,7 @@ public class shopItem : MonoBehaviour
     public void TryPurchase(){
         if (data.coins >= item.cost){ 
             data.coins -= item.cost;
-            GameAssets.i.sound.PlayOneShot(purchaseNoise);
+            GameAssets.i.sound.PlayOneShot(purchaseNoise, 0.6f);
             PlayerPrefs.SetInt("Coins", data.coins);
             if(! data.collectedItems.ContainsKey(item)){
                 data.collectedItems.Add(item, 1);
@@ -22,7 +22,7 @@ public class shopItem : MonoBehaviour
             item.Save();
             print("Item name: " +  item.itemName + " Item amount: " + item.GetAmount());
         } else {
-            GameAssets.i.sound.PlayOneShot(notEnoughCoinsNoise);
+            GameAssets.i.sound.PlayOneShot(notEnoughCoinsNoise, 0.6f);
         }
     }
     //hi

@@ -1897,6 +1897,58 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2578447974943303223, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763952689124082044, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763952689124082044, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763952689124082044, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763952689124082044, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763952689124082044, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763952689124082044, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763952689564674298, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763952689564674298, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763952689564674298, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763952689564674298, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763952689564674298, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763952689564674298, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8763952689881632274, guid: 42448d37f29c70a48bb5d6929e9282d0, type: 3}
       propertyPath: m_Name
       value: CoinUICanvas

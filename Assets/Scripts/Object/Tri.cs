@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Tri : MonoBehaviour
 {
+    public enum Form { First, Second, Third };
     [SerializeField] Projectile projectile;
     [SerializeField] public float MaxHealthIsSetTo = 100;
     public float MaxHealth = 100;
@@ -27,9 +28,14 @@ public class Tri : MonoBehaviour
     SpriteRenderer sr;
     PolygonCollider2D pc2d;
     bool isTeleporting;
-
+    Form currentForm;
+    bool isDamageable;
+    Vector2 size;
     private void Start()
     {
+        size = transform.localScale;
+        isDamageable = true;
+        currentForm = Form.First;
         isTeleporting = false;
         dead = false;
         pc2d = GetComponent<PolygonCollider2D>();
@@ -48,24 +54,30 @@ public class Tri : MonoBehaviour
         dangerTime = Mathf.Clamp01(dangerTime + stepTime);
         if (Health == 0 && !dead)
         {
-            dead = true;
-            StartCoroutine(Die(4f));
+            if (currentForm == Form.Third)
+            {
+                print("he died");
+                dead = true;
+                StartCoroutine(Die(2f));
+            }
+            else
+            {
+                Health = float.PositiveInfinity;
+                SetForm(currentForm == Form.First ? Form.Second : Form.Third, currentForm == Form.First ? 200 : currentForm == Form.Second ? 5 : 696969, currentForm == Form.First ? 0.3f : currentForm == Form.Second ? 0.1f : 696969, currentForm == Form.First ? true : false);
+                print(currentForm.ToString());            
+            }
         }
-        if (functions.TakeChance(Time.deltaTime) && !isTeleporting)
-        {
-            Vector2 pos = GetUnoccupiedPosition();
-            functions.SpawnCircle(pos, 0.2f);
-            StartCoroutine(Teleport(pos, 0.2f));
-        }
-
         var player = GameObject.FindWithTag("Player");
-        if (Vector2.Distance(player.transform.position, transform.position) < 5)
+        if (Vector2.Distance(player.transform.position, transform.position) < (currentForm == Form.First ? 3.5f : currentForm == Form.Second ? 5 : currentForm == Form.Third ? 8 : 69))
         {
             if (!ballIsClose)
             {
-                if(!isTeleporting){
-                Vector2 pos = GetUnoccupiedPosition();
-                StartCoroutine(Teleport(pos, 0.2f));}
+                if (!isTeleporting)
+                {
+                    Vector2 pos = GetUnoccupiedPosition();
+                    functions.SpawnCircle(pos, 0.2f);
+                    StartCoroutine(Teleport(pos, 0.2f));
+                }
             }
             ballIsClose = true;
         }
@@ -126,32 +138,35 @@ public class Tri : MonoBehaviour
     }
     public IEnumerator Teleport(Vector2 position, float delay)
     {
-        isTeleporting = true;
-        Collider2D collider2d = GetComponent<Collider2D>();
-        collider2d.enabled = false;
-        while (transform.localScale.x > 0.02f)
+        if (isDamageable)
         {
-            sr.color += new Color(0, 0, 0, functions.valueMoveTowards(sr.color.a, 0, 30));
-            transform.localScale += (Vector3)functions.positionMoveTowards(transform.localScale, new Vector2(0, 0), 30);
-            yield return null;
-        }
-        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0);
-        transform.localScale = new Vector2(0.0001f, 0.0001f);
-        yield return new WaitForSeconds(delay);
+            isTeleporting = true;
+            Collider2D collider2d = GetComponent<Collider2D>();
+            collider2d.enabled = false;
+            while (transform.localScale.x > 0.02f)
+            {
+                sr.color += new Color(0, 0, 0, functions.valueMoveTowards(sr.color.a, 0, 30));
+                transform.localScale += (Vector3)functions.positionMoveTowards(transform.localScale, new Vector2(0, 0), 30);
+                yield return null;
+            }
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0);
+            transform.localScale = new Vector2(0.0001f, 0.0001f);
+            yield return new WaitForSeconds(delay);
 
-        transform.position = position;
-        transform.rotation = Quaternion.Euler(0,0,0);
-        rb.angularVelocity = functions.Random(-50, 50);
-        while (transform.localScale.x < 0.1791f)
-        {
-            sr.color += new Color(0, 0, 0, functions.valueMoveTowards(sr.color.a, 1, 30));
-            transform.localScale += (Vector3)functions.positionMoveTowards(transform.localScale, new Vector2(0.19f, 0.19f), 30);
-            yield return null;
+            transform.position = position;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            rb.angularVelocity = functions.Random(-50, 50);
+            while (transform.localScale.magnitude < size.magnitude / 1.03f)
+            {
+                sr.color += new Color(0, 0, 0, functions.valueMoveTowards(sr.color.a, 1, 30));
+                transform.localScale += (Vector3)functions.positionMoveTowards(transform.localScale, size, 30);
+                yield return null;
+            }
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
+            collider2d.enabled = true;
+            transform.localScale = size;
+            isTeleporting = false;
         }
-        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
-        collider2d.enabled = true;
-        transform.localScale = new Vector2(0.1791f, 0.1791f);
-        isTeleporting = false;
     }
     public IEnumerator playShootPattern(float startingDegree, int amount, float degree, float delay)
     {
@@ -171,16 +186,12 @@ public class Tri : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Destroy(gameObject);
     }
-    private bool IsBetween(int a, int b, int number)
-    {
-        return number >= a & number < b;
-    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         Rigidbody2D orb;
         orb = other.gameObject.GetComponent<Rigidbody2D>();
-        if (orb != null)
+        if (orb != null && isDamageable)
         {
 
             if (dangerTime == 1) { if (Health > 0) { Destroy(other.gameObject); } }
@@ -192,6 +203,10 @@ public class Tri : MonoBehaviour
                 bool isHyperCritical = Random.Range(0, 100) < 5;
 
                 Damage = Mathf.Ceil(Mathf.Max(0.5f, orb.mass * orb.mass) * (isHyperCritical ? 6f : isCritical ? 2.5f : 1) * (Mathf.Abs(orb.velocity.x) + Mathf.Abs(orb.velocity.y)));
+                if (functions.IsBetweenf(Health - 1, Health + 25, Damage) && Health > 1)
+                {
+                    Damage = Health - 1;
+                }
                 if (other.gameObject.tag == "Player")
                 {
                     Damage *= data.baseDamage / 10;
@@ -226,15 +241,47 @@ public class Tri : MonoBehaviour
     }
     public void DealDamageWithAutoPopupDamageAtDefaultPosition(float Damage)
     {
-        float popUpDamage;
-        isCritical = Random.Range(0, 100) < 20;
-        popUpDamage = Mathf.Clamp(Damage, 0, Health);
-
-        Health -= Damage;
-        if (popUpDamage > 0)
+        if (isDamageable)
         {
-            DamagePopup.Create(transform.position, popUpDamage, isCritical, 0, false);
+            float popUpDamage;
+            isCritical = Random.Range(0, 100) < 20;
+            popUpDamage = Mathf.Clamp(Damage, 0, Health);
+
+            Health -= Damage;
+            if (popUpDamage > 0)
+            {
+                DamagePopup.Create(transform.position, popUpDamage, isCritical, 0, false);
+            }
+            timeSinceLastDamageTaken = Time.time;
         }
-        timeSinceLastDamageTaken = Time.time;
+    }
+    public void SetForm(Form form, float health, float size, bool red)
+    {
+        currentForm = form;
+        StartCoroutine(Regenerate(health, size, red));
+    }
+    public IEnumerator Regenerate(float toRegen, float size, bool red)
+    {
+        isDamageable = false;
+        float healthLerp = 0.1f;
+        float maxHealthLerp = 0.1f;
+        while (Health < toRegen)
+        {
+            transform.localScale += (Vector3)functions.positionMoveTowards(transform.localScale, new Vector2(size, size), 5);
+            maxHealthLerp += functions.valueMoveTowards(maxHealthLerp, toRegen, 5);
+            healthLerp += functions.valueMoveTowards(healthLerp, toRegen, 3);
+            Health = Mathf.Ceil(healthLerp);
+            MaxHealth = Mathf.Ceil(maxHealthLerp);
+            if (red)
+            {
+                sr.color += functions.colorMoveTowards(sr.color, new Vector4(255, 108, 108, 255), 30);
+            }
+            yield return null;
+        }
+        this.size = transform.localScale;
+        Vector2 pos = GetUnoccupiedPosition();
+        functions.SpawnCircle(pos, 0.05f);
+        StartCoroutine(Teleport(pos, 0.05f));
+        isDamageable = true;
     }
 }

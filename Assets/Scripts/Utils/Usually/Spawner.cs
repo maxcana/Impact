@@ -6,7 +6,8 @@ public class Spawner : MonoBehaviour
 {
     public GameObject objectToSpawn;
     int counter = 0;
-    [SerializeField] bool spawnAtRandomVelocity;
+    [SerializeField] Vector2 velocity;
+    [SerializeField] bool forceVelocity;
     [SerializeField] bool scaleWithEnemyLordHealth;
     public float timeToSpawn;
     float initialTimeToSpawn;
@@ -31,8 +32,8 @@ public class Spawner : MonoBehaviour
         if(counter >= timeToSpawn)
         {
             GameObject myObject = Instantiate(objectToSpawn, transform.position, transform.rotation); 
-            if(spawnAtRandomVelocity){
-                myObject.GetComponent<Rigidbody2D>().velocity = new Vector2(UnityEngine.Random.Range(-30, 30), UnityEngine.Random.Range(-30, 30));
+            if(forceVelocity){
+                myObject.GetComponent<Rigidbody2D>().velocity = velocity;
             }
             counter = 0;
         }

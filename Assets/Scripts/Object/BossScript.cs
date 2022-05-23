@@ -110,12 +110,14 @@ public class BossScript : MonoBehaviour
         if (Health == 0 && !dead)
         {
             dead = true;
-            StartCoroutine(Die(4f));
+            StartCoroutine(Die(9f));
         }
     }
     public IEnumerator Die(float delay)
     {
         GetComponent<Shards>().Disperse(transform.position);
+        yield return new WaitForSeconds(0.1f);
+        functions.SpawnCoins(transform.position, 4, UnityEngine.Random.Range(18, 22), 170);
         yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Destroy(gameObject);

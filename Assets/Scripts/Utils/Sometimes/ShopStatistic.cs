@@ -7,7 +7,7 @@ public class ShopStatistic : MonoBehaviour
 {
     public item item;
     [SerializeField] statistic statToGet;
-    public enum statistic { BaseDamage, ExplosionForce, Unknown }
+    public enum statistic { BaseDamage, ExplosionForce, Mass }
     TextMeshProUGUI textMesh;
     private void Awake()
     {
@@ -18,10 +18,13 @@ public class ShopStatistic : MonoBehaviour
         switch (statToGet)
         {
             case statistic.BaseDamage:
-                textMesh.text = "Base Damage: " + data.baseDamage.ToString() + "\n" + item.GetAmount() + " Items Purchased";
+                textMesh.text = "Base Damage: " + data.baseDamage + "\n" + item.GetAmount() + " Items Purchased";
                 break;
             case statistic.ExplosionForce:
-                textMesh.text = "Explosion Force: " + data.explosionForce.ToString() + "\n" + item.GetAmount() + " Items Purchased";
+                textMesh.text = "Explosion Force: " + data.explosionForce + "\n" + item.GetAmount() + " Items Purchased";
+                break;
+            case statistic.Mass:
+                textMesh.text = "Mass: " + data.mass + "\n" + item.GetAmount() + " Items Purchased";
                 break;
             default:
                 throw new NotImplementedException();

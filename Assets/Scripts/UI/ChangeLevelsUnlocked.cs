@@ -22,12 +22,13 @@ public class ChangeLevelsUnlocked : MonoBehaviour
     }
     public void tryUnlockLevel()
     {
+        cost = GetCost();
         if (data.coins >= cost)
         {
             data.coins -= cost;
+            PlayerPrefs.SetInt("Coins", data.coins);
             data.levelsUnlocked++;
             PlayerPrefs.SetInt("LevelsUnlocked", data.levelsUnlocked);
-            cost = GetCost();
             textMesh.text = GetCost().ToString();
             onUnlockLevel? .Invoke(data.levelsUnlocked);
         }

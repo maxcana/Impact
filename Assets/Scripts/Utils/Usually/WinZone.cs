@@ -12,7 +12,7 @@ public class WinZone : MonoBehaviour
     }
     void Start()
     {
-        
+        Debug.LogWarning("When adding new scenes, watch out!");
     }
 
     // Update is called once per frame
@@ -26,24 +26,28 @@ public class WinZone : MonoBehaviour
             if (nextLevelName.Contains("Level") && !nextLevelName.Contains("Challenge"))
             {
                 GameObject.FindWithTag("WinZoneSound").GetComponent<PlayAudioThroughScene>().PlayAudio();
+                PlayerPrefs.Save();
                 SceneManager.LoadScene(nextLevel);
                 if (nextLevel > data.levelsUnlocked)
                 {
-                    //! -2 for the main menu and level select (what about tutorial?) well buid settings start at 0 and level names start at 1
-                    data.levelsUnlocked = nextLevel - 2;
+                    
+                    //! -4 for the main menu and level select, shop, credits
+                    data.levelsUnlocked = nextLevel - 4;
                     PlayerPrefs.SetInt("LevelsUnlocked", data.levelsUnlocked);
-                    PlayerPrefs.Save();
                 }
             }
             else
             {
+                PlayerPrefs.Save();
                 SceneManager.LoadScene("Level Select");
             }
-
+            
         }
         else
         {
+            PlayerPrefs.Save();
             SceneManager.LoadScene("Level Select");
         }
+        
     }
 }

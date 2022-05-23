@@ -69,7 +69,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2047
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -181,6 +181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageItem: {fileID: 11400000, guid: d9b285a7d2c0f7d4bb3d0c876bc7da96, type: 2}
   explosionForceItem: {fileID: 11400000, guid: ccd1271dbd319bb409a35e4755284b2f, type: 2}
+  massItem: {fileID: 11400000, guid: 833d1f3061d30834794c6d763c548138, type: 2}
 --- !u!114 &9112596111657666763
 MonoBehaviour:
   m_ObjectHideFlags: 0

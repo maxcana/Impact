@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class LaunchReplenish : MonoBehaviour
 {
+    Ball ball;
+    private void Start() {
+        ball = GameObject.FindWithTag("Player").GetComponent<Ball>();
+    }
     void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.collider.tag == "Player")
+        if(other.collider.tag == "Player" && !ball.dontRegainLaunches)
         {
-            Ball.launches = 1;
+            ball.launches = 1;
+            print("replenished launch");
         }
     }
 }

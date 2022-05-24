@@ -18,13 +18,13 @@ public class ShopStatistic : MonoBehaviour
         switch (statToGet)
         {
             case statistic.BaseDamage:
-                textMesh.text = "Base Damage: " + data.baseDamage + "\n" + item.GetAmount() + " Items Purchased";
+                textMesh.text = "Base Damage: " + Mathf.Round(data.baseDamage * data.mass * data.mass * 10)/10 + "\n" + item.GetAmount() + " Items Purchased";
                 break;
             case statistic.ExplosionForce:
                 textMesh.text = "Explosion Force: " + data.explosionForce + "\n" + item.GetAmount() + " Items Purchased";
                 break;
             case statistic.Mass:
-                textMesh.text = "Mass: " + data.mass + "\n" + item.GetAmount() + " Items Purchased";
+                textMesh.text = "Mass: " + Mathf.Round(data.mass * 10)/10 + "\n" + item.GetAmount() + " Items Purchased";
                 break;
             default:
                 throw new NotImplementedException();

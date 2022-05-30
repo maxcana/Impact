@@ -2065,7 +2065,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3090759837838794362, guid: acf365e9baa73824eb4c0da4b6c540b9, type: 3}
       propertyPath: m_RootOrder
-      value: 25
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 3090759837838794362, guid: acf365e9baa73824eb4c0da4b6c540b9, type: 3}
       propertyPath: m_LocalScale.x
@@ -3808,7 +3808,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7910407140484677766, guid: 24f2d62728484ed43a74c1b557d7c37c, type: 3}
       propertyPath: m_RootOrder
-      value: 24
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 7910407140484677766, guid: 24f2d62728484ed43a74c1b557d7c37c, type: 3}
       propertyPath: m_LocalScale.x
@@ -4988,11 +4988,11 @@ Transform:
   - {fileID: 1307493368}
   - {fileID: 1805606544}
   - {fileID: 1683631147}
-  - {fileID: 782512092}
   - {fileID: 2045209451}
   - {fileID: 707949147}
   - {fileID: 42494307}
   - {fileID: 1097827781}
+  - {fileID: 782512092}
   - {fileID: 880363585}
   - {fileID: 1427040829}
   - {fileID: 2036610832}
@@ -6080,7 +6080,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7910407140484677766, guid: 24f2d62728484ed43a74c1b557d7c37c, type: 3}
       propertyPath: m_RootOrder
-      value: 23
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 7910407140484677766, guid: 24f2d62728484ed43a74c1b557d7c37c, type: 3}
       propertyPath: m_LocalScale.x
@@ -6983,7 +6983,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7910407140484677766, guid: 24f2d62728484ed43a74c1b557d7c37c, type: 3}
       propertyPath: m_RootOrder
-      value: 21
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7910407140484677766, guid: 24f2d62728484ed43a74c1b557d7c37c, type: 3}
       propertyPath: m_LocalScale.x
@@ -10282,7 +10282,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7910407140484677766, guid: 24f2d62728484ed43a74c1b557d7c37c, type: 3}
       propertyPath: m_RootOrder
-      value: 22
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 7910407140484677766, guid: 24f2d62728484ed43a74c1b557d7c37c, type: 3}
       propertyPath: m_LocalScale.x

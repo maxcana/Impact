@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BigHitParticle : MonoBehaviour
 {
-    public CameraShake shake;
     public ParticleSystem hitParticle;
     [SerializeField] float VelocityLimit;
     [SerializeField] float rbMassLimit;
@@ -28,7 +27,7 @@ public class BigHitParticle : MonoBehaviour
         //Debug.Log("Box says: my velocity before is " + velocityBeforePhysicsUpdate);
         if(Mathf.Abs(velocityBeforePhysicsUpdate) > VelocityLimit && (other.rigidbody == false || other.rigidbody.mass > rbMassLimit))
         {
-            var contact = other.GetContact(0);
+            var contact = other.GetContact(other.contactCount / 2);
             //! Problem: It always spawns on a corner because of the square/rectangle collision points, if the angle is small enough, it should spawn in the middle instead.
 
             float degree = Mathf.Atan2(contact.normal.y, contact.normal.x) * Mathf.Rad2Deg;
@@ -36,8 +35,9 @@ public class BigHitParticle : MonoBehaviour
             var e = particleClone.emission;
             e.SetBurst(0, new ParticleSystem.Burst(0, UnityEngine.Random.Range(5,8)));
             particleClone.Play();
+
             //! NOT WORKING (SHAKE)
-            shake.Shake(0.1f, 2);
+            GameAssets.i.Shake.Shake(0.1f, 2);
             Debug.Log("Tried to spawn particles");
 
             //shake.Shake(0.5f, other.relativeVelocity.sqrMagnitude);

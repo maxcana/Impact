@@ -32,4 +32,8 @@ public class MoveWithSine : MonoBehaviour
             transform.position = new Vector2(transform.position.x, startPosition.y + (Right?Mathf.Cos(startingSineY + timeCount * moveSpeed) * moveAmount:Mathf.Sin(startingSineY + timeCount * moveSpeed) * moveAmount));
         }
     }
+    private void OnDrawGizmosSelected() {
+        Gizmos.DrawWireSphere(transform.position, moveAmount);
+
+    }
 }

@@ -1,19 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Reflection;
+using UnityEngine.SceneManagement;
 
 public class GameAssets : MonoBehaviour
 {
     private static GameAssets _i;
-    public static GameAssets i {
-        get {
-            if (_i == null) {
+    public static GameAssets i
+    {
+        get
+        {
+            if (_i == null)
+            {
                 _i = (Instantiate(Resources.Load("GameAssets")) as GameObject).GetComponent<GameAssets>();
                 _i.Shake = GameObject.FindObjectOfType<CameraShake>();
                 _i.sound = _i.GetComponent<AudioSource>();
-            } 
-            
+            }
+
             return _i;
         }
     }
@@ -24,4 +27,10 @@ public class GameAssets : MonoBehaviour
     public Transform circleIndicator;
     public Transform DamageParticle;
     public CameraShake Shake;
+    public static IEnumerator LoadNext(float time)
+    {
+        yield return new WaitForSeconds(time);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
 }

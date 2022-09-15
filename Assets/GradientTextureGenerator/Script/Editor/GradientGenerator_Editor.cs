@@ -1,6 +1,6 @@
+
 using UnityEngine;
 using UnityEditor;
-
 [CustomEditor(typeof(GradientGenerator))]
 public class GradientGenerator_Editor : Editor
 {

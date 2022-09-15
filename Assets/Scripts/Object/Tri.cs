@@ -31,8 +31,10 @@ public class Tri : MonoBehaviour
     Form currentForm;
     bool isDamageable;
     Vector2 size;
+    bool isChangingPhase;
     private void Start()
     {
+        isChangingPhase = false;
         size = transform.localScale;
         isDamageable = true;
         currentForm = Form.First;
@@ -63,7 +65,7 @@ public class Tri : MonoBehaviour
             else
             {
                 Health = float.PositiveInfinity;
-                SetForm(currentForm == Form.First ? Form.Second : Form.Third, currentForm == Form.First ? 200 : currentForm == Form.Second ? 5 : 696969, currentForm == Form.First ? 0.3f : currentForm == Form.Second ? 0.1f : 696969, currentForm == Form.First ? true : false);
+                SetForm(currentForm == Form.First ? Form.Second : Form.Third, currentForm == Form.First ? 200 : currentForm == Form.Second ? 5 : 696969, currentForm == Form.First ? 0.3f : currentForm == Form.Second ? 0.1f : 696969, currentForm == Form.First);
                 print(currentForm.ToString());            
             }
         }
@@ -138,7 +140,7 @@ public class Tri : MonoBehaviour
     }
     public IEnumerator Teleport(Vector2 position, float delay)
     {
-        if (isDamageable)
+        if (isChangingPhase == false)
         {
             isTeleporting = true;
             Collider2D collider2d = GetComponent<Collider2D>();
@@ -265,23 +267,34 @@ public class Tri : MonoBehaviour
         isDamageable = false;
         float healthLerp = 0.1f;
         float maxHealthLerp = 0.1f;
-        while (Health < toRegen)
+        print("while loop started with toRegen " + toRegen);
+        isChangingPhase = true;
+        while (Mathf.Round(Health) != Mathf.Round(toRegen))
         {
             transform.localScale += (Vector3)functions.positionMoveTowards(transform.localScale, new Vector2(size, size), 5);
             maxHealthLerp += functions.valueMoveTowards(maxHealthLerp, toRegen, 5);
             healthLerp += functions.valueMoveTowards(healthLerp, toRegen, 3);
             Health = Mathf.Ceil(healthLerp);
             MaxHealth = Mathf.Ceil(maxHealthLerp);
+            
             if (red)
             {
                 sr.color += functions.colorMoveTowards(sr.color, new Vector4(255, 108, 108, 255), 30);
+            } 
+            else
+            {
+                sr.color += functions.colorMoveTowards(sr.color, new Vector4(255, 255, 255, 255), 30);
             }
             yield return null;
         }
-        this.size = transform.localScale;
+        isChangingPhase = false;
+        this.size = new Vector2(size, size);
+        transform.localScale = new Vector2(size, size);
+        Health = toRegen;
         Vector2 pos = GetUnoccupiedPosition();
         functions.SpawnCircle(pos, 0.05f);
-        StartCoroutine(Teleport(pos, 0.05f));
+        yield return StartCoroutine(Teleport(pos, 0.05f));
         isDamageable = true;
+        print("while loop finished with health " + toRegen);
     }
 }

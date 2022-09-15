@@ -25,6 +25,10 @@ public class DamagePopup : MonoBehaviour
     float startSize;
     private float moveXspeed;
     private float moveYSpeed;
+    private float damageAmount;
+    private float textLerp;
+    bool isHyperCritical;
+    bool isCritical;
     private void Awake()
     {
         textMesh = transform.GetComponent<TextMeshPro>();
@@ -32,19 +36,37 @@ public class DamagePopup : MonoBehaviour
 
     public void Setup(float damageAmount, bool isCritical, float totalmass, bool isHyperCritical = false)
     {
-        if(damageAmount == 0){Destroy(gameObject);}
+        this.damageAmount = damageAmount;
+        this.isCritical = isCritical;
+        this.isHyperCritical = isHyperCritical;
+        if (damageAmount == 0) { Destroy(gameObject); }
         startSize = fontSizeCurve.Evaluate(damageAmount);
         moveXspeed = UnityEngine.Random.Range(-1f, 1f);
         textMesh.fontSize = startSize;
 
-        if(damageAmount > 250 && totalmass > 20){
-            GameAssets.i.Shake.Shake(Mathf.Clamp((damageAmount / 3000f) + totalmass/3000, 0.1f, 0.5f), Mathf.Clamp((damageAmount / 300f) + totalmass/600, 0.5f, 6));
+        if (damageAmount > 250 && totalmass > 20)
+        {
+            GameAssets.i.Shake.Shake(Mathf.Clamp((damageAmount / 3000f) + totalmass / 3000, 0.1f, 0.5f), Mathf.Clamp((damageAmount / 300f) + totalmass / 600, 0.5f, 6));
         }
 
         if (damageAmount >= 0)
         {
-            textColor = new Color(1, 0.005f, 0.005f);
-            textMesh.text = isHyperCritical ? damageAmount.ToString() + "!!" : isCritical ? damageAmount.ToString() + "!" : damageAmount.ToString();
+            if (damageAmount >= 1000)
+            {
+                textColor = new Color(1, 1, 0);
+            }
+            else
+            {
+                if (damageAmount < 100)
+                {
+                    textColor = new Color(1, 0.005f, 0.005f);
+                    textMesh.text = isHyperCritical ? damageAmount.ToString() + "!!" : isCritical ? damageAmount.ToString() + "!" : damageAmount.ToString();
+                }
+                else
+                {
+                    textColor = new Color(1, 0.005f, 0.005f);
+                }
+            }
         }
         else
         {
@@ -54,20 +76,34 @@ public class DamagePopup : MonoBehaviour
             textMesh.text = isHyperCritical ? (damageAmount * -1f).ToString() + "!!" : isCritical ? (damageAmount * -1f).ToString() + "!" : (damageAmount * -1f).ToString();
         }
 
-        if(damageAmount >= 1000){textColor = new Color(1, 1, 0);}
 
-
+        textLerp = 0;
         textMesh.color = textColor;
         disappearTimer = DISAPPEAR_TIMER_MAX;
 
         sortingOrder++;
-        if(damageAmount >= 1000) {sortingOrder *= 100;}
+        if (damageAmount >= 1000) { sortingOrder *= 100; }
         textMesh.sortingOrder = sortingOrder;
         moveYSpeed = 5f;
     }
     private void Update()
     {
-
+        if (damageAmount >= 100)
+        {
+            textLerp += functions.valueMoveTowards(textLerp, damageAmount, 25);
+            if (isHyperCritical)
+            {
+                textMesh.text = Mathf.Round(textLerp) + "!!";
+            }
+            else if (isCritical)
+            {
+                textMesh.text = Mathf.Round(textLerp) + "!";
+            }
+            else
+            {
+                textMesh.text = Mathf.Round(textLerp).ToString();
+            }
+        }
         transform.position += new Vector3(moveXspeed, moveYSpeed) * Time.deltaTime;
         //? moves the text down at a fixed rate to simulate gravity
         moveYSpeed -= 8 * Time.deltaTime;

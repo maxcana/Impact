@@ -124,6 +124,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionSound: {fileID: 8300000, guid: 197ef4badf25b8f4ab9544dba56a62d2, type: 3}
   explosion: {fileID: 2682790361845427778, guid: 769f4b94500550548b2fa74a8b414091, type: 3}
+  setForce: 0
+  force: NaN
 --- !u!1 &643986476817890050
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,7 +186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6dd48ac4fd62f44b9a41c41b8bf75bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 200
 --- !u!1 &643986477070674247
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,7 +197,7 @@ GameObject:
   - component: {fileID: 643986477070674244}
   - component: {fileID: 643986477070674245}
   - component: {fileID: 643986477070674246}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Explosive
   m_TagString: Explosive
   m_Icon: {fileID: 0}
@@ -212,7 +213,7 @@ Transform:
   m_GameObject: {fileID: 643986477070674247}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.62, y: -7.943, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 1.75, y: 1.75, z: 1}
   m_Children:
   - {fileID: 643986475799855134}
   - {fileID: 643986476817890049}

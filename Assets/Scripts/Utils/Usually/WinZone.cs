@@ -6,10 +6,6 @@ using UnityEngine.SceneManagement;
 public class WinZone : MonoBehaviour
 {
     [SerializeField] bool returnToMenu;
-    private void Awake()
-    {
-
-    }
     void Start()
     {
         Debug.LogWarning("When adding new scenes, watch out!");

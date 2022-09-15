@@ -60,7 +60,7 @@ public class Ball : MonoBehaviour
 
             if (!inBossFight && !dontRegainLaunches)
             {
-                if (launches == 1)
+                if (launches == 1 && !Input.GetMouseButton(1))
                 {
                     currentSlowDown = Mathf.Clamp01(currentSlowDown + Time.deltaTime / slowDownTime);
                 }
@@ -80,7 +80,7 @@ public class Ball : MonoBehaviour
             if (Input.GetMouseButtonDown(0)) { leftMouseTime = Time.time; }
             if (Input.GetMouseButtonDown(1)) { rightMouseTime = Time.time; }
 
-            if ((Input.GetMouseButton(0) && leftMouseTime > rightMouseTime) || willLaunchOnHit)
+            if ((Input.GetMouseButton(0) && leftMouseTime > rightMouseTime) && !Input.GetMouseButton(1) || willLaunchOnHit)
             {
 
                 if (inBossFight || (dontRegainLaunches && launches > 0)) { currentSlowDown = Mathf.Clamp01(currentSlowDown + Time.deltaTime / slowDownTime); }
@@ -103,7 +103,7 @@ public class Ball : MonoBehaviour
             }
 
 
-            if ((Input.GetMouseButtonUp(0) && leftMouseTime > rightMouseTime) || willLaunchOnHit)
+            if ((Input.GetMouseButtonUp(0) && leftMouseTime > rightMouseTime) && !Input.GetMouseButton(1) || willLaunchOnHit)
             {
                 if (launches > 0 || inBossFight)
                 {

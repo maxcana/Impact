@@ -5,9 +5,11 @@ using System.Linq;
 
 public class DeathZone : MonoBehaviour
 {
+    public ParticleSystem onDeath;
     public float TimeUntilDeath;
     public string[] killTags;
     public string[] ignoreTags;
+    public bool dieOnHitWithNonIgnoreTagsObject = true;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -19,8 +21,13 @@ public class DeathZone : MonoBehaviour
                 {
                     if (!killTags.Contains(other.tag))
                     {
-                        Destroy(gameObject);
-                        return;
+                        if (dieOnHitWithNonIgnoreTagsObject)
+                        {
+                            ParticleSystem particles = Instantiate(onDeath, transform.position, Quaternion.Euler(90, 0, 0));
+                            particles.Play();
+                            Destroy(gameObject);
+                            return;
+                        }
                     }
                 }
                 else { return; }
@@ -29,10 +36,12 @@ public class DeathZone : MonoBehaviour
 
         if (other.tag == "Explosive" || other.tag == "ExplosiveCollider")
         {
-            if(other.tag == "ExplosiveCollider")
+            if (other.tag == "ExplosiveCollider")
             {
                 StartCoroutine(other.GetComponent<Explosive>().Explode());
-            } else {
+            }
+            else
+            {
                 StartCoroutine(other.transform.GetChild(0).GetComponent<Explosive>().Explode());
             }
         }

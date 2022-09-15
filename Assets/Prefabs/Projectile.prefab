@@ -98,10 +98,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47bdafdfb7615a9488c7c6cc258f731d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDeath: {fileID: 1508142817515650574, guid: cb9728e729e7a694d9a06e83d4f53159, type: 3}
   TimeUntilDeath: 0
   killTags:
   - Player
   ignoreTags: []
+  dieOnHitWithNonIgnoreTagsObject: 1
 --- !u!58 &4764215786140190821
 CircleCollider2D:
   m_ObjectHideFlags: 0

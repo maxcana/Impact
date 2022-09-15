@@ -16,4 +16,7 @@ public class LoadButton : MonoBehaviour
     void OnClick(){
         SceneManager.LoadScene(sceneToLoad);
     }
+    public void PlayAudio(AudioClip audio){
+        GameAssets.i.sound.PlayOneShot(audio);
+    }
 }

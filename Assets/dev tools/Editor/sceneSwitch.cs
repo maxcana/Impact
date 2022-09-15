@@ -9,7 +9,7 @@ using UnityEditor.SceneManagement;
 
 public class sceneSwitch : Editor
 {
-    //!! Comment for build
+    //!! False for build
     
     
     [MenuItem("Scenes/Next Scene")]

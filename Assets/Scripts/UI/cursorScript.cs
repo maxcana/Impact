@@ -10,6 +10,7 @@ public class cursorScript : MonoBehaviour
     RectTransform t;
     Image image;
     float var;
+    public bool useDefault;
     void Start()
     {
         t = GetComponent<RectTransform>();
@@ -19,14 +20,24 @@ public class cursorScript : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        var += Time.unscaledDeltaTime;
-        t.localScale = new Vector2(1f + Mathf.Sin(var * 8)/5, 1f + Mathf.Sin(var * 8)/5);
-        if(image.enabled == true){
-            Cursor.visible = false;
-        } else if (image.enabled == false){
+        if (!useDefault)
+        {
+            var += Time.unscaledDeltaTime;
+            t.localScale = new Vector2(1f + Mathf.Sin(var * 8) / 5, 1f + Mathf.Sin(var * 8) / 5);
+            if (image.enabled == true)
+            {
+                Cursor.visible = false;
+            }
+            else if (image.enabled == false)
+            {
+                Cursor.visible = true;
+            }
+            Vector2 pos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            t.position = pos;
+        } else {
+            image.enabled = false;
             Cursor.visible = true;
         }
-        Vector2 pos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        t.position = pos;
+
     }
 }

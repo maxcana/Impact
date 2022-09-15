@@ -33,8 +33,8 @@ TagManager:
   - Ball
   - Don't Collide With Player
   - Only Collide With Player
-  - 
-  - 
+  - Don't Collide With Player Or Enemies
+  - Enemy
   - 
   - 
   - 

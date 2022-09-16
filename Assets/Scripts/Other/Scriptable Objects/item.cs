@@ -9,6 +9,7 @@ public class item : ScriptableObject
     public string description;
     public int cost;
     public Sprite image;
+    public int stock;
     public int GetAmount(){
         int amount = 0;
         data.collectedItems.TryGetValue(this, out amount);

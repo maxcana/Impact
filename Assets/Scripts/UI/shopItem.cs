@@ -10,7 +10,7 @@ public class shopItem : MonoBehaviour
     public AudioClip purchaseNoise;
     public AudioClip notEnoughCoinsNoise;
     public void TryPurchase(){
-        if (data.coins >= item.cost){ 
+        if (data.coins >= item.cost && ((item.GetAmount() < item.stock) || item.stock == 0)){ 
             data.coins -= item.cost;
             GameAssets.i.sound.PlayOneShot(purchaseNoise, 0.6f);
             PlayerPrefs.SetInt("Coins", data.coins);

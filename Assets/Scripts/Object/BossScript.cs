@@ -117,7 +117,7 @@ public class BossScript : MonoBehaviour
     {
         GetComponent<Shards>().Disperse(transform.position);
         yield return new WaitForSeconds(0.1f);
-        functions.SpawnCoins(transform.position, 4, UnityEngine.Random.Range(18, 22), 170);
+        functions.SpawnCoins(transform.position, 4, UnityEngine.Random.Range(4, 8), 30);
         yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Destroy(gameObject);

@@ -91,11 +91,11 @@ public class Tri : MonoBehaviour
         if (dead)
             return;
         //?heals over time
-        if (Time.time > timeSinceLastDamageTaken + Mathf.Clamp((8f - (bossLevel / 20)), 0, 8) && Health != 0)
+        if ((Time.time > timeSinceLastDamageTaken + 1) && Health > 0)
         {
-            if (UnityEngine.Random.Range(1, (int)Mathf.Clamp(26 - Mathf.Ceil(bossLevel / 10), 1, 26)) == 1)
+            if (functions.TakeChance(Time.deltaTime * 800))
             {
-                HealDamage(Mathf.Round(UnityEngine.Random.Range(-10, (0 - 20 - (bossLevel / 3)))), Random.Range(0, 100) < Mathf.Clamp((20 - bossLevel / 10), 0, 100));
+                HealDamage(Mathf.Round(UnityEngine.Random.Range(-2, -4)), false);
             }
         }
     }
@@ -188,14 +188,12 @@ public class Tri : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Destroy(gameObject);
     }
-
     private void OnCollisionEnter2D(Collision2D other)
     {
         Rigidbody2D orb;
         orb = other.gameObject.GetComponent<Rigidbody2D>();
         if (orb != null && isDamageable)
         {
-
             if (dangerTime == 1) { if (Health > 0) { Destroy(other.gameObject); } }
             else
             {
@@ -205,14 +203,15 @@ public class Tri : MonoBehaviour
                 bool isHyperCritical = Random.Range(0, 100) < 5;
 
                 Damage = Mathf.Ceil(Mathf.Max(0.5f, orb.mass * orb.mass) * (isHyperCritical ? 6f : isCritical ? 2.5f : 1) * (Mathf.Abs(orb.velocity.x) + Mathf.Abs(orb.velocity.y)));
-                if (functions.IsBetweenf(Health - 1, Health + 25, Damage) && Health > 1)
-                {
-                    Damage = Health - 1;
-                }
                 if (other.gameObject.tag == "Player")
                 {
                     Damage *= data.baseDamage / 10;
                 }
+                if (functions.IsBetweenf(Health - 1, Health + 1000, Damage) && Health > 1)
+                {
+                    Damage = Health - 1;
+                }
+                
 
                 popUpDamage = Mathf.Clamp(Damage, 0, Health);
                 Damage = Mathf.Floor(Damage);
@@ -229,6 +228,7 @@ public class Tri : MonoBehaviour
                     timeSinceLastDamageTaken = Time.time;
                 }
             }
+            orb.position = GetUnoccupiedPosition();
         }
     }
 
@@ -259,6 +259,7 @@ public class Tri : MonoBehaviour
     }
     public void SetForm(Form form, float health, float size, bool red)
     {
+        bossLevel = ((int)form) * 0.5f;
         currentForm = form;
         StartCoroutine(Regenerate(health, size, red));
     }

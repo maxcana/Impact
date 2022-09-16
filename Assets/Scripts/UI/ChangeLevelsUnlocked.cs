@@ -40,14 +40,14 @@ public class ChangeLevelsUnlocked : MonoBehaviour
     int GetCost()
     {
         return functions.IsBetween(1, 5 + 1, data.levelsUnlocked + 1) ? 25
-                    : functions.IsBetween(5, 10, data.levelsUnlocked + 1) ? 50
-                        : functions.IsBetween(10, 15 + 1, data.levelsUnlocked + 1) ? 75
-                            : functions.IsBetween(15, 20, data.levelsUnlocked + 1) ? 100
-                                : functions.IsBetween(20, 25 + 1, data.levelsUnlocked + 1) ? 150
-                                    : functions.IsBetween(25, 29 + 1, data.levelsUnlocked + 1) ? 200
-                                        : data.levelsUnlocked + 1 == 10 ? 150
-                                            : data.levelsUnlocked + 1 == 20 ? 200
-                                                : data.levelsUnlocked + 1 == 30 ? 500
+                    : functions.IsBetween(5, 10, data.levelsUnlocked + 1) ? 100
+                        : functions.IsBetween(10, 15 + 1, data.levelsUnlocked + 1) ? 150
+                            : functions.IsBetween(15, 20, data.levelsUnlocked + 1) ? 375
+                                : functions.IsBetween(20, 25 + 1, data.levelsUnlocked + 1) ? 725
+                                    : functions.IsBetween(25, 29 + 1, data.levelsUnlocked + 1) ? 1625
+                                        : data.levelsUnlocked + 1 == 10 ? 500
+                                            : data.levelsUnlocked + 1 == 20 ? 1000
+                                                : data.levelsUnlocked + 1 == 30 ? 3500
                                                     : 69;
     }
 }

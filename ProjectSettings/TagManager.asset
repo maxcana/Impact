@@ -35,8 +35,8 @@ TagManager:
   - Only Collide With Player
   - Don't Collide With Player Or Enemies
   - Enemy
-  - 
-  - 
+  - Don't Collide With Explosion
+  - Explosion
   - 
   - 
   - 

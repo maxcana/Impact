@@ -38,7 +38,6 @@ public class BigHitParticle : MonoBehaviour
 
             //! NOT WORKING (SHAKE)
             GameAssets.i.Shake.Shake(0.1f, 2);
-            Debug.Log("Tried to spawn particles");
 
             //shake.Shake(0.5f, other.relativeVelocity.sqrMagnitude);
         }

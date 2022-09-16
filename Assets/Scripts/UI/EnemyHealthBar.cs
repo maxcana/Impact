@@ -40,7 +40,6 @@ public class EnemyHealthBar : MonoBehaviour
         counter -= Time.deltaTime;
         if (counter <= 0)
         {
-            print(HealthBarEffectImage.fillAmount);
             HealthBarEffectImage.fillAmount += functions.valueMoveTowards(HealthBarEffectImage.fillAmount, HP / Enemy.MaxHealth, 20);
         }
         if (Mathf.Abs((HealthBarEffectImage.fillAmount) - (HP / Enemy.MaxHealth)) < 0.004f)

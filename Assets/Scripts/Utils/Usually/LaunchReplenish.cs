@@ -13,7 +13,6 @@ public class LaunchReplenish : MonoBehaviour
         if(other.collider.tag == "Player" && !ball.dontRegainLaunches)
         {
             ball.launches = 1;
-            print("replenished launch");
         }
     }
 }

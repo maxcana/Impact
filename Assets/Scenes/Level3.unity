@@ -2395,6 +2395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47bdafdfb7615a9488c7c6cc258f731d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDeath: {fileID: 0}
   TimeUntilDeath: 0
   killTags: []
   ignoreTags: []
@@ -2908,6 +2909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47bdafdfb7615a9488c7c6cc258f731d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDeath: {fileID: 0}
   TimeUntilDeath: 0.1
   killTags: []
   ignoreTags: []
@@ -4014,3 +4016,44 @@ Transform:
   m_Father: {fileID: 137737452}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2761125064525028575
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 279960201624075804, guid: 052b04820ba679447a4c5e215eb8af12, type: 3}
+      propertyPath: m_RootOrder
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 279960201624075804, guid: 052b04820ba679447a4c5e215eb8af12, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 279960201624075804, guid: 052b04820ba679447a4c5e215eb8af12, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -10.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 279960201624075804, guid: 052b04820ba679447a4c5e215eb8af12, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.705401
+      objectReference: {fileID: 0}
+    - target: {fileID: 279960201624075804, guid: 052b04820ba679447a4c5e215eb8af12, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 279960201624075804, guid: 052b04820ba679447a4c5e215eb8af12, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 279960201624075804, guid: 052b04820ba679447a4c5e215eb8af12, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 279960201624075807, guid: 052b04820ba679447a4c5e215eb8af12, type: 3}
+      propertyPath: m_Name
+      value: LavaEffect Small
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 052b04820ba679447a4c5e215eb8af12, type: 3}

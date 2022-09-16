@@ -51,7 +51,6 @@ public class CameraShake : MonoBehaviour
 
     public void Shake(float duration, float amplitude)
     {
-        print(duration + " " + amplitude);
         if (virtualCamera == null || virtualCameraNoise == null){
             return;
         }

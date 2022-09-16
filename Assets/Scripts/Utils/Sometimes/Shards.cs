@@ -21,6 +21,7 @@ public class Shards : MonoBehaviour
     public async void Fade(float delay, PolygonCollider2D collider)
     {
         await System.Threading.Tasks.Task.Delay(Mathf.RoundToInt(delay * 1000));
+        if(collider == null){return;}
         var sr = collider.gameObject.GetComponent<SpriteRenderer>();
         while (sr.color.a > 0.02f)
         {

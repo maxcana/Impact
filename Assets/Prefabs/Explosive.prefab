@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 643986475799855135}
   - component: {fileID: 643986475799855130}
   - component: {fileID: 643986475799855129}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ExplosiveCollider
   m_TagString: ExplosiveCollider
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 643986476817890049}
   - component: {fileID: 643986476817890055}
   - component: {fileID: 643986476817890048}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Explosion
   m_TagString: Explosion
   m_Icon: {fileID: 0}
@@ -186,6 +186,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6dd48ac4fd62f44b9a41c41b8bf75bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ourExplosiveFriend: {fileID: 643986475799855129}
+  useExplosiveFriend: 1
+  customForce: 0
 --- !u!1 &643986477070674247
 GameObject:
   m_ObjectHideFlags: 0

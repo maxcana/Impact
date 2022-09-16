@@ -150,8 +150,6 @@ public class BigEnemyGuy : MonoBehaviour
     public IEnumerator Die(float delay)
     {
         dead = true;
-        cc2d.enabled = false;
-        sr.enabled = false;
         GetComponent<Shards>().Disperse(transform.position, 8);
         yield return new WaitForSeconds(0.1f);
         functions.SpawnCoins(transform.position, 4, UnityEngine.Random.Range(18, 22), 170);

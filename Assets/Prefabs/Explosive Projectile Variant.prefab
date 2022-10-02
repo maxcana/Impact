@@ -63,6 +63,7 @@ MonoBehaviour:
   ourExplosiveFriend: {fileID: 0}
   useExplosiveFriend: 0
   customForce: 20
+  customRadius: 4
 --- !u!1001 &180658200047767125
 PrefabInstance:
   m_ObjectHideFlags: 0

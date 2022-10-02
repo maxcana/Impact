@@ -1150,7 +1150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 745398758111832884, guid: 1187495033a8de747ae2849de32adc90, type: 3}
-  MaxHealthIsSetTo: 5000
+  MaxHealthIsSetTo: 1000000
   dangerGradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1181,7 +1181,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   MaxHealth: 100
-  AutoSetHealth: 1
+  AutoSetHealth: 0
   fadeSpeed: 2
   bossLevel: 20
 --- !u!212 &284525693
@@ -1755,6 +1755,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47bdafdfb7615a9488c7c6cc258f731d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explodeOnHit: 0
+  explosionObject: {fileID: 0}
+  explosionSound: {fileID: 0}
+  explosion: {fileID: 0}
   onDeath: {fileID: 0}
   TimeUntilDeath: 0.1
   killTags: []
@@ -2482,6 +2486,8 @@ MonoBehaviour:
   forceVelocity: 0
   scaleWithEnemyLordHealth: 0
   timeToSpawn: 400
+  randomizeTimeToSpawn: 0
+  maxTimeToSpawn: 0
   beg: {fileID: 0}
 --- !u!1001 &599715462
 PrefabInstance:
@@ -2740,6 +2746,8 @@ MonoBehaviour:
   forceVelocity: 0
   scaleWithEnemyLordHealth: 0
   timeToSpawn: 32
+  randomizeTimeToSpawn: 0
+  maxTimeToSpawn: 0
   beg: {fileID: 0}
 --- !u!4 &637050531
 Transform:
@@ -6307,6 +6315,8 @@ MonoBehaviour:
   forceVelocity: 0
   scaleWithEnemyLordHealth: 0
   timeToSpawn: 32
+  randomizeTimeToSpawn: 0
+  maxTimeToSpawn: 0
   beg: {fileID: 0}
 --- !u!4 &1214974318
 Transform:
@@ -6484,6 +6494,8 @@ MonoBehaviour:
   forceVelocity: 0
   scaleWithEnemyLordHealth: 0
   timeToSpawn: 600
+  randomizeTimeToSpawn: 0
+  maxTimeToSpawn: 0
   beg: {fileID: 0}
 --- !u!1001 &1246009104
 PrefabInstance:
@@ -7568,6 +7580,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47bdafdfb7615a9488c7c6cc258f731d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explodeOnHit: 0
+  explosionObject: {fileID: 0}
+  explosionSound: {fileID: 0}
+  explosion: {fileID: 0}
   onDeath: {fileID: 0}
   TimeUntilDeath: 0.1
   killTags: []
@@ -8443,6 +8459,8 @@ MonoBehaviour:
   forceVelocity: 0
   scaleWithEnemyLordHealth: 0
   timeToSpawn: 500
+  randomizeTimeToSpawn: 0
+  maxTimeToSpawn: 0
   beg: {fileID: 0}
 --- !u!1001 &1672082230
 PrefabInstance:
@@ -10279,6 +10297,8 @@ MonoBehaviour:
   forceVelocity: 0
   scaleWithEnemyLordHealth: 0
   timeToSpawn: 32
+  randomizeTimeToSpawn: 0
+  maxTimeToSpawn: 0
   beg: {fileID: 0}
 --- !u!4 &2026035442
 Transform:
@@ -10592,6 +10612,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47bdafdfb7615a9488c7c6cc258f731d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explodeOnHit: 0
+  explosionObject: {fileID: 0}
+  explosionSound: {fileID: 0}
+  explosion: {fileID: 0}
   onDeath: {fileID: 0}
   TimeUntilDeath: 0.1
   killTags: []

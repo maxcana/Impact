@@ -9,6 +9,7 @@ public class Explosion : MonoBehaviour
     [SerializeField] Explosive ourExplosiveFriend;
     [SerializeField] bool useExplosiveFriend = true;
     public float customForce;
+    public float customRadius = float.NaN;
     float timer = 0;
     private void Awake()
     {
@@ -18,13 +19,17 @@ public class Explosion : MonoBehaviour
         if (useExplosiveFriend)
         {
             float force = ourExplosiveFriend.setForce ? ourExplosiveFriend.force : data.explosionForce;
-            collider2d.radius = Mathf.Clamp(force / 14, 4, 100);
+            if(customRadius != float.NaN)
+                collider2d.radius = Mathf.Clamp(force / 14, 4, 100);
+            else collider2d.radius = customRadius;
         }
         else
         {
             float force = customForce;
-            collider2d.radius = Mathf.Clamp(force / 14, 4, 100);
-            print("awake + radius = " + collider2d.radius);
+            if(customRadius != float.NaN)
+                collider2d.radius = Mathf.Clamp(force / 14, 4, 100);
+            else collider2d.radius = customRadius;
+            print("awake + radius = " + collider2d.radius + " + force = " + customForce);
         }
     }
     private void OnEnable()
@@ -58,7 +63,7 @@ public class Explosion : MonoBehaviour
                 velocity = (direction * customForce * Mathf.Clamp01(1 - (distance / collider2d.radius)));
             }
             other.attachedRigidbody.velocity = velocity;
-
+            print("othervelocity: " + other.attachedRigidbody.velocity + " it should be: " + velocity);
             if (other.tag == "Enemy")
             {
                 //! List Every Boss Here (to take explosion damage)!

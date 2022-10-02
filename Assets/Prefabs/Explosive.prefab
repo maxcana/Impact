@@ -189,6 +189,7 @@ MonoBehaviour:
   ourExplosiveFriend: {fileID: 643986475799855129}
   useExplosiveFriend: 1
   customForce: 0
+  customRadius: NaN
 --- !u!1 &643986477070674247
 GameObject:
   m_ObjectHideFlags: 0

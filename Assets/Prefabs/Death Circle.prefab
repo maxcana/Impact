@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6123888133281218118}
   - component: {fileID: 101641523114351538}
   - component: {fileID: 9197731219705132445}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Death Circle
   m_TagString: Deadly
   m_Icon: {fileID: 0}
@@ -96,9 +96,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47bdafdfb7615a9488c7c6cc258f731d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explodeOnHit: 0
+  explosionObject: {fileID: 0}
+  explosionSound: {fileID: 0}
+  explosion: {fileID: 0}
+  onDeath: {fileID: 0}
   TimeUntilDeath: 0
   killTags: []
   ignoreTags: []
+  dieOnHitWithNonIgnoreTagsObject: 1
 --- !u!58 &9197731219705132445
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -16,16 +16,18 @@ public class DeathZone : MonoBehaviour
     public string[] ignoreTags;
     public bool dieOnHitWithNonIgnoreTagsObject = true;
     float timer;
-    private void Start() {
+    private void Start()
+    {
         timer = 0;
     }
-    private void Update() {
+    private void Update()
+    {
         timer += Time.deltaTime;
     }
     public void Explode()
     {
         print("boom");
-        
+
         ParticleSystem particleClone = GameObject.Instantiate(explosion, transform.position, Quaternion.Euler(90, 0, 0));
         GameAssets.i.Shake.Shake(0.15f, 15);
         GameAssets.i.sound.PlayOneShot(explosionSound, 0.3f);
@@ -52,19 +54,28 @@ public class DeathZone : MonoBehaviour
                     {
                         if (dieOnHitWithNonIgnoreTagsObject)
                         {
-                            if(timer < 0.1f){
+                            if (timer < 0.1f)
+                            {
                                 return;
                             }
-                            if(onDeath != null){
-                            ParticleSystem particles = Instantiate(onDeath, transform.position, Quaternion.Euler(90, 0, 0));
-                            particles.Play();}
-                            if(explodeOnHit){Explode();}
+                            if (onDeath != null)
+                            {
+                                ParticleSystem particles = Instantiate(onDeath, transform.position, Quaternion.Euler(90, 0, 0));
+                                particles.Play();
+                            }
+                            if (explodeOnHit) { Explode(); }
 
                             GetComponent<Collider2D>().enabled = false;
                             TryGetComponent<SpriteRenderer>(out SpriteRenderer sr);
-                            if(sr != null) sr.enabled = false;
+                            if (sr != null) sr.enabled = false;
 
-                            Destroy(gameObject, 1f);
+                            if (transform.childCount > 0)
+                            {
+                                Transform childToRemove = transform.GetChild(0);
+                                childToRemove.parent = null;
+                            }
+
+                            Destroy(gameObject);
                             return;
                         }
                     }

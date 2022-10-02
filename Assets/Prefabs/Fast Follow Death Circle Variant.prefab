@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1804376078753599364
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -3237956605401379788, guid: 990803cdd4ad294459c71cb7213f4631, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1480689529676643834, guid: 990803cdd4ad294459c71cb7213f4631, type: 3}
+      propertyPath: slowness
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 1548700763269554718, guid: 990803cdd4ad294459c71cb7213f4631, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1548700763269554718, guid: 990803cdd4ad294459c71cb7213f4631, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1548700763269554718, guid: 990803cdd4ad294459c71cb7213f4631, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.9999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 1548700763269554718, guid: 990803cdd4ad294459c71cb7213f4631, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1548700763269554718, guid: 990803cdd4ad294459c71cb7213f4631, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1548700763269554718, guid: 990803cdd4ad294459c71cb7213f4631, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1548700763269554718, guid: 990803cdd4ad294459c71cb7213f4631, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1548700763269554718, guid: 990803cdd4ad294459c71cb7213f4631, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1548700763269554718, guid: 990803cdd4ad294459c71cb7213f4631, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1548700763269554718, guid: 990803cdd4ad294459c71cb7213f4631, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1548700763269554718, guid: 990803cdd4ad294459c71cb7213f4631, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020433944136631157, guid: 990803cdd4ad294459c71cb7213f4631, type: 3}
+      propertyPath: m_Name
+      value: Fast Follow Death Circle Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020433944136631157, guid: 990803cdd4ad294459c71cb7213f4631, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 990803cdd4ad294459c71cb7213f4631, type: 3}

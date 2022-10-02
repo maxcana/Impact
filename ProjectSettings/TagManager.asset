@@ -37,8 +37,8 @@ TagManager:
   - Enemy
   - Don't Collide With Explosion
   - Explosion
-  - 
-  - 
+  - Won't Collide With Don't Collide With Won't Collide
+  - Don't Collide With Won't Collide
   - 
   - 
   - 

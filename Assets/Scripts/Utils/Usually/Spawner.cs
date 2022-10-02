@@ -9,13 +9,17 @@ public class Spawner : MonoBehaviour
     [SerializeField] Vector2 velocity;
     [SerializeField] bool forceVelocity;
     [SerializeField] bool scaleWithEnemyLordHealth;
-    public float timeToSpawn;
-    float initialTimeToSpawn;
+    public int timeToSpawn;
+    public bool randomizeTimeToSpawn = false;
+    public int maxTimeToSpawn;
+    int initialTimeToSpawn;
     [SerializeField] BigEnemyGuy beg;
 
     // Start is called before the first frame update
     void Start()
     {
+        if(randomizeTimeToSpawn)
+            timeToSpawn = UnityEngine.Random.Range(timeToSpawn, maxTimeToSpawn + 1);
         initialTimeToSpawn = timeToSpawn;
     }
 
@@ -24,7 +28,7 @@ public class Spawner : MonoBehaviour
     {
         if(scaleWithEnemyLordHealth){
             if (BigEnemyGuy.isDonePart2Intro){
-                timeToSpawn = initialTimeToSpawn - (beg.MaxHealth - beg.Health) / 30;
+                timeToSpawn = Mathf.CeilToInt(initialTimeToSpawn - (beg.MaxHealth - beg.Health) / 30);
             }
         }
 

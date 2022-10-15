@@ -83,6 +83,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0}
+  minSizeAfterDelay: 0
+  minSizeDelay: 0
   sizeMin: 15
   sizeMax: 15
   velocitySizeMultiplier: 0.03

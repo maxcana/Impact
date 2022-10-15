@@ -12,6 +12,7 @@ public class HealthBarScript : MonoBehaviour
     [SerializeField] BigEnemyGuy EnemyBoss;
     [SerializeField] BossScript Hex;
     [SerializeField] Tri tri;
+    [SerializeField] Oct oct;
     private void Start()
     {
         HealthBarImage = GetComponent<Image>();
@@ -36,6 +37,14 @@ public class HealthBarScript : MonoBehaviour
                 {
                     MaxHealth = tri.MaxHealth;
                     Health = tri.Health;
+                }
+                else
+                {
+                    if (currentBoss == enums.Bosses.Oct)
+                    {
+                        MaxHealth = oct.MaxHealth;
+                        Health = oct.Health;
+                    }
                 }
             }
         }

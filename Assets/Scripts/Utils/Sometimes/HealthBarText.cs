@@ -12,6 +12,7 @@ public class HealthBarText : MonoBehaviour
     [SerializeField] BigEnemyGuy enemyguy;
     [SerializeField] BossScript Hex;
     [SerializeField] Tri tri;
+    [SerializeField] Oct oct;
 
     void Awake()
     {
@@ -25,9 +26,10 @@ public class HealthBarText : MonoBehaviour
         string preHealth;
         preHealth = textMesh.text;
 
-        if(currentBoss == enums.Bosses.Hex){ textMesh.SetText(Hex.Health.ToString()); }
-        if(currentBoss == enums.Bosses.BigEnemy){ textMesh.SetText(enemyguy.Health.ToString());}
-        if(currentBoss == enums.Bosses.Tri){textMesh.SetText(tri.Health.ToString());}
+        if(currentBoss == enums.Bosses.Hex){ textMesh.SetText(((long)Hex.Health).ToString()); }
+        if(currentBoss == enums.Bosses.BigEnemy){ textMesh.SetText(((long)enemyguy.Health).ToString());}
+        if(currentBoss == enums.Bosses.Tri){textMesh.SetText(((long)(tri.Health)).ToString());}
+        if(currentBoss == enums.Bosses.Oct){textMesh.SetText(((long)(oct.Health)).ToString());}
         
         if(preHealth != textMesh.text){
             textMesh.fontSize += 3;

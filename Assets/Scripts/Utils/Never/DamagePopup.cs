@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Numerics;
 using UnityEngine;
 using TMPro;
 
 public class DamagePopup : MonoBehaviour
 {
     [SerializeField] AnimationCurve fontSizeCurve;
-    public static DamagePopup Create(Vector3 position, float damageAmount, bool isCritical, float totalmass, bool isHyperCritical)
+    public static DamagePopup Create(UnityEngine.Vector3 position, float damageAmount, bool isCritical, float totalmass, bool isHyperCritical)
     {
-        Transform damagePopupTransform = Instantiate(GameAssets.i.DamagePopup, position, Quaternion.identity);
+        Transform damagePopupTransform = Instantiate(GameAssets.i.DamagePopup, position, UnityEngine.Quaternion.identity);
 
         DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
         damagePopup.Setup(damageAmount, isCritical, totalmass, isHyperCritical);
@@ -48,6 +49,7 @@ public class DamagePopup : MonoBehaviour
         {
             GameAssets.i.Shake.Shake(Mathf.Clamp((damageAmount / 3000f) + totalmass / 3000, 0.1f, 0.5f), Mathf.Clamp((damageAmount / 300f) + totalmass / 600, 0.5f, 6));
         }
+        BigInteger bigIntDamage = new BigInteger(damageAmount);
 
         if (damageAmount >= 0)
         {
@@ -60,7 +62,7 @@ public class DamagePopup : MonoBehaviour
                 if (damageAmount < 100)
                 {
                     textColor = new Color(1, 0.005f, 0.005f);
-                    textMesh.text = isHyperCritical ? damageAmount.ToString() + "!!" : isCritical ? damageAmount.ToString() + "!" : damageAmount.ToString();
+                    textMesh.text = isHyperCritical ? bigIntDamage.ToString() + "!!" : isCritical ? bigIntDamage.ToString() + "!" : bigIntDamage.ToString();
                 }
                 else
                 {
@@ -73,7 +75,7 @@ public class DamagePopup : MonoBehaviour
 
             textColor = new Color(0.005f, 1, 0.005f);
 
-            textMesh.text = isHyperCritical ? (damageAmount * -1f).ToString() + "!!" : isCritical ? (damageAmount * -1f).ToString() + "!" : (damageAmount * -1f).ToString();
+            textMesh.text = isHyperCritical ? (bigIntDamage * -1).ToString() + "!!" : isCritical ? (bigIntDamage * -1).ToString() + "!" : (bigIntDamage * -1).ToString();
         }
 
 
@@ -93,18 +95,18 @@ public class DamagePopup : MonoBehaviour
             textLerp += functions.valueMoveTowards(textLerp, damageAmount, 25);
             if (isHyperCritical)
             {
-                textMesh.text = Mathf.Round(textLerp) + "!!";
+                textMesh.text = ((long)Mathf.Round(textLerp)) + "!!";
             }
             else if (isCritical)
             {
-                textMesh.text = Mathf.Round(textLerp) + "!";
+                textMesh.text = ((long)Mathf.Round(textLerp)) + "!";
             }
             else
             {
-                textMesh.text = Mathf.Round(textLerp).ToString();
+                textMesh.text = ((long)Mathf.Round(textLerp)).ToString();
             }
         }
-        transform.position += new Vector3(moveXspeed, moveYSpeed) * Time.deltaTime;
+        transform.position += new UnityEngine.Vector3(moveXspeed, moveYSpeed) * Time.deltaTime;
         //? moves the text down at a fixed rate to simulate gravity
         moveYSpeed -= 8 * Time.deltaTime;
         disappearTimer -= Time.deltaTime;

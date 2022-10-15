@@ -15,6 +15,7 @@ public class BossBarEffect : MonoBehaviour
     [SerializeField] BigEnemyGuy EnemyBoss;
     [SerializeField] BossScript Hex;
     [SerializeField] Tri tri;
+    [SerializeField] Oct oct;
     private float MaxHealth;
     float lastHealth;
     float Health;
@@ -29,8 +30,8 @@ public class BossBarEffect : MonoBehaviour
     }
     void Update()
     {
-        Health = currentBoss == enums.Bosses.Hex ? Hex.Health : currentBoss == enums.Bosses.BigEnemy ? EnemyBoss.Health : currentBoss == enums.Bosses.Tri ? tri.Health : 6969696969696969;
-        MaxHealth = currentBoss == enums.Bosses.Hex ? Hex.MaxHealth : currentBoss == enums.Bosses.BigEnemy ? EnemyBoss.MaxHealth : currentBoss == enums.Bosses.Tri ? tri.MaxHealth : 6969696969696969;
+        Health = currentBoss == enums.Bosses.Hex ? Hex.Health : currentBoss == enums.Bosses.BigEnemy ? EnemyBoss.Health : currentBoss == enums.Bosses.Tri ? tri.Health : currentBoss == enums.Bosses.Oct ? oct.Health : 6969696969696969;
+        MaxHealth = currentBoss == enums.Bosses.Hex ? Hex.MaxHealth : currentBoss == enums.Bosses.BigEnemy ? EnemyBoss.MaxHealth : currentBoss == enums.Bosses.Tri ? tri.MaxHealth : currentBoss == enums.Bosses.Oct ? oct.MaxHealth : 6969696969696969;
 
         counter -= Time.deltaTime;
         if (counter <= 0)

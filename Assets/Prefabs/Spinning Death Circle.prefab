@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -4437729520932871073}
   - component: {fileID: -6673195664687861366}
   - component: {fileID: 8705200843923826047}
+  - component: {fileID: 3052135899433242290}
   m_Layer: 0
   m_Name: Spinning Death Circle
   m_TagString: Deadly
@@ -132,8 +133,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47bdafdfb7615a9488c7c6cc258f731d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeUntilIDie: 0
+  explodeOnHit: 0
+  explosionObject: {fileID: 0}
+  explosionSound: {fileID: 0}
+  explosion: {fileID: 0}
   onDeath: {fileID: 1508142817515650574, guid: cb9728e729e7a694d9a06e83d4f53159, type: 3}
   TimeUntilDeath: 0
   killTags: []
   ignoreTags: []
   dieOnHitWithNonIgnoreTagsObject: 1
+--- !u!50 &3052135899433242290
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5962855189066496053}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

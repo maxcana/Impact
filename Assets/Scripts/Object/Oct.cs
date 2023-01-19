@@ -5,7 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class Oct : MonoBehaviour
 {
-    public enum State { damageable, spinningbar, lavafall, projectile, tracking }
+    [SerializeField] GameObject spinDeathCircleGroup;
+    [SerializeField] GameObject comet;
+    [SerializeField] Vector2 cometMinMaxX;
+    [SerializeField] Vector2 cometMinMaxY;
+    [SerializeField] GameObject edgeDeathCircleGroup;
+    [SerializeField] GameObject fireworksGroupGroup;
+    [SerializeField] GameObject bouncyBallGroup;
+    public enum State { damageable, comets, spin, spinPowerCrystal, edges, fireworks, bouncy }
     State state;
     bool isDamagable = true;
     Rigidbody2D rb;
@@ -24,13 +31,90 @@ public class Oct : MonoBehaviour
         Health = MaxHealth;
         rb = GetComponent<Rigidbody2D>();
     }
-    private void Update() {
+    State pastState;
+    float cometTimer = 0;
+    private void Update()
+    {
+        cometTimer += Time.deltaTime;
         counter += Time.deltaTime;
-        if(functions.IsBetweenf(0, 20, counter)){
-            
+
+        pastState = state;
+        if (functions.IsBetweenf(0, 10, counter)) state = State.spin;
+        if (functions.IsBetweenf(10, 30, counter)) state = State.comets;
+        if (functions.IsBetweenf(30, 45, counter)) state = State.fireworks;
+        if (functions.IsBetweenf(53, 60, counter)) state = State.bouncy;
+        if (functions.IsBetweenf(60, 70, counter)) state = State.edges;
+        if (functions.IsBetweenf(70, 80, counter)) state = State.spinPowerCrystal;
+        if (functions.IsBetweenf(80, 10000, counter)) state = State.damageable;
+        if (state != pastState)
+        {
+            OnEnterState(state);
+            OnExitState(pastState);
+        }
+
+        if (state == State.comets)
+        {
+            if (cometTimer > 0.3f)
+            {
+                GameObject comet = Instantiate(this.comet);
+                comet.transform.position = new Vector2(Random.Range(cometMinMaxX.x, cometMinMaxX.y), Random.Range(cometMinMaxY.x, cometMinMaxY.y));
+                // functions.SpawnCircle(comet.transform.position, 0.5f);
+                cometTimer = 0;
+                comet.SetActive(true);
+            }
         }
     }
-     public IEnumerator Die(float delay)
+    public void OnExitState(State theState)
+    {
+        if (theState == State.spin)
+        {
+            if (spinDeathCircles != null)
+                Destroy(spinDeathCircles);
+        }
+        if (theState == State.edges)
+        {
+            if (edgeDeathCircles != null)
+                Destroy(edgeDeathCircles);
+        }
+        if (theState == State.fireworks)
+        {
+            if (fireworksGroups != null)
+                Destroy(fireworksGroups);
+        }
+        if (theState == State.bouncy)
+        {
+            if (bouncyBalls != null)
+                Destroy(bouncyBalls);
+        }
+    }
+    GameObject spinDeathCircles;
+    GameObject edgeDeathCircles;
+    GameObject fireworksGroups;
+    GameObject bouncyBalls;
+    public void OnEnterState(State theState)
+    {
+        if (theState == State.spin)
+        {
+            spinDeathCircles = Instantiate(spinDeathCircleGroup);
+            spinDeathCircles.transform.position = transform.position;
+        }
+        if (theState == State.edges)
+        {
+            edgeDeathCircles = Instantiate(edgeDeathCircleGroup);
+            edgeDeathCircles.transform.position = transform.position;
+        }
+        if (theState == State.fireworks)
+        {
+            fireworksGroups = Instantiate(fireworksGroupGroup);
+            fireworksGroups.transform.position = new Vector2(11.53f, 15.15f);
+        }
+        if (theState == State.bouncy)
+        {
+            bouncyBalls = Instantiate(bouncyBallGroup);
+            bouncyBalls.transform.position = transform.position;
+        }
+    }
+    public IEnumerator Die(float delay)
     {
         GetComponent<Shards>().Disperse(transform.position, 8);
         yield return new WaitForSeconds(0.1f);
@@ -41,26 +125,36 @@ public class Oct : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Rigidbody2D orb;
-        orb = other.gameObject.GetComponent<Rigidbody2D>();
-        if (orb != null)
+        if (state == State.damageable)
         {
-            float Damage;
-            float popUpDamage;
-
-            bool isHyperCritical = Random.Range(0, 100) < 5;
-            bool isCritical = Random.Range(0, 100) < 20;
-            Damage = Mathf.Ceil(Mathf.Max(0.5f, orb.mass * orb.mass) * (isHyperCritical ? 6f : isCritical ? 2.5f : 1) * (Mathf.Abs(orb.velocity.x) + Mathf.Abs(orb.velocity.y)));
-            if (other.gameObject.tag == "Player")
+            Rigidbody2D orb;
+            orb = other.gameObject.GetComponent<Rigidbody2D>();
+            if (orb != null)
             {
-                Damage *= data.baseDamage / 10;
-            }
-            popUpDamage = Mathf.Clamp(Damage, 0, Health);
+                float Damage;
+                float popUpDamage;
 
-            if (Damage > 2)
-            {
-                DamageParticleScript.Create(other.GetContact(0).point, popUpDamage, Damage >= Health);
-                DealDamage(Damage, isCritical, isHyperCritical, other.GetContact(0).point, popUpDamage, other.rigidbody.mass * rb.mass);
+                bool isHyperCritical = Random.Range(0, 100) < 5;
+                bool isCritical = Random.Range(0, 100) < 20;
+                Damage = Mathf.Ceil(Mathf.Max(0.5f, orb.mass * orb.mass) * (isHyperCritical ? 6f : isCritical ? 2.5f : 1) * (Mathf.Abs(orb.velocity.x) + Mathf.Abs(orb.velocity.y)));
+                if (other.gameObject.tag == "Player")
+                {
+                    Damage *= data.baseDamage / 10;
+                }
+                popUpDamage = Mathf.Clamp(Damage, 0, Health);
+
+                if (Damage >= 1000000)
+                {
+                    DamageParticleScript.Create(other.GetContact(0).point, popUpDamage, Damage >= Health);
+                    DealDamage(Damage, isCritical, isHyperCritical, other.GetContact(0).point, popUpDamage, other.rigidbody.mass * rb.mass);
+                    counter = 0;
+                }
+                else
+                {
+                    DamageParticleScript.Create(other.GetContact(0).point, popUpDamage, Damage >= Health);
+                    DealDamage(Mathf.Ceil(Damage / 100f), isCritical, isHyperCritical, other.GetContact(0).point, Mathf.Ceil(popUpDamage / 100f), other.rigidbody.mass * rb.mass);
+                    counter = 0;
+                }
             }
         }
     }

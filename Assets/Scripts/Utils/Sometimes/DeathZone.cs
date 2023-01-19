@@ -6,6 +6,7 @@ using System.Linq;
 
 public class DeathZone : MonoBehaviour
 {
+    public float timeUntilIDie;
     public bool explodeOnHit;
     [SerializeField] GameObject explosionObject;
     [SerializeField] AudioClip explosionSound;
@@ -16,9 +17,19 @@ public class DeathZone : MonoBehaviour
     public string[] ignoreTags;
     public bool dieOnHitWithNonIgnoreTagsObject = true;
     float timer;
-    private void Start()
+    private void Awake()
     {
+        if(timeUntilIDie > 0){
+            StartCoroutine(die());
+        }
         timer = 0;
+    }
+    IEnumerator die()
+    {
+        yield return new WaitForSeconds(timeUntilIDie);
+        ParticleSystem particles = Instantiate(onDeath, transform.position, Quaternion.Euler(90, 0, 0));
+        particles.Play();
+        Destroy(gameObject);
     }
     private void Update()
     {
@@ -101,12 +112,14 @@ public class DeathZone : MonoBehaviour
             {
                 if (other.tag == "Enemy")
                 {
-                    EnemyBehavior e = other.GetComponent<EnemyBehavior>();
-                    e.DealDamages(e.Health, false, false, 0);
+                    EnemyBehavior e;
+                    if (other.TryGetComponent<EnemyBehavior>(out e))
+                        e.DealDamages(e.Health, false, false, 0);
                 }
                 else
                 {
-                    Destroy(other.gameObject, TimeUntilDeath);
+                    if(timer > 0.02f)
+                        Destroy(other.gameObject, TimeUntilDeath);
                 }
 
             }

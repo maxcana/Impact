@@ -8,12 +8,12 @@ using TMPro;
 public class DamagePopup : MonoBehaviour
 {
     [SerializeField] AnimationCurve fontSizeCurve;
-    public static DamagePopup Create(UnityEngine.Vector3 position, float damageAmount, bool isCritical, float totalmass, bool isHyperCritical)
+    public static DamagePopup Create(UnityEngine.Vector3 position, float damageAmount, bool isCritical, float totalmass, bool isHyperCritical, float lerpSpeed = 25f)
     {
         Transform damagePopupTransform = Instantiate(GameAssets.i.DamagePopup, position, UnityEngine.Quaternion.identity);
 
         DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
-        damagePopup.Setup(damageAmount, isCritical, totalmass, isHyperCritical);
+        damagePopup.Setup(damageAmount, isCritical, totalmass, isHyperCritical, lerpSpeed);
 
         return damagePopup;
     }
@@ -30,13 +30,15 @@ public class DamagePopup : MonoBehaviour
     private float textLerp;
     bool isHyperCritical;
     bool isCritical;
+    float lerpSpeed = 25;
     private void Awake()
     {
         textMesh = transform.GetComponent<TextMeshPro>();
     }
 
-    public void Setup(float damageAmount, bool isCritical, float totalmass, bool isHyperCritical = false)
+    public void Setup(float damageAmount, bool isCritical, float totalmass, bool isHyperCritical = false, float lerpSpeed = 25f)
     {
+        this.lerpSpeed = lerpSpeed;
         this.damageAmount = damageAmount;
         this.isCritical = isCritical;
         this.isHyperCritical = isHyperCritical;
@@ -47,7 +49,7 @@ public class DamagePopup : MonoBehaviour
 
         if (damageAmount > 250 && totalmass > 20)
         {
-            GameAssets.i.Shake.Shake(Mathf.Clamp((damageAmount / 3000f) + totalmass / 3000, 0.1f, 0.5f), Mathf.Clamp((damageAmount / 300f) + totalmass / 600, 0.5f, 6));
+            GameAssets.i.Shake.Shake(Mathf.Clamp((damageAmount / 3000f) + totalmass / 3000f, 0.1f, 0.5f), Mathf.Clamp((damageAmount / 300f) + totalmass / 600, 0.5f, 6));
         }
         BigInteger bigIntDamage = new BigInteger(damageAmount);
 
@@ -92,7 +94,7 @@ public class DamagePopup : MonoBehaviour
     {
         if (damageAmount >= 100)
         {
-            textLerp += functions.valueMoveTowards(textLerp, damageAmount, 25);
+            textLerp += functions.valueMoveTowards(textLerp, damageAmount, lerpSpeed);
             if (isHyperCritical)
             {
                 textMesh.text = ((long)Mathf.Round(textLerp)) + "!!";

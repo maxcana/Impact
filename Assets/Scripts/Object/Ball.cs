@@ -23,9 +23,20 @@ public class Ball : MonoBehaviour
     public bool willLaunchOnHit;
     [SerializeField] PhysicsMaterial2D ballPrivaterb;
     private Camera cam;
+    SpriteRenderer sr;
     public bool dontRegainLaunches;
+    [Header("Oct Fight")]
+    public Material glow;
+    public Material defaultMaterial;
+    public Color defaultColor;
+    public Color powerCrystalColor;
+    TrailRenderer trail;
+    public Gradient trailDefaultGradient;
+    public Gradient powerCrystalTrailDefaultGradient;
     private void Awake()
     {
+        trail = transform.GetChild(0).GetComponent<TrailRenderer>();
+        sr = GetComponent<SpriteRenderer>();
         cc2d = GetComponent<CircleCollider2D>();
         postprocessing = GetComponent<Volume>();
         cam = Camera.main;
@@ -42,6 +53,23 @@ public class Ball : MonoBehaviour
 
     void Update()
     {
+        //level 30
+        if (PowerCrystal.playerHasCrystal && SceneManager.GetActiveScene().buildIndex == 34 && !(sr.material == glow && sr.color == powerCrystalColor))
+        {
+            sr.material = glow;
+            sr.color = powerCrystalColor;
+            trail.colorGradient = powerCrystalTrailDefaultGradient;
+        }
+        else
+        {
+            if (!(sr.material == defaultMaterial && sr.color == defaultColor))
+            {
+                sr.material = defaultMaterial;
+                sr.color = defaultColor;
+                trail.colorGradient = trailDefaultGradient;
+            }
+        }
+
         rb.mass = data.mass;
         if (!dontRegainLaunches)
         {

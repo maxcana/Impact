@@ -7,6 +7,7 @@ public class ShootAtPlayerAfterSine : MonoBehaviour
     GameObject player;
     MoveWithSine spin;
     Vector2 dir;
+    public float force = 50f;
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
@@ -26,7 +27,7 @@ public class ShootAtPlayerAfterSine : MonoBehaviour
             if (Physics2D.Raycast(transform.position, player.transform.position - transform.position).collider.gameObject.tag == "Player")
             {
                 Destroy(spin);
-                dir = (player.transform.position - transform.position).normalized * 50f;
+                dir = (player.transform.position - transform.position).normalized * force;
                 GetComponent<Rigidbody2D>().AddForce(dir, ForceMode2D.Impulse);
             }
             yield return waitASec;

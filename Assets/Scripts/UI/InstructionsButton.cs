@@ -20,14 +20,14 @@ public class InstructionsButton : MonoBehaviour
     private void Start()
     {
         instructionsPanel.SetActive(isInstructionsOpen);
-        button.onClick.AddListener(OnClick);
     }
-    void OnClick()
+    public void OnClick()
     {
         isInstructionsOpen = true;
         instructionsPanel.SetActive(true);
         instructionsStuff.anchoredPosition = new Vector2(0, -130);
         instructionsStuffGroup.alpha = 0;
+        effect.weight = 0.15f;
     }
     private void Update()
     {

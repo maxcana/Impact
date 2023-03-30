@@ -317,7 +317,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 259061705490574928, guid: 1188713185ac1f94099c99d272f206d4, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 259061705490574928, guid: 1188713185ac1f94099c99d272f206d4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -931,7 +931,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &914898683
 GameObject:
@@ -992,7 +992,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &939301654
 MonoBehaviour:
@@ -18190,7 +18190,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8389257000942953444, guid: a9acafbcbf8d7e54c9dc49d522b1460f, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8389257000942953444, guid: a9acafbcbf8d7e54c9dc49d522b1460f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18687,7 +18687,7 @@ MonoBehaviour:
   edgeDeathCircleGroup: {fileID: 8970765273706715375, guid: b43825c5929eaef4f9f90975ff16de33, type: 3}
   fireworksGroupGroup: {fileID: 2763654595348552384, guid: b72f53d293995694db8acb5af9b1e0b2, type: 3}
   hardFireworksGroupGroup: {fileID: 4871563475187295876, guid: af3943216265b6543a208626104aab69, type: 3}
-  bouncyBallGroup: {fileID: 0}
+  bouncyBallGroup: {fileID: 6441779635144068368, guid: a031749bb2db2a744b5c0b7929a86fd8, type: 3}
   MaxHealth: 3000000
 --- !u!60 &1912014141
 PolygonCollider2D:

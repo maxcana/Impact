@@ -48,21 +48,21 @@ public class Oct : MonoBehaviour
         if (functions.IsBetweenf(10, 20, counter)) state = State.comets; //done
         if (functions.IsBetweenf(29, 40, counter)) state = State.fireworks; //done
 
-        if (functions.IsBetweenf(40, 55, counter)) state = State.firstspinPowerCrystal;
-        if (functions.IsBetweenf(55, 57, counter)) state = State.nothing;
+        if (functions.IsBetweenf(40, 55, counter)) state = State.firstspinPowerCrystal; //done
+        if (functions.IsBetweenf(55, 57, counter)) state = State.nothing; //done
 
-        if (functions.IsBetweenf(57, 72, counter)) state = State.spin; //done
-        if (functions.IsBetweenf(72, 90, counter)) state = State.bouncy;
+        if (functions.IsBetweenf(57, 72, counter)) state = State.easyspin; //done
+        if (functions.IsBetweenf(72, 90, counter)) state = State.bouncy; //done
         if (functions.IsBetweenf(90, 95, counter)) state = State.edges;
 
-        if (functions.IsBetweenf(95, 123, counter)) state = State.secondspinPowerCrystal;
-        if (functions.IsBetweenf(123, 125, counter)) state = State.nothing;
+        if (functions.IsBetweenf(95, 123, counter)) state = State.secondspinPowerCrystal; //done
+        if (functions.IsBetweenf(123, 125, counter)) state = State.nothing; //done
 
         if (functions.IsBetweenf(125, 140, counter)) state = State.spin; //done
         if (functions.IsBetweenf(140, 160, counter)) state = State.hardcomets; //done
         if (functions.IsBetweenf(165, 180, counter)) state = State.hardfireworks; //done
 
-        if (functions.IsBetweenf(180, 9999, counter)) state = State.thirdspinPowerCrystal;
+        if (functions.IsBetweenf(180, 9999, counter)) state = State.thirdspinPowerCrystal; //done
 
         if (state != pastState)
         {

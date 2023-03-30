@@ -150,9 +150,9 @@ public class BigEnemyGuy : MonoBehaviour
     public IEnumerator Die(float delay)
     {
         dead = true;
-        GetComponent<Shards>().Disperse(transform.position, 8);
-        yield return new WaitForSeconds(0.1f);
-        functions.SpawnCoins(transform.position, 4, UnityEngine.Random.Range(18, 22), 170);
+        GetComponent<Shards>().Disperse(transform.position);
+        yield return new WaitForSeconds(0.3f);
+        functions.SpawnCoins(transform.position, 4, UnityEngine.Random.Range(18, 22), 8);
         yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Destroy(gameObject);
@@ -275,7 +275,7 @@ public class BigEnemyGuy : MonoBehaviour
             lastHurtTime = Time.time;
             DamagePopup.Create(position, popUpDamage, Critical, totalmass, isHyperCritical);
 
-            if (Health <= 0 && isPart2) { Die(0f); }
+            if (Health <= 0 && isPart2) { StartCoroutine(Die(4f)); }
             else if (Health <= 0 && !isPart2)
             {
                 newMaxHealth = MaxHealth * 10;

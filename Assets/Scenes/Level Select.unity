@@ -6274,7 +6274,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -322.95, y: 94.96997}
+  m_AnchoredPosition: {x: -322.94995, y: 94.96997}
   m_SizeDelta: {x: -721.9, y: -339.16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1219248351
@@ -6474,7 +6474,7 @@ PrefabInstance:
       objectReference: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 8901878319629927225, guid: 6ef1f867bf31bf64394235715a725220, type: 3}
       propertyPath: m_text
-      value: Challenge 5
+      value: COMING SOON!
       objectReference: {fileID: 0}
     - target: {fileID: 8901878319629927225, guid: 6ef1f867bf31bf64394235715a725220, type: 3}
       propertyPath: m_fontSize
@@ -9455,7 +9455,7 @@ PrefabInstance:
       objectReference: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 8901878319629927225, guid: 6ef1f867bf31bf64394235715a725220, type: 3}
       propertyPath: m_text
-      value: Challenge 6
+      value: COMING SOON!
       objectReference: {fileID: 0}
     - target: {fileID: 8901878319629927225, guid: 6ef1f867bf31bf64394235715a725220, type: 3}
       propertyPath: m_fontSize

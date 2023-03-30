@@ -11,13 +11,13 @@ public class PlayerPrefsData : MonoBehaviour
     {
         PlayerPrefs.Save();
 
-        if(PlayerPrefs.GetInt("LevelsUnlocked") < 1){
+        if(PlayerPrefs.GetInt("LevelsUnlocked", 1) < 1){
             data.levelsUnlocked = 1;
         } else {
             data.levelsUnlocked = PlayerPrefs.GetInt("LevelsUnlocked");
         }
 
-        data.coins = PlayerPrefs.GetInt("Coins");
+        data.coins = PlayerPrefs.GetInt("Coins", 0);
         LoadAllItems();
     }
     public static void LoadAllItems(){

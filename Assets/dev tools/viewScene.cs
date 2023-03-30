@@ -16,30 +16,33 @@ public class viewScene : MonoBehaviour
     }
     void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (PlayerPrefs.GetInt("dev", 0) == 1)
         {
-            ballCam.SetActive(false);
-        }
-        if (Input.GetKey(KeyCode.Z))
-        {
-            if (Input.GetKey(KeyCode.LeftControl))
-                Time.timeScale = 3;
-            else
+            if (Input.GetKeyDown(KeyCode.Z))
             {
-                if (Input.GetKey(KeyCode.LeftShift))
-                    Time.timeScale = 1;
-                else
-                    Time.timeScale = 0f;
+                ballCam.SetActive(false);
             }
+            if (Input.GetKey(KeyCode.Z))
+            {
+                if (Input.GetKey(KeyCode.LeftControl))
+                    Time.timeScale = 3;
+                else
+                {
+                    if (Input.GetKey(KeyCode.LeftShift))
+                        Time.timeScale = 1;
+                    else
+                        Time.timeScale = 0f;
+                }
 
-            camPosition += new Vector3(Input.GetKey(KeyCode.RightArrow) ? 1 * Time.unscaledDeltaTime * 50 : Input.GetKey(KeyCode.LeftArrow) ? -1 * Time.unscaledDeltaTime * 50 : 0, Input.GetKey(KeyCode.UpArrow) ? 1 * Time.unscaledDeltaTime * 50 : Input.GetKey(KeyCode.DownArrow) ? -1 * Time.unscaledDeltaTime * 50 : 0, 0);
-            size += Input.GetKey(KeyCode.X) ? 1 * Time.unscaledDeltaTime * 10 : Input.GetKey(KeyCode.C) ? -1 * Time.unscaledDeltaTime * 10 : 0;
-            Camera.main.orthographicSize = size;
-            Camera.main.transform.position = camPosition;
-        }
-        if (Input.GetKeyUp(KeyCode.Z))
-        {
-            ballCam.SetActive(true);
+                camPosition += new Vector3(Input.GetKey(KeyCode.RightArrow) ? 1 * Time.unscaledDeltaTime * 50 : Input.GetKey(KeyCode.LeftArrow) ? -1 * Time.unscaledDeltaTime * 50 : 0, Input.GetKey(KeyCode.UpArrow) ? 1 * Time.unscaledDeltaTime * 50 : Input.GetKey(KeyCode.DownArrow) ? -1 * Time.unscaledDeltaTime * 50 : 0, 0);
+                size += Input.GetKey(KeyCode.X) ? 1 * Time.unscaledDeltaTime * 10 : Input.GetKey(KeyCode.C) ? -1 * Time.unscaledDeltaTime * 10 : 0;
+                Camera.main.orthographicSize = size;
+                Camera.main.transform.position = camPosition;
+            }
+            if (Input.GetKeyUp(KeyCode.Z))
+            {
+                ballCam.SetActive(true);
+            }
         }
     }
 }

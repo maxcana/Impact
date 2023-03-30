@@ -1060,7 +1060,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1383118996443528115, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
       propertyPath: MaxHealth
-      value: 9000
+      value: 1000000
       objectReference: {fileID: 0}
     - target: {fileID: 154511182, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
       propertyPath: m_Color.a
@@ -1099,8 +1099,12 @@ PrefabInstance:
       value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 8830252069850151868, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9581
+      objectReference: {fileID: 0}
+    - target: {fileID: 8830252069850151868, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.64
+      value: 30.661
       objectReference: {fileID: 0}
     - target: {fileID: 8830252069850151868, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2599,7 +2603,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1383118996443528115, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
       propertyPath: MaxHealth
-      value: 9000
+      value: 1000000
       objectReference: {fileID: 0}
     - target: {fileID: 154511182, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
       propertyPath: m_Color.a
@@ -2638,8 +2642,12 @@ PrefabInstance:
       value: 67
       objectReference: {fileID: 0}
     - target: {fileID: 8830252069850151868, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9581
+      objectReference: {fileID: 0}
+    - target: {fileID: 8830252069850151868, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.88
+      value: 29.9328
       objectReference: {fileID: 0}
     - target: {fileID: 8830252069850151868, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6885,7 +6893,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1383118996443528115, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
       propertyPath: MaxHealth
-      value: 9000
+      value: 1000000
       objectReference: {fileID: 0}
     - target: {fileID: 154511182, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
       propertyPath: m_Color.a
@@ -6924,8 +6932,12 @@ PrefabInstance:
       value: 66
       objectReference: {fileID: 0}
     - target: {fileID: 8830252069850151868, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9581
+      objectReference: {fileID: 0}
+    - target: {fileID: 8830252069850151868, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.78
+      value: 29.837
       objectReference: {fileID: 0}
     - target: {fileID: 8830252069850151868, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11987,6 +11999,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47bdafdfb7615a9488c7c6cc258f731d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeUntilIDie: 0
+  explodeOnHit: 0
+  explosionObject: {fileID: 0}
+  explosionSound: {fileID: 0}
+  explosion: {fileID: 0}
   onDeath: {fileID: 0}
   TimeUntilDeath: 0
   killTags:
@@ -12270,7 +12287,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1383118996443528115, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
       propertyPath: MaxHealth
-      value: 9000
+      value: 1000000
       objectReference: {fileID: 0}
     - target: {fileID: 154511182, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
       propertyPath: m_Color.a
@@ -12309,8 +12326,12 @@ PrefabInstance:
       value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 8830252069850151868, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9581
+      objectReference: {fileID: 0}
+    - target: {fileID: 8830252069850151868, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.64
+      value: 30.661
       objectReference: {fileID: 0}
     - target: {fileID: 8830252069850151868, guid: 88639b9af0bc95348907ed1e43219d84, type: 3}
       propertyPath: m_LocalPosition.y

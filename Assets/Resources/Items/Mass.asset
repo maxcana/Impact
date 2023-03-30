@@ -16,4 +16,4 @@ MonoBehaviour:
   description: Increments your mass by 0.1. Higher mass deals more damage and knockback.
   cost: 200
   image: {fileID: 21300000, guid: 0784011abf6be1549992d38d9865c855, type: 3}
-  stock: 5
+  stock: 15

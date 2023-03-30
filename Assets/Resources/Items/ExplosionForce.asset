@@ -16,4 +16,4 @@ MonoBehaviour:
   description: TNT will have a higher force.
   cost: 50
   image: {fileID: 21300000, guid: 31fc9b8903ed4ef46aec9cb41e4c331f, type: 3}
-  stock: 25
+  stock: 35
